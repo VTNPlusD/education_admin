@@ -2,4 +2,11 @@ const ConvertTime = (time: Date) => {
   return time
 }
 
-export { ConvertTime }
+const checkError = (errorType: string | number, message: string) => {
+  return {
+    errorType: errorType,
+    message: message
+  }
+}
+
+export { ConvertTime, checkError }
