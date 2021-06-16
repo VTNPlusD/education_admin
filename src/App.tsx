@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import AdminLayout from 'views/layouts/AdminLayout'
+import AuthLayout from 'views/layouts/AuthLayout'
+import PrivateRoute from 'views/routes/PrivateRoute'
+import PublicRoute from 'views/routes/PublicRoute'
 
-function App() {
+const App = () => {
+  const authed = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <PublicRoute authed={authed} path="/login" component={AuthLayout} />
+        <PrivateRoute authed={authed} path='/admin' component={AdminLayout} />
+        <PublicRoute authed={authed} path="/" component={AuthLayout} />
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
