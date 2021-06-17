@@ -1,24 +1,28 @@
 import AuthLayoutContainer from 'containers/AuthLayoutContainer'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Switch, withRouter } from 'react-router-dom'
+import { authSelector } from 'selectors/authSelectors/authSelector'
 import AdminLayout from 'views/layouts/AdminLayout'
 import PrivateRoute from 'views/routes/PrivateRoute'
 import PublicRoute from 'views/routes/PublicRoute'
+import './App.less'
 
-const App = () => {
-  const authed = false
+type Props = {
+  authed: boolean
+}
+
+const App = ({ authed }: Props) => {
   return (
-    <Router>
-      <Switch>
-        <PublicRoute
-          authed={authed}
-          path='/login'
-          component={AuthLayoutContainer}
-        />
-        <PrivateRoute authed={authed} path='/admin' component={AdminLayout} />
-        <PublicRoute authed={authed} path='/' component={AuthLayoutContainer} />
-      </Switch>
-    </Router>
+    <Switch>
+      <PublicRoute
+        authed={authed}
+        path='/login'
+        component={AuthLayoutContainer}
+      />
+      <PrivateRoute authed={authed} path='/admin' component={AdminLayout} />
+      <PublicRoute authed={authed} path='/' component={AuthLayoutContainer} />
+    </Switch>
   )
 }
 
-export default App
+export default withRouter(connect(authSelector)(App))

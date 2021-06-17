@@ -1,5 +1,6 @@
 import React from 'react'
 import { LoginRequest } from 'services/requests/LoginRequest'
+import Login from 'views/pages/Login'
 
 type Props = {
   handleLogin: (loginRequest: LoginRequest) => void
@@ -17,7 +18,7 @@ const AuthLayout: React.FC<Props> = ({ authed, handleLogin }) => {
 
   return (
     <div>
-      <button onClick={_setLoading}>LOGIN</button>
+      <Login />
     </div>
   )
 }
