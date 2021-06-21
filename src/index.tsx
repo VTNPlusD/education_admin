@@ -1,24 +1,24 @@
-import 'antd/dist/antd.less'
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
 import App from './App'
-import './index.less'
 import * as serviceWorker from './serviceWorker'
+import './index.less'
+import './configs/i18n';
+import 'antd/dist/antd.less'
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Router>
             <App />
           </Router>
         </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 )
 
