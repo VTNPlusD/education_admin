@@ -6,7 +6,7 @@ export const loginAction = (loginRequest: LoginRequest): LoginAction => ({
   loginRequest
 })
 
-export const updateAuth = (
+export const updateAuthAction = (
   authed: boolean,
   email: string,
   accessToken: string

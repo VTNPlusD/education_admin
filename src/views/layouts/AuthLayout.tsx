@@ -1,23 +1,9 @@
-import React from 'react'
-import { LoginRequest } from 'services/requests/LoginRequest'
+import LoginContainer from 'containers/LoginContainer'
 
-type Props = {
-  handleLogin: (loginRequest: LoginRequest) => void
-  authed: boolean
-}
-
-const AuthLayout: React.FC<Props> = ({ authed, handleLogin }) => {
-  const _setLoading = () => {
-    const loginRequest: LoginRequest = {
-      username: 'root',
-      password: 'root'
-    }
-    handleLogin(loginRequest)
-  }
-
+const AuthLayout = () => {
   return (
     <div>
-      <button onClick={_setLoading}>LOGIN</button>
+      <LoginContainer />
     </div>
   )
 }

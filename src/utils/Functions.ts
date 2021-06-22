@@ -9,4 +9,8 @@ const checkError = (errorType: string | number, message: string) => {
   }
 }
 
-export { ConvertTime, checkError }
+const refacter = () => {
+
+}
+
+export { ConvertTime, checkError, refacter }
