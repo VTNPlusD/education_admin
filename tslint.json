@@ -9,8 +9,8 @@
   ],
   "jsRules": {},
   "rules": {
-    "no-empty-interface": false,
-    "interface-name": false,
+    "no-empty-interface": true,
+    "interface-name": true,
     "object-literal-shorthand": [false, "never"],
     "indent": [true, "spaces"],
     "quotemark": [true, "single"],
@@ -18,7 +18,7 @@
     "member-ordering": [false],
     "object-literal-sort-keys": false,
     "no-shadowed-variable": false,
-    "no-console": [false],
+    "no-console": [true],
     "no-consecutive-blank-lines": [false],
     "no-string-literal": false,
     "arrow-parens": [false],
@@ -30,9 +30,16 @@
     "jsx-no-lambda": false,
     "jsx-boolean-value": false,
     "no-unused-variable": [
-      true,
+      false,
       {
         "ignore-pattern": "^_"
+      }
+    ],
+    "ordered-imports": [
+      false,
+      {
+        "import-sources-order": "lowercase-last",
+        "named-imports-order": "lowercase-first"
       }
     ]
   },

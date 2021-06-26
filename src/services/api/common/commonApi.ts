@@ -1,7 +1,7 @@
 import instance from '../v1'
 
-class _CommonApi {
+class CommonApis {
   getUser = () => instance.get('/todos/1')
 }
 
-export const CommonApi = new _CommonApi()
+export const CommonApi = new CommonApis()
