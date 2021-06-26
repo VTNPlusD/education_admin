@@ -12,7 +12,6 @@ type Props = {
 }
 
 const App = ({ authed }: Props) => {
-  console.log('testing')
   return (
     <Switch>
       <PublicRoute authed={authed} path='/login' component={AuthLayout} />
