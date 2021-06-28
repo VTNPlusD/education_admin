@@ -6,14 +6,33 @@ const en = {
     username: 'Username',
     pass: 'Password',
     remember: 'Remember me',
-    login_btn: 'Login'
+    login_btn: 'Login',
+    register: 'Register',
+    terms_of_use: 'I have read the agreement',
+    phone_number: 'Phone Number',
+    birthday: 'Birthday'
   },
 
   validation: {
     login_form: {
-      not_empty_user: 'Please input your username!',
-      not_empty_pass: 'Please input your password!'
+      not_empty_user: 'Please input your username',
+      not_empty_pass: 'Please input your password',
+      incorrect: 'Username or password is incorrect',
+      phone: 'Please input your phone number',
+      time: 'Please select date'
     }
+  },
+
+  notification: {
+    error: 'Error',
+    success: 'Success'
+  },
+
+  errors: {
+    internet: 'Please check your internet connection and try again!',
+    unauthenticated: 'Unauthenticated',
+    badRequest: 'Bad request',
+    wrong: 'Something went wrong!'
   }
 }
 

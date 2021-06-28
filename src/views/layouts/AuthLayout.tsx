@@ -1,10 +1,17 @@
+import Notification from 'components/notification/Notification'
 import LoginContainer from 'containers/LoginContainer'
+import { INotification } from 'interfaces/INotification'
 
-const AuthLayout = () => {
+type Props = {
+  notification: INotification
+}
+
+const AuthLayout = ({ notification }: Props) => {
   return (
-    <div>
+    <>
+      <Notification notifications={notification} />
       <LoginContainer />
-    </div>
+    </>
   )
 }
 

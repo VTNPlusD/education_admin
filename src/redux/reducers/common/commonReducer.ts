@@ -5,7 +5,8 @@ import {
 } from 'redux/actions/common/commonTypes'
 
 const initialState: CommonState = {
-  isLoading: false
+  isLoading: false,
+  notification: null
 }
 
 const commonReducer = (
@@ -17,6 +18,11 @@ const commonReducer = (
       return {
         ...state,
         isLoading: action.isLoading
+      }
+    case CommonTypes.SET_NOTIFICATION:
+      return {
+        ...state,
+        notification: action.notification
       }
     default:
       return state
