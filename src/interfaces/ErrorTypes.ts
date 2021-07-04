@@ -1,0 +1,6 @@
+export const ERROR_CODES = {
+  ERR_INTERNET_DISCONNECTED: 'ERR_INTERNET_DISCONNECTED',
+  uncaught: 700,
+  UNAUTHENTICATED: 401,
+  badRequest: 400
+}

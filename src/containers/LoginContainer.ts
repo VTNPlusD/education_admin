@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { loginAction } from 'redux/actions/auth/authAction'
-import { authSelector } from 'selectors/authSelectors/authSelector'
+import { commonSelector } from 'selectors/commonSelectors/commonSelector'
 import { LoginRequest } from 'services/requests/LoginRequest'
 import Login from 'views/pages/Login'
 
@@ -10,4 +10,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(loginAction(loginRequest))
 })
 
-export default connect(authSelector, mapDispatchToProps)(Login)
+export default connect(commonSelector, mapDispatchToProps)(Login)

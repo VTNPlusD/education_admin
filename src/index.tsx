@@ -5,19 +5,19 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from 'redux/store'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import './index.less'
-import './configs/i18n';
+import './configs/i18n'
 import 'antd/dist/antd.less'
+import 'styles/base.scss'
 
 ReactDOM.render(
   // <React.StrictMode>
-    <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <Router>
-            <App />
-          </Router>
-        </PersistGate>
-    </Provider>,
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <Router>
+        <App />
+      </Router>
+    </PersistGate>
+  </Provider>,
   // </React.StrictMode>,
   document.getElementById('root')
 )
