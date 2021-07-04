@@ -25,7 +25,10 @@ const en = {
 
   notification: {
     error: 'Error',
-    success: 'Success'
+    success: 'Success',
+    messages: {
+      invalid_role: 'You do not have access to the system'
+    }
   },
 
   errors: {

@@ -1,5 +1,8 @@
 import { AxiosResponse } from 'axios'
-import { checkError } from './functions'
+import { IError } from 'interfaces/IError'
+import { ILogin } from 'interfaces/ILogin'
+import { IPayload } from 'interfaces/IPayload'
+import { checkError } from './Functions'
 
 function checkStatus(response: AxiosResponse<any>) {
   if (response.status >= 200 && response.status < 300) {
@@ -17,4 +20,12 @@ function checkStatusData(response: any) {
   throw Object.assign(checkError(response.code, response.errors[0].message))
 }
 
-export { checkStatus, checkStatusData }
+function parseData(response: IPayload<ILogin>) {
+  return response.payload
+}
+
+function parseError(error: IPayload<IError>) {
+  return error.payload
+}
+
+export { checkStatus, checkStatusData, parseData, parseError }

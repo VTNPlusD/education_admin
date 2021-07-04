@@ -25,7 +25,10 @@ const vi = {
 
   notification: {
     error: 'Lỗi',
-    success: 'Thành công'
+    success: 'Thành công',
+    messages: {
+      invalid_role: 'Bạn không có quyền truy cập vào hệ thống'
+    }
   },
 
   errors: {
