@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { API_URL } from 'constants/general'
 import { mapKeys, snakeCase } from 'lodash'
-import { ERROR_CODES } from 'interfaces/ErrorTypes'
+import { ERROR_TYPE } from 'interfaces/ErrorTypes'
 import { checkError } from 'utils/Functions'
 import i18n from 'configs/i18n'
 
@@ -30,14 +30,14 @@ instance.interceptors.response.use(
     if (error.message && error.message === 'Network Error') {
       throw Object.assign(
         checkError(
-          ERROR_CODES.ERR_INTERNET_DISCONNECTED,
+          ERROR_TYPE.ERR_INTERNET_DISCONNECTED,
           i18n.t('errors.internet')
         )
       )
     }
     if (error.request) {
       throw Object.assign(
-        checkError(ERROR_CODES.badRequest, i18n.t('errors.badRequest'))
+        checkError(ERROR_TYPE.BAD_REQUEST, i18n.t('errors.badRequest'))
       )
     }
     throw error?.message || i18n.t('errors.wrong')
