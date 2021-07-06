@@ -1,3 +1,4 @@
-import Button from './button/Button'
+import Button from './button/VButton'
+import VHeader from './header/VHeader'
 
-export { Button }
+export { Button, VHeader }

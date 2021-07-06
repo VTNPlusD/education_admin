@@ -1,5 +1,3 @@
-$primary_color: #1DA57A;
-
 .change_locale {
   display: flex;
   align-items: center;
@@ -35,7 +33,6 @@ $primary_color: #1DA57A;
     margin-bottom: 0;
   }
   span {
-    color: $primary_color;
     cursor: pointer;
   }
 }

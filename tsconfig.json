@@ -18,5 +18,5 @@
     "baseUrl": "src",
     "types": []
   },
-  "include": ["src", "@types/react-i18next/index.d.ts"]
+  "include": ["src", "@types/react-i18next/index.d.ts", "public/app.js"]
 }

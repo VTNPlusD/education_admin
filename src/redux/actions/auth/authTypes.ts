@@ -9,6 +9,7 @@ export interface AuthState {
 
 export enum AuthTypes {
   LOGIN = 'LOGIN',
+  LOGOUT = 'LOGOUT',
   UPDATE_AUTH = 'UPDATE_AUTH'
 }
 
@@ -24,4 +25,8 @@ export interface UpdateAuthAction extends Action {
   accessToken: string
 }
 
-export type AuthActionTypes = LoginAction | UpdateAuthAction
+export interface LogoutAction extends Action {
+  type: AuthTypes.LOGOUT
+}
+
+export type AuthActionTypes = LoginAction | UpdateAuthAction | LogoutAction

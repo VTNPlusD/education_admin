@@ -31,11 +31,27 @@ const en = {
     }
   },
 
+  sideBar: {
+    dashboard: {
+      txtDashboard: 'Dashboard'
+    },
+    usersManagement: {
+      txtUsersManagement: 'Users management'
+    },
+    classesManagement: {
+      txtClassesManagement: 'Classes management'
+    }
+  },
+
   errors: {
     internet: 'Please check your internet connection and try again!',
     unauthenticated: 'Unauthenticated',
     badRequest: 'Bad request',
     wrong: 'Something went wrong!'
+  },
+
+  header: {
+    searchTxt: 'Search something'
   }
 }
 

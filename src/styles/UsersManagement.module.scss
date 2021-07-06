@@ -1,0 +1,28 @@
+.container {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.tableContainer {
+  width: 100%;
+}
+.userStatus {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+.userStatusNote {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-right: 32px;
+  justify-content: center;
+}
+.imgUserAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.pdL8 {
+  padding-left: 8px;
+}

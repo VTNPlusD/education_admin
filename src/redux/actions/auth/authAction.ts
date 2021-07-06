@@ -1,5 +1,10 @@
 import { LoginRequest } from 'services/requests/LoginRequest'
-import { AuthTypes, LoginAction, UpdateAuthAction } from './authTypes'
+import {
+  AuthTypes,
+  LoginAction,
+  LogoutAction,
+  UpdateAuthAction
+} from './authTypes'
 
 export const loginAction = (loginRequest: LoginRequest): LoginAction => ({
   type: AuthTypes.LOGIN,
@@ -15,4 +20,8 @@ export const updateAuthAction = (
   authed,
   email,
   accessToken
+})
+
+export const logoutAction = (): LogoutAction => ({
+  type: AuthTypes.LOGOUT
 })

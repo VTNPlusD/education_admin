@@ -1,5 +1,6 @@
 import { GlobalOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Form, Input, Radio, Select, DatePicker } from 'antd'
+import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'antd'
+import VButton from 'components/button/VButton'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LoginRequest } from 'services/requests/LoginRequest'
@@ -9,7 +10,7 @@ const { Option } = Select
 
 type Props = {
   handleLogin: (loginRequest: LoginRequest) => void
-  isLoading?: boolean
+  isLoading: boolean
 }
 
 type LayoutType = Parameters<typeof Form>[0]['layout']
@@ -123,16 +124,18 @@ const Login = ({ handleLogin, isLoading }: Props) => {
         </Form.Item>
         <div className={styles.remember_container}>
           <Form.Item name='remember' valuePropName='checked'>
-            <Checkbox>{t('login_screen.remember')}</Checkbox>
+            <Checkbox className='c'>{t('login_screen.remember')}</Checkbox>
           </Form.Item>
-          <span onClick={handleChangeRegister}>
+          <span onClick={handleChangeRegister} className='c'>
             {t('login_screen.register')}
           </span>
         </div>
         <div className='text-align-center'>
-          <Button loading={isLoading} type='primary' htmlType='submit'>
-            {t('login_screen.login_btn')}
-          </Button>
+          <VButton
+            isLoading={isLoading}
+            type='primary'
+            title={t('login_screen.login_btn')}
+          />
         </div>
       </Form>
     )
@@ -181,12 +184,16 @@ const Login = ({ handleLogin, isLoading }: Props) => {
           <Form.Item name='remember' valuePropName='checked'>
             <Checkbox>{t('login_screen.terms_of_use')}</Checkbox>
           </Form.Item>
-          <span onClick={handleChangeLogin}>{t('login_screen.login_btn')}</span>
+          <span onClick={handleChangeLogin} className='c'>
+            {t('login_screen.login_btn')}
+          </span>
         </div>
         <div className='text-align-center'>
-          <Button loading={isLoading} type='primary' htmlType='submit'>
-            {t('login_screen.register')}
-          </Button>
+          <VButton
+            isLoading={isLoading}
+            type='primary'
+            title={t('login_screen.register')}
+          />
         </div>
       </Form>
     )

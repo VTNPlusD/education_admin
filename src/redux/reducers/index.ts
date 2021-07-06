@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import authReducer from './auth/authReducer'
 import commonReducer from './common/commonReducer'
+import usersReducer from './users/usersReducer'
 
 const allReducers = combineReducers({
   common: commonReducer,
-  auth: authReducer
+  auth: authReducer,
+  users: usersReducer
 })
 
 const rootReducer = (state: any, action: any) => {
