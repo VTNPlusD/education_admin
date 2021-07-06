@@ -10,7 +10,6 @@ import 'antd/dist/antd.less'
 import 'styles/base.scss'
 
 ReactDOM.render(
-  // <React.StrictMode>
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <Router>
@@ -18,7 +17,6 @@ ReactDOM.render(
       </Router>
     </PersistGate>
   </Provider>,
-  // </React.StrictMode>,
   document.getElementById('root')
 )
 

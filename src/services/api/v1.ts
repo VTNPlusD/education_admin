@@ -21,6 +21,8 @@ instance.interceptors.request.use((config: any) => {
 
 instance.interceptors.response.use(
   (response) => {
+    console.log(response)
+    // instance.defaults.headers.common['Authorization'] = `Bearer ${response}`;
     return response
   },
   (error: AxiosError) => {

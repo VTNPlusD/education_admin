@@ -1,3 +1,4 @@
 const LOGIN = '/auth/login'
 const USERS = '/users'
-export { LOGIN, USERS }
+const USERS_LIST = '/users/list'
+export { LOGIN, USERS, USERS_LIST }
