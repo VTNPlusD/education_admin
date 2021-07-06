@@ -31,6 +31,18 @@ const en = {
     }
   },
 
+  sideBar: {
+    dashboard: {
+      txtDashboard: "Dashboard"
+    },
+    usersManagement: {
+      txtUsersManagement: 'Users management'
+    },
+    classesManagement: {
+      txtClassesManagement: "Classes management"
+    }
+  },
+
   errors: {
     internet: 'Please check your internet connection and try again!',
     unauthenticated: 'Unauthenticated',

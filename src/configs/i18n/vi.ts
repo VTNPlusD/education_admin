@@ -31,6 +31,18 @@ const vi = {
     }
   },
 
+  sideBar: {
+    dashboard: {
+      txtDashboard: "Thống kê"
+    },
+    usersManagement: {
+      txtUsersManagement: 'Quản lý người dùng'
+    },
+    classesManagement: {
+      txtClassesManagement: "Quản lý lớp"
+    }
+  },
+
   errors: {
     internet: 'Không có kết nối internet, vui lòng thử lại sau!',
     unauthenticated: 'Chưa xác thực',
