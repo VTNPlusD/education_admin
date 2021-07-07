@@ -1,11 +1,11 @@
 import i18n from 'configs/i18n'
+import ClassesManagementContainer from 'containers/ClassesManagementContainer'
 import UsersManagementContainer from 'containers/UsersManagementContainer'
 import {
   ClassesManagementIcon,
   DashboardIcon,
   UsersManagementIcon
 } from './IconRoutes'
-import ClassesManagement from './pages/ClassesManagement'
 import Dashboard from './pages/Dashboard'
 
 export const ADMIN_ROUTE = '/admin'
@@ -29,7 +29,7 @@ const routes = [
     title: i18n.t('sideBar.classesManagement.txtClassesManagement'),
     icon: ClassesManagementIcon(),
     path: '/classes-management',
-    component: ClassesManagement
+    component: ClassesManagementContainer
   },
   {
     id: 4,

@@ -33,13 +33,13 @@ const en = {
 
   sideBar: {
     dashboard: {
-      txtDashboard: "Dashboard"
+      txtDashboard: 'Dashboard'
     },
     usersManagement: {
       txtUsersManagement: 'Users management'
     },
     classesManagement: {
-      txtClassesManagement: "Classes management"
+      txtClassesManagement: 'Classes management'
     }
   },
 
@@ -48,6 +48,10 @@ const en = {
     unauthenticated: 'Unauthenticated',
     badRequest: 'Bad request',
     wrong: 'Something went wrong!'
+  },
+
+  header: {
+    searchTxt: 'Search something'
   }
 }
 

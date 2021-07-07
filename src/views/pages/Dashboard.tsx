@@ -1,21 +1,15 @@
-import classes from 'styles/Dashboard.module.scss'
 import { HomeFilled } from '@ant-design/icons'
+import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import { useTranslation } from 'react-i18next'
 
 const Dashboard = () => {
   const { t } = useTranslation()
   return (
     <div>
-      <div className={classes.header}>
-        <div className={classes.headerLeft}>
-          <div className={classes.iconHomeContainer}>
-            <HomeFilled style={styles.iconHome} />
-          </div>
-          <p>
-            {t('sideBar.dashboard.txtDashboard')}
-          </p>
-        </div>
-      </div>
+      <HeaderRoute
+        title={t('sideBar.classesManagement.txtClassesManagement')}
+        icon={<HomeFilled style={styles.iconHome} />}
+      />
     </div>
   )
 }

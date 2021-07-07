@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
 import i18n from 'configs/i18n'
-import { ERoles } from 'constants/roleEnum'
+import { ERoles } from 'interfaces/ERoles'
 import { ERROR_TYPE } from 'interfaces/ErrorTypes'
 import { ILogin } from 'interfaces/ILogin'
 import { INotification } from 'interfaces/INotification'
@@ -13,7 +13,8 @@ import {
   setNotificationAction
 } from 'redux/actions/common/commonAction'
 import { AuthApi } from 'services/api/auth/authApi'
-import { checkStatus, parseData } from 'utils/services'
+import instance from 'services/api/v1'
+import { checkStatus } from 'utils/services'
 
 function* _authSaga(action: LoginAction) {
   try {
@@ -23,10 +24,9 @@ function* _authSaga(action: LoginAction) {
       action.loginRequest
     )
 
-    const data = checkStatus(response)
+    const data = checkStatus<ILogin>(response)
     if (data) {
-      const dataParse = parseData(response.data)
-      const roles = dataParse.access.roles
+      const roles = data.access.roles
       let checkRole = false
       roles.forEach((role) => {
         if (role.name === ERoles.ADMIN || role.name === ERoles.DEVELOPER) {
@@ -34,12 +34,12 @@ function* _authSaga(action: LoginAction) {
         }
       })
       if (checkRole) {
+        const accessToken = data.token.accessToken
+        instance.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`
         yield put(
-          updateAuthAction(
-            true,
-            dataParse.user.username,
-            dataParse.token.accessToken
-          )
+          updateAuthAction(true, data.user.username, data.token.accessToken)
         )
       } else {
         const noti: INotification = {

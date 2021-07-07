@@ -1,10 +1,17 @@
 import { AxiosResponse } from 'axios'
+import i18n from 'configs/i18n'
+import { INotification } from 'interfaces/INotification'
 import { IPayload } from 'interfaces/IPayload'
 import { IUser } from 'interfaces/IUser'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import { setLoadingAction } from 'redux/actions/common/commonAction'
+import {
+  setLoadingAction,
+  setNotificationAction
+} from 'redux/actions/common/commonAction'
+import { updateUsersListAction } from 'redux/actions/users/usersAction'
 import { UsersTypes } from 'redux/actions/users/usersTypes'
 import { UsersApi } from 'services/api/users/usersApi'
+import { checkStatus } from 'utils/services'
 
 function* _usersListSaga() {
   try {
@@ -12,9 +19,17 @@ function* _usersListSaga() {
     const response: AxiosResponse<IPayload<IUser[]>> = yield call(
       UsersApi.getUsersList
     )
-    console.log(response)
+    const data = checkStatus(response)
+    if (data) {
+      yield put(updateUsersListAction(data))
+    }
   } catch (error) {
-    console.log('eee', error)
+    const noti: INotification = {
+      notiType: error?.data?.errorType,
+      title: i18n.t('notification.error'),
+      message: error?.data?.message[0]
+    }
+    yield put(setNotificationAction(noti))
   }
 }
 

@@ -6,9 +6,17 @@ export interface UsersState {
 }
 
 export enum UsersTypes {
-  USERS_LIST = 'USERS_LIST'
+  USERS_LIST = 'USERS_LIST',
+  UPDATE_USERS_LIST = 'UPDATE_USERS_LIST'
 }
 
-export interface UsersAction extends Action {
+export interface GetUsersAction extends Action {
   type: UsersTypes.USERS_LIST
 }
+
+export interface UpdateUsersAction extends Action {
+  type: UsersTypes.UPDATE_USERS_LIST
+  usersList: IUser[]
+}
+
+export type UsersActionTypes = GetUsersAction | UpdateUsersAction

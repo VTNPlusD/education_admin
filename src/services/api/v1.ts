@@ -1,9 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
-import { API_URL } from 'constants/general'
-import { mapKeys, snakeCase } from 'lodash'
-import { ERROR_TYPE } from 'interfaces/ErrorTypes'
-import { checkError } from 'utils/Functions'
 import i18n from 'configs/i18n'
+import { API_URL } from 'constants/general'
+import { ERROR_TYPE } from 'interfaces/ErrorTypes'
+import { mapKeys, snakeCase } from 'lodash'
+import { logoutAction } from 'redux/actions/auth/authAction'
+import { store } from 'redux/store'
+import { checkError } from 'utils/Functions'
 
 const DEFAULT_API_CONFIG: AxiosRequestConfig = {
   baseURL: API_URL,
@@ -21,11 +23,14 @@ instance.interceptors.request.use((config: any) => {
 
 instance.interceptors.response.use(
   (response) => {
-    console.log(response)
-    // instance.defaults.headers.common['Authorization'] = `Bearer ${response}`;
     return response
   },
   (error: AxiosError) => {
+    if (
+      error.response?.data?.errorType === ERROR_TYPE.ACCESS_TOKEN_EXPIRED ||
+      error.response?.data?.errorType === ERROR_TYPE.UNAUTHORIZED
+    )
+      return logout()
     if (error.response) {
       throw error.response
     }
@@ -46,10 +51,11 @@ instance.interceptors.response.use(
   }
 )
 
-// const logoutIfUnauthenticated = (error: AxiosError) => {
-//   if (error.response?.data.error_code === ERROR_CODES.unauthenticated) {
-//     // handle logout
-//   }
-// }
+const logout = () => {
+  // handle logout
+  store.dispatch(logoutAction())
+  localStorage.removeItem('persist:root')
+  window.location.replace('/')
+}
 
 export default instance

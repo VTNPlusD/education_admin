@@ -22,6 +22,8 @@ const authReducer = (
         email: action.email,
         accessToken: action.accessToken
       }
+    case AuthTypes.LOGOUT:
+      return { ...initialState }
     default:
       return state
   }

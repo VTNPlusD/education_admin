@@ -33,13 +33,13 @@ const vi = {
 
   sideBar: {
     dashboard: {
-      txtDashboard: "Thống kê"
+      txtDashboard: 'Thống kê'
     },
     usersManagement: {
       txtUsersManagement: 'Quản lý người dùng'
     },
     classesManagement: {
-      txtClassesManagement: "Quản lý lớp"
+      txtClassesManagement: 'Quản lý lớp'
     }
   },
 
@@ -48,6 +48,10 @@ const vi = {
     unauthenticated: 'Chưa xác thực',
     badRequest: 'Lỗi',
     wrong: 'Có lỗi xảy ra!'
+  },
+
+  header: {
+    searchTxt: 'Nhập để tìm kiếm'
   }
 }
 

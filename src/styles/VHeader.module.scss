@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+}
+.search {
+  border: none;
+}
+.iconSearch {
+  font-size: large;
+  opacity: 60%;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.avatarContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: 'contain';
+}
