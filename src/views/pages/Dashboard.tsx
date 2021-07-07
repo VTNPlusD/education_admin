@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <div>
       <HeaderRoute
-        title={t('sideBar.classesManagement.txtClassesManagement')}
+        title={t('sideBar.dashboard.txtDashboard')}
         icon={<HomeFilled style={styles.iconHome} />}
       />
     </div>

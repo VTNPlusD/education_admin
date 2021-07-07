@@ -43,6 +43,16 @@ const en = {
     }
   },
 
+  users: {
+    user: 'User',
+    username: 'Username',
+    fullname: 'Fullname',
+    email: 'Email',
+    phone: 'Phone',
+    birthday: 'Birthday',
+    status: 'Status'
+  },
+
   errors: {
     internet: 'Please check your internet connection and try again!',
     unauthenticated: 'Unauthenticated',

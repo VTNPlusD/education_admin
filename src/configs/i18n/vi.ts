@@ -43,6 +43,16 @@ const vi = {
     }
   },
 
+  users: {
+    user: 'Người dùng',
+    username: 'Tên đăng nhập',
+    fullname: 'Họ và tên',
+    email: 'Email',
+    phone: 'Số điện thoại',
+    birthday: 'Ngày sinh',
+    status: 'Trạng thái'
+  },
+
   errors: {
     internet: 'Không có kết nối internet, vui lòng thử lại sau!',
     unauthenticated: 'Chưa xác thực',

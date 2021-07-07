@@ -3,10 +3,11 @@ import { EUserStatus } from 'interfaces/EUserStatus'
 import { IUser } from 'interfaces/IUser'
 import { useEffect } from 'react'
 import classes from 'styles/UsersManagement.module.scss'
-import { PRIMARY_GRAY } from 'utils/colors'
+import { colors } from 'utils/colors'
 import { convertStatusToColor } from 'utils/Functions'
 import { useTranslation } from 'react-i18next'
 import { UserOutlined } from '@ant-design/icons'
+import TableItem from './TableItem'
 
 type Props = {
   getUsersList: () => void
@@ -19,6 +20,10 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
   useEffect(() => {
     getUsersList()
   }, [getUsersList])
+
+  const handleSelectUser = (id: number) => {
+    console.log(id)
+  }
 
   const _renderNote = () => {
     const userStatusList = [
@@ -44,40 +49,28 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
   return (
     <div className={classes.container}>
       <HeaderRoute
-        title={t('sideBar.classesManagement.txtClassesManagement')}
+        title={t('sideBar.usersManagement.txtUsersManagement')}
         icon={<UserOutlined style={styles.iconHeader} />}
       />
       <table className={classes.tableContainer}>
         <thead>
           <tr style={{ textAlign: 'left' }}>
-            <th> User </th>
-            <th> First name </th>
-            <th> Username </th>
-            <th> Email </th>
-            <th> Phone </th>
-            <th> Status </th>
+            <th> {t('users.user')} </th>
+            <th> {t('users.fullname')} </th>
+            <th> {t('users.username')} </th>
+            <th> {t('users.email')} </th>
+            <th> {t('users.phone')} </th>
+            <th> {t('users.status')} </th>
           </tr>
         </thead>
         <tbody className={classes.tableContainer}>
           {usersList.map((user, index) => (
-            <tr key={user.id} style={stylesWithParam(index).itemContainer}>
-              <td className={classes.pdL8}>
-                <img
-                  className={classes.imgUserAvatar}
-                  src='https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg'
-                  alt=''
-                />
-              </td>
-              <td>{user.fullname} </td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.phone} </td>
-              <td>
-                <div
-                  style={stylesWithParam(user.status).userStatus}
-                  className={classes.userStatus}></div>
-              </td>
-            </tr>
+            <TableItem
+              key={user.id}
+              user={user}
+              index={index}
+              handleSelectUser={handleSelectUser}
+            />
           ))}
         </tbody>
       </table>
@@ -100,7 +93,7 @@ const stylesWithParam = (val: any) => {
     marginLeft: 8
   }
   obj.itemContainer = {
-    backgroundColor: val % 2 === 0 ? PRIMARY_GRAY : '#FFF',
+    backgroundColor: val % 2 === 0 ? colors.PRIMARY_GRAY : '#FFF',
     height: 45
   }
   return obj

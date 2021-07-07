@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.headerLeft {
+  display: flex;
+  align-items: center;
+  p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

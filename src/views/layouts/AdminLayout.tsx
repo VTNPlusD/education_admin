@@ -4,8 +4,9 @@ import { Layout, Menu } from 'antd'
 import { useEffect, useState } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import classes from 'styles/AdminLayout.module.scss'
-import { ADMIN_ROUTE, routes } from 'views/routes'
+import { ADMIN_ROUTE, childrenRoutes, routes } from 'views/routes'
 import { INotification } from 'interfaces/INotification'
+import { colors } from 'utils/colors'
 
 const { SubMenu } = Menu
 const { Header, Content, Sider } = Layout
@@ -13,6 +14,13 @@ const { Header, Content, Sider } = Layout
 const getContentRoute = (
   <Switch>
     {routes.map((route) => (
+      <Route
+        path={ADMIN_ROUTE.concat(route.path)}
+        component={route.component}
+        key={route.id}
+      />
+    ))}
+    {childrenRoutes.map((route) => (
       <Route
         path={ADMIN_ROUTE.concat(route.path)}
         component={route.component}
@@ -110,12 +118,7 @@ const AdminLayout = ({ notification }: Props) => {
         </Sider>
 
         <Layout>
-          <Header
-            style={{
-              backgroundColor: '#FFF',
-              backgroundImage: 'linear-gradient(to right, #ffbf96, #fe7096)'
-            }}
-          />
+          <Header style={{ backgroundImage: colors.PRIMARY_LINEAR_MAIN }} />
           <Layout style={styles.contentLayout}>
             <Content className='site-layout-background' style={styles.content}>
               {getContentRoute}
