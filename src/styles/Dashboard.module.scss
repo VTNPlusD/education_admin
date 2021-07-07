@@ -1,3 +1,4 @@
+$PRIMARY_LINEAR_MAIN: linear-gradient(to right, #da8cff, #9a55ff);
 .header {
   display: flex;
   justify-content: space-between;
@@ -19,6 +20,6 @@
   height: 36px;
   border-radius: 4px;
   margin-right: 12px;
-  background: linear-gradient(to right, #da8cff, #9a55ff);
+  background: $PRIMARY_LINEAR_MAIN;
   box-shadow: 0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35);
 }

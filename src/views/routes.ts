@@ -7,6 +7,7 @@ import {
   UsersManagementIcon
 } from './IconRoutes'
 import Dashboard from './pages/Dashboard'
+import UserDetail from './pages/users/UserDetail'
 
 export const ADMIN_ROUTE = '/admin'
 const routes = [
@@ -50,7 +51,16 @@ const routes = [
         path: '/classes2-management'
       }
     ]
-  }
+  },
 ]
 
-export { routes }
+const childrenRoutes = [
+  {
+    id: 1,
+    title: "Users",
+    path: '/users-management/:id',
+    component: UserDetail
+  },
+]
+
+export { routes, childrenRoutes }

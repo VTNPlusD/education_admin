@@ -1,5 +1,5 @@
+$PRIMARY_MAIN: #b66dff;
 $primary-color: aliceblue;
-$main-color: #b66dff;
 
 html,
 body {
@@ -25,5 +25,5 @@ p {
   padding: 16px;
 }
 .c {
-  color: $main-color !important;
+  color: $PRIMARY_MAIN !important;
 }
