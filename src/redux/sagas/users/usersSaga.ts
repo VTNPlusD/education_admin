@@ -8,12 +8,13 @@ import {
   setLoadingAction,
   setNotificationAction
 } from 'redux/actions/common/commonAction'
-import { updateUsersListAction } from 'redux/actions/users/usersAction'
-import { UsersTypes } from 'redux/actions/users/usersTypes'
+import { EUserActions } from 'redux/actions/users/EUserAction'
+import { updateUserDetailAction, updateUsersListAction } from 'redux/actions/users/usersAction'
+import { GetUserByIdAction } from 'redux/actions/users/usersTypes'
 import { UsersApi } from 'services/api/users/usersApi'
 import { checkStatus } from 'utils/services'
 
-function* _usersListSaga() {
+function* getUsersListSaga() {
   try {
     yield put(setLoadingAction(true))
     const response: AxiosResponse<IPayload<IUser[]>> = yield call(
@@ -33,6 +34,30 @@ function* _usersListSaga() {
   }
 }
 
+function* getUserByIdSaga(action: GetUserByIdAction) {
+  try {
+    yield put(setLoadingAction(true))
+    const response: AxiosResponse<IPayload<IUser>> = yield call(
+      UsersApi.getUserById,
+      action.id
+    )
+    const data = checkStatus(response)
+    if (data) {
+      yield put (updateUserDetailAction(data))
+    }
+  } catch (error) {
+    const noti: INotification = {
+      notiType: error?.data?.errorType,
+      title: i18n.t('notification.error'),
+      message: error?.data?.message[0]
+    }
+    yield put(setNotificationAction(noti))
+  }
+}
+
 export default function* usersSaga() {
-  yield all([takeLatest(UsersTypes.USERS_LIST, _usersListSaga)])
+  yield all([
+    takeLatest(EUserActions.USERS_LIST, getUsersListSaga),
+    takeLatest(EUserActions.GET_USER_BY_ID, getUserByIdSaga)
+  ])
 }

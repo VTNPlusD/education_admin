@@ -1,11 +1,19 @@
-import {
-  UsersActionTypes,
-  UsersState,
-  UsersTypes
-} from 'redux/actions/users/usersTypes'
+import { EUserStatus } from 'interfaces/EUserStatus'
+import { EUserActions } from 'redux/actions/users/EUserAction'
+import { UsersActionTypes, UsersState } from 'redux/actions/users/usersTypes'
 
 const initialState: UsersState = {
-  usersList: []
+  usersList: [],
+  userDetail: {
+    id: 0,
+    username: '',
+    fullname: '',
+    email: '',
+    birthday: new Date(),
+    phone: '',
+    isSuperUser: false,
+    status: EUserStatus.ACTIVE
+  }
 }
 
 const usersReducer = (
@@ -13,10 +21,15 @@ const usersReducer = (
   action: UsersActionTypes
 ): UsersState => {
   switch (action.type) {
-    case UsersTypes.UPDATE_USERS_LIST:
+    case EUserActions.UPDATE_USERS_LIST:
       return {
         ...state,
         usersList: action.usersList
+      }
+    case EUserActions.UPDATE_USER_DETAIL:
+      return {
+        ...state,
+        userDetail: action.user
       }
     default:
       return state

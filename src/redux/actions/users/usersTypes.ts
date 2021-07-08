@@ -1,22 +1,33 @@
 import { Action } from 'redux'
 import { IUser } from 'interfaces/IUser'
+import { EUserActions } from './EUserAction'
 
 export interface UsersState {
   usersList: IUser[]
-}
-
-export enum UsersTypes {
-  USERS_LIST = 'USERS_LIST',
-  UPDATE_USERS_LIST = 'UPDATE_USERS_LIST'
+  userDetail: IUser
 }
 
 export interface GetUsersAction extends Action {
-  type: UsersTypes.USERS_LIST
+  type: EUserActions.USERS_LIST
 }
 
 export interface UpdateUsersAction extends Action {
-  type: UsersTypes.UPDATE_USERS_LIST
+  type: EUserActions.UPDATE_USERS_LIST
   usersList: IUser[]
 }
 
-export type UsersActionTypes = GetUsersAction | UpdateUsersAction
+export interface GetUserByIdAction extends Action {
+  type: EUserActions.GET_USER_BY_ID
+  id: number
+}
+
+export interface UpdateUserDetailAction extends Action {
+  type: EUserActions.UPDATE_USER_DETAIL
+  user: IUser
+}
+
+export type UsersActionTypes =
+  | GetUsersAction
+  | UpdateUsersAction
+  | GetUserByIdAction
+  | UpdateUserDetailAction

@@ -1,13 +1,31 @@
 import { IUser } from 'interfaces/IUser'
-import { GetUsersAction, UpdateUsersAction, UsersTypes } from './usersTypes'
+import { EUserActions } from './EUserAction'
+import {
+  GetUsersAction,
+  UpdateUsersAction,
+  GetUserByIdAction,
+  UpdateUserDetailAction
+} from './usersTypes'
 
 export const getUsersListAction = (): GetUsersAction => ({
-  type: UsersTypes.USERS_LIST
+  type: EUserActions.USERS_LIST
+})
+
+export const getUserByIdAction = (id: number): GetUserByIdAction => ({
+  type: EUserActions.GET_USER_BY_ID,
+  id
+})
+
+export const updateUserDetailAction = (
+  user: IUser
+): UpdateUserDetailAction => ({
+  type: EUserActions.UPDATE_USER_DETAIL,
+  user
 })
 
 export const updateUsersListAction = (
   usersList: IUser[]
 ): UpdateUsersAction => ({
-  type: UsersTypes.UPDATE_USERS_LIST,
+  type: EUserActions.UPDATE_USERS_LIST,
   usersList
 })
