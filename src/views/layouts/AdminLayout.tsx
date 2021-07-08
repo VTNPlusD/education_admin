@@ -15,6 +15,7 @@ const getContentRoute = (
   <Switch>
     {routes.map((route) => (
       <Route
+        exact
         path={ADMIN_ROUTE.concat(route.path)}
         component={route.component}
         key={route.id}

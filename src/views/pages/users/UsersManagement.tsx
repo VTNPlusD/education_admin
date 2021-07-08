@@ -8,6 +8,8 @@ import { convertStatusToColor } from 'utils/Functions'
 import { useTranslation } from 'react-i18next'
 import { UserOutlined } from '@ant-design/icons'
 import TableItem from './TableItem'
+import { useHistory } from 'react-router'
+import { ADMIN_ROUTE, routesName } from 'views/routes'
 
 type Props = {
   getUsersList: () => void
@@ -16,13 +18,18 @@ type Props = {
 
 const UsersManagement = ({ getUsersList, usersList }: Props) => {
   const { t } = useTranslation()
+  const history = useHistory()
 
   useEffect(() => {
     getUsersList()
   }, [getUsersList])
 
   const handleSelectUser = (id: number) => {
-    console.log(id)
+    history.push(
+      ADMIN_ROUTE.concat(
+        routesName.USER_DETAIL.concat('/').concat(id.toString())
+      )
+    )
   }
 
   const _renderNote = () => {
