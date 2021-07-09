@@ -1,6 +1,6 @@
-interface LoginRequest {
+interface ILoginRequest {
   username: string
   password: string
 }
 
-export type { LoginRequest }
+export type { ILoginRequest }

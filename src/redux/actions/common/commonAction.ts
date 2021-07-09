@@ -1,18 +1,18 @@
 import { INotification } from 'interfaces/INotification'
 import {
   CommonTypes,
-  SetLoadingAction,
-  SetNotificationAction
+  ISetLoadingAction,
+  ISetNotificationAction
 } from './commonTypes'
 
-export const setLoadingAction = (isLoading: boolean): SetLoadingAction => ({
+export const SetLoadingAction = (isLoading: boolean): ISetLoadingAction => ({
   type: CommonTypes.SET_LOADING,
   isLoading
 })
 
-export const setNotificationAction = (
+export const SetNotificationAction = (
   notification: INotification | null
-): SetNotificationAction => ({
+): ISetNotificationAction => ({
   type: CommonTypes.SET_NOTIFICATION,
   notification
 })

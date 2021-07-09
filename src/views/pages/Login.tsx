@@ -3,13 +3,13 @@ import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'antd'
 import VButton from 'components/button/VButton'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LoginRequest } from 'services/requests/LoginRequest'
+import { ILoginRequest } from 'services/requests/LoginRequest'
 import styles from 'styles/Login.module.scss'
 
 const { Option } = Select
 
 type Props = {
-  handleLogin: (loginRequest: LoginRequest) => void
+  handleLogin: (loginRequest: ILoginRequest) => void
   isLoading: boolean
 }
 
@@ -40,7 +40,7 @@ const Login = ({ handleLogin, isLoading }: Props) => {
   }
 
   const onFinish = () => {
-    const loginRequest: LoginRequest = {
+    const loginRequest: ILoginRequest = {
       username: username,
       password: password
     }

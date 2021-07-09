@@ -6,19 +6,19 @@ import { ILogin } from 'interfaces/ILogin'
 import { INotification } from 'interfaces/INotification'
 import { IPayload } from 'interfaces/IPayload'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
-import { updateAuthAction } from 'redux/actions/auth/authAction'
-import { AuthTypes, LoginAction } from 'redux/actions/auth/authTypes'
+import { IUpdateAuthAction } from 'redux/actions/auth/authAction'
+import { AuthTypes, ILoginAction } from 'redux/actions/auth/authTypes'
 import {
-  setLoadingAction,
-  setNotificationAction
+  ISetLoadingAction,
+  ISetNotificationAction
 } from 'redux/actions/common/commonAction'
 import { AuthApi } from 'services/api/auth/authApi'
 import instance from 'services/api/v1'
 import { checkStatus } from 'utils/services'
 
-function* _authSaga(action: LoginAction) {
+function* _authSaga(action: ILoginAction) {
   try {
-    yield put(setLoadingAction(true))
+    yield put(ISetLoadingAction(true))
     const response: AxiosResponse<IPayload<ILogin>> = yield call(
       AuthApi.login,
       action.loginRequest
@@ -39,7 +39,7 @@ function* _authSaga(action: LoginAction) {
           'Authorization'
         ] = `Bearer ${accessToken}`
         yield put(
-          updateAuthAction(true, data.user.username, data.token.accessToken)
+          IUpdateAuthAction(true, data.user.username, data.token.accessToken)
         )
       } else {
         const noti: INotification = {
@@ -47,7 +47,7 @@ function* _authSaga(action: LoginAction) {
           title: i18n.t('notification.error'),
           message: i18n.t('notification.messages.invalid_role')
         }
-        yield put(setNotificationAction(noti))
+        yield put(ISetNotificationAction(noti))
       }
     }
   } catch (error) {
@@ -56,9 +56,9 @@ function* _authSaga(action: LoginAction) {
       title: i18n.t('notification.error'),
       message: error?.data?.message[0]
     }
-    yield put(setNotificationAction(noti))
+    yield put(ISetNotificationAction(noti))
   } finally {
-    yield put(setLoadingAction(false))
+    yield put(ISetLoadingAction(false))
   }
 }
 

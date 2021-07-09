@@ -1,5 +1,5 @@
-import { setLoadingAction } from './common/commonAction'
+import { ISetLoadingAction } from './common/commonAction'
 
 export const actions = {
-  setLoadingAction
+  ISetLoadingAction
 }

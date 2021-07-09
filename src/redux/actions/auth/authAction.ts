@@ -1,27 +1,27 @@
-import { LoginRequest } from 'services/requests/LoginRequest'
+import { ILoginRequest } from 'services/requests/LoginRequest'
 import {
   AuthTypes,
-  LoginAction,
-  LogoutAction,
-  UpdateAuthAction
+  ILoginAction,
+  ILogoutAction,
+  IUpdateAuthAction
 } from './authTypes'
 
-export const loginAction = (loginRequest: LoginRequest): LoginAction => ({
+export const LoginAction = (loginRequest: ILoginRequest): ILoginAction => ({
   type: AuthTypes.LOGIN,
   loginRequest
 })
 
-export const updateAuthAction = (
+export const UpdateAuthAction = (
   authed: boolean,
   email: string,
   accessToken: string
-): UpdateAuthAction => ({
+): IUpdateAuthAction => ({
   type: AuthTypes.UPDATE_AUTH,
   authed,
   email,
   accessToken
 })
 
-export const logoutAction = (): LogoutAction => ({
+export const LogoutAction = (): ILogoutAction => ({
   type: AuthTypes.LOGOUT
 })

@@ -5,18 +5,21 @@ import { IPayload } from 'interfaces/IPayload'
 import { IUser } from 'interfaces/IUser'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
-  setLoadingAction,
-  setNotificationAction
+  ISetLoadingAction,
+  ISetNotificationAction
 } from 'redux/actions/common/commonAction'
 import { EUserActions } from 'redux/actions/users/EUserAction'
-import { updateUserDetailAction, updateUsersListAction } from 'redux/actions/users/usersAction'
-import { GetUserByIdAction } from 'redux/actions/users/usersTypes'
+import {
+  IUpdateUserDetailAction,
+  updateUsersListAction
+} from 'redux/actions/users/usersAction'
+import { IGetUserByIdAction } from 'redux/actions/users/usersTypes'
 import { UsersApi } from 'services/api/users/usersApi'
 import { checkStatus } from 'utils/services'
 
 function* getUsersListSaga() {
   try {
-    yield put(setLoadingAction(true))
+    yield put(ISetLoadingAction(true))
     const response: AxiosResponse<IPayload<IUser[]>> = yield call(
       UsersApi.getUsersList
     )
@@ -30,20 +33,20 @@ function* getUsersListSaga() {
       title: i18n.t('notification.error'),
       message: error?.data?.message[0]
     }
-    yield put(setNotificationAction(noti))
+    yield put(ISetNotificationAction(noti))
   }
 }
 
-function* getUserByIdSaga(action: GetUserByIdAction) {
+function* getUserByIdSaga(action: IGetUserByIdAction) {
   try {
-    yield put(setLoadingAction(true))
+    yield put(ISetLoadingAction(true))
     const response: AxiosResponse<IPayload<IUser>> = yield call(
       UsersApi.getUserById,
       action.id
     )
     const data = checkStatus(response)
     if (data) {
-      yield put (updateUserDetailAction(data))
+      yield put(IUpdateUserDetailAction(data))
     }
   } catch (error) {
     const noti: INotification = {
@@ -51,7 +54,7 @@ function* getUserByIdSaga(action: GetUserByIdAction) {
       title: i18n.t('notification.error'),
       message: error?.data?.message[0]
     }
-    yield put(setNotificationAction(noti))
+    yield put(ISetNotificationAction(noti))
   }
 }
 

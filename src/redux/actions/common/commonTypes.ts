@@ -1,7 +1,7 @@
 import { INotification } from 'interfaces/INotification'
 import { Action } from 'redux'
 
-export interface CommonState {
+export interface ICommonState {
   isLoading: boolean
   notification: INotification | null
 }
@@ -11,14 +11,14 @@ export enum CommonTypes {
   SET_NOTIFICATION = 'SET_NOTIFICATION'
 }
 
-export interface SetLoadingAction extends Action {
+export interface ISetLoadingAction extends Action {
   type: CommonTypes.SET_LOADING
   isLoading: boolean
 }
 
-export interface SetNotificationAction extends Action {
+export interface ISetNotificationAction extends Action {
   type: CommonTypes.SET_NOTIFICATION
   notification: INotification | null
 }
 
-export type CommonActionTypes = SetLoadingAction | SetNotificationAction
+export type CommonActionTypes = ISetLoadingAction | ISetNotificationAction
