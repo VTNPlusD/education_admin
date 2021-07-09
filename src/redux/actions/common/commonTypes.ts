@@ -6,18 +6,18 @@ export interface ICommonState {
   notification: INotification | null
 }
 
-export enum CommonTypes {
+export enum ECommonTypes {
   SET_LOADING = 'SET_LOADING',
   SET_NOTIFICATION = 'SET_NOTIFICATION'
 }
 
 export interface ISetLoadingAction extends Action {
-  type: CommonTypes.SET_LOADING
+  type: ECommonTypes.SET_LOADING
   isLoading: boolean
 }
 
 export interface ISetNotificationAction extends Action {
-  type: CommonTypes.SET_NOTIFICATION
+  type: ECommonTypes.SET_NOTIFICATION
   notification: INotification | null
 }
 

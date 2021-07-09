@@ -93,14 +93,14 @@ const styles = {
   }
 }
 
-const stylesWithParam = (val: any) => {
-  const obj: any = {}
+const stylesWithParam = (val: string) => {
+  const obj = { userStatus: {}, itemContainer: {} }
   obj.userStatus = {
     backgroundColor: convertStatusToColor(val),
     marginLeft: 8
   }
   obj.itemContainer = {
-    backgroundColor: val % 2 === 0 ? colors.PRIMARY_GRAY : '#FFF',
+    backgroundColor: Number(val) % 2 === 0 ? colors.PRIMARY_GRAY : '#FFF',
     height: 45
   }
   return obj

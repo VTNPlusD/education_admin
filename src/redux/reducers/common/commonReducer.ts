@@ -1,7 +1,7 @@
 import {
   CommonActionTypes,
   ICommonState,
-  CommonTypes
+  ECommonTypes
 } from 'redux/actions/common/commonTypes'
 
 const initialState: ICommonState = {
@@ -14,12 +14,12 @@ const commonReducer = (
   action: CommonActionTypes
 ): ICommonState => {
   switch (action.type) {
-    case CommonTypes.SET_LOADING:
+    case ECommonTypes.SET_LOADING:
       return {
         ...state,
         isLoading: action.isLoading
       }
-    case CommonTypes.SET_NOTIFICATION:
+    case ECommonTypes.SET_NOTIFICATION:
       return {
         ...state,
         notification: action.notification

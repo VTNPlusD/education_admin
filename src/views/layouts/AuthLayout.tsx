@@ -3,7 +3,7 @@ import LoginContainer from 'containers/LoginContainer'
 import { INotification } from 'interfaces/INotification'
 
 type Props = {
-  notification: INotification
+  notification?: INotification
 }
 
 const AuthLayout = ({ notification }: Props) => {

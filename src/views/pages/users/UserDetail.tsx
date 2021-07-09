@@ -3,21 +3,34 @@ import { DatePicker } from 'antd'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import InputLabel from 'components/inputLabel/InputLabel'
 import { IUser } from 'interfaces/IUser'
+import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { RouteComponentProps } from 'react-router'
 import classes from 'styles/DetailUser.module.scss'
 import { colors } from 'utils/colors'
 import { getImgUrl } from 'utils/Functions'
-import moment from 'moment'
+
+type IdType = {
+  id: number
+}
+
+type MatchType = {
+  params: IdType
+}
 
 type Props = {
-  match: any
   userDetail: IUser
+  match: MatchType
   getUserById: (id: number) => void
 }
 
-const UserDetail = ({ match, userDetail, getUserById }: Props) => {
-  const id = match.params?.id
+const UserDetail = ({
+  match,
+  userDetail,
+  getUserById
+}: RouteComponentProps & Props) => {
+  const id = match.params.id
   const { t } = useTranslation()
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')

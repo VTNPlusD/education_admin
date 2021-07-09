@@ -1,7 +1,15 @@
 import { GlobalOutlined } from '@ant-design/icons'
-import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'antd'
+import {
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  Radio,
+  RadioChangeEvent,
+  Select
+} from 'antd'
 import VButton from 'components/button/VButton'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ILoginRequest } from 'services/requests/LoginRequest'
 import styles from 'styles/Login.module.scss'
@@ -28,7 +36,7 @@ const Login = ({ handleLogin, isLoading }: Props) => {
       {
         type: 'object' as const,
         required: true,
-        message: t('validation.login_form.time')
+        message: t('validation.loginForm.time')
       }
     ]
   }
@@ -47,18 +55,19 @@ const Login = ({ handleLogin, isLoading }: Props) => {
     handleLogin(loginRequest)
   }
 
-  const changeLanguage = (e: any) => {
+  const changeLanguage = (e: RadioChangeEvent) => {
     const lang = e.target.value
     i18n.changeLanguage(lang)
     setLanguage(lang)
+    e.preventDefault()
   }
 
-  const onChangeUser = (e: any) => {
+  const onChangeUser = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value)
     e.preventDefault()
   }
 
-  const onChangePassword = (e: any) => {
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value)
     e.preventDefault()
   }
@@ -101,40 +110,40 @@ const Login = ({ handleLogin, isLoading }: Props) => {
     return (
       <Form {...layout} initialValues={{ remember: true }} onFinish={onFinish}>
         <Form.Item
-          label={t('login_screen.username')}
+          label={t('loginScreen.username')}
           name='username'
           rules={[
             {
               required: true,
-              message: t('validation.login_form.not_empty_user')
+              message: t('validation.loginForm.notEmptyUser')
             }
           ]}>
           <Input value={username} onChange={onChangeUser} />
         </Form.Item>
         <Form.Item
-          label={t('login_screen.pass')}
+          label={t('loginScreen.pass')}
           name='password'
           rules={[
             {
               required: true,
-              message: t('validation.login_form.not_empty_pass')
+              message: t('validation.loginForm.notEmptyPass')
             }
           ]}>
           <Input.Password value={password} onChange={onChangePassword} />
         </Form.Item>
         <div className={styles.remember_container}>
           <Form.Item name='remember' valuePropName='checked'>
-            <Checkbox className='c'>{t('login_screen.remember')}</Checkbox>
+            <Checkbox className='c'>{t('loginScreen.remember')}</Checkbox>
           </Form.Item>
           <span onClick={handleChangeRegister} className='c'>
-            {t('login_screen.register')}
+            {t('loginScreen.register')}
           </span>
         </div>
         <div className='text-align-center'>
           <VButton
             isLoading={isLoading}
             type='primary'
-            title={t('login_screen.login_btn')}
+            title={t('loginScreen.loginBtn')}
           />
         </div>
       </Form>
@@ -145,54 +154,54 @@ const Login = ({ handleLogin, isLoading }: Props) => {
     return (
       <Form {...layout}>
         <Form.Item
-          label={t('login_screen.username')}
+          label={t('loginScreen.username')}
           name='username'
           rules={[
             {
               required: true,
-              message: t('validation.login_form.not_empty_user')
+              message: t('validation.loginForm.notEmptyUser')
             }
           ]}>
           <Input value={username} onChange={onChangeUser} />
         </Form.Item>
         <Form.Item
-          label={t('login_screen.pass')}
+          label={t('loginScreen.pass')}
           name='password'
           rules={[
             {
               required: true,
-              message: t('validation.login_form.not_empty_pass')
+              message: t('validation.loginForm.notEmptyPass')
             }
           ]}>
           <Input.Password value={password} onChange={onChangePassword} />
         </Form.Item>
         <Form.Item
           name='phone'
-          label={t('login_screen.phone_number')}
+          label={t('loginScreen.phoneNumber')}
           rules={[
-            { required: true, message: t('validation.login_form.phone') }
+            { required: true, message: t('validation.loginForm.phone') }
           ]}>
           <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
         </Form.Item>
         <Form.Item
           name='date-picker'
-          label={t('login_screen.birthday')}
+          label={t('loginScreen.birthday')}
           {...config}>
           <DatePicker style={{ width: '100%' }} />
         </Form.Item>
         <div className={styles.remember_container}>
           <Form.Item name='remember' valuePropName='checked'>
-            <Checkbox>{t('login_screen.terms_of_use')}</Checkbox>
+            <Checkbox>{t('loginScreen.termsOfUse')}</Checkbox>
           </Form.Item>
           <span onClick={handleChangeLogin} className='c'>
-            {t('login_screen.login_btn')}
+            {t('loginScreen.loginBtn')}
           </span>
         </div>
         <div className='text-align-center'>
           <VButton
             isLoading={isLoading}
             type='primary'
-            title={t('login_screen.register')}
+            title={t('loginScreen.register')}
           />
         </div>
       </Form>

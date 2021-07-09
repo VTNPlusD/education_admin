@@ -5,12 +5,12 @@ import { IPayload } from 'interfaces/IPayload'
 import { IUser } from 'interfaces/IUser'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
-  ISetLoadingAction,
-  ISetNotificationAction
+  SetLoadingAction,
+  SetNotificationAction
 } from 'redux/actions/common/commonAction'
 import { EUserActions } from 'redux/actions/users/EUserAction'
 import {
-  IUpdateUserDetailAction,
+  UpdateUserDetailAction,
   updateUsersListAction
 } from 'redux/actions/users/usersAction'
 import { IGetUserByIdAction } from 'redux/actions/users/usersTypes'
@@ -19,7 +19,7 @@ import { checkStatus } from 'utils/services'
 
 function* getUsersListSaga() {
   try {
-    yield put(ISetLoadingAction(true))
+    yield put(SetLoadingAction(true))
     const response: AxiosResponse<IPayload<IUser[]>> = yield call(
       UsersApi.getUsersList
     )
@@ -33,20 +33,20 @@ function* getUsersListSaga() {
       title: i18n.t('notification.error'),
       message: error?.data?.message[0]
     }
-    yield put(ISetNotificationAction(noti))
+    yield put(SetNotificationAction(noti))
   }
 }
 
 function* getUserByIdSaga(action: IGetUserByIdAction) {
   try {
-    yield put(ISetLoadingAction(true))
+    yield put(SetLoadingAction(true))
     const response: AxiosResponse<IPayload<IUser>> = yield call(
       UsersApi.getUserById,
       action.id
     )
     const data = checkStatus(response)
     if (data) {
-      yield put(IUpdateUserDetailAction(data))
+      yield put(UpdateUserDetailAction(data))
     }
   } catch (error) {
     const noti: INotification = {
@@ -54,7 +54,7 @@ function* getUserByIdSaga(action: IGetUserByIdAction) {
       title: i18n.t('notification.error'),
       message: error?.data?.message[0]
     }
-    yield put(ISetNotificationAction(noti))
+    yield put(SetNotificationAction(noti))
   }
 }
 

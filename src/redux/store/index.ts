@@ -5,6 +5,7 @@ import rootSaga from 'redux/sagas'
 import { persistStore, persistReducer, createTransform } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
+import { TransformConfig } from 'redux-persist/es/createTransform'
 
 export const PERSIST_KEY = 'root'
 const persistConfig = {
@@ -14,7 +15,7 @@ const persistConfig = {
   whitelist: ['auth'],
   transforms: [
     createTransform(
-      (inboundState) => ({ ...(inboundState as any), error: '' }),
+      (inboundState) => ({ ...(inboundState as TransformConfig), error: '' }),
       (outboundState) => ({ ...outboundState, error: '' }),
       { whitelist: ['auth'] }
     )
