@@ -36,7 +36,10 @@ const en = {
       txtDashboard: 'Dashboard'
     },
     usersManagement: {
-      txtUsersManagement: 'Users management'
+      txtUsersManagement: 'Users management',
+      btnDelete: "Delete",
+      btnUpdate: "Update",
+      btnBlock: "Block"
     },
     classesManagement: {
       txtClassesManagement: 'Classes management'

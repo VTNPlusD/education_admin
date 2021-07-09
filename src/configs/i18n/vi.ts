@@ -36,7 +36,10 @@ const vi = {
       txtDashboard: 'Thống kê'
     },
     usersManagement: {
-      txtUsersManagement: 'Quản lý người dùng'
+      txtUsersManagement: 'Quản lý người dùng',
+      btnDelete: "Xoá",
+      btnUpdate: "Cập nhật",
+      btnBlock: "Khoá"
     },
     classesManagement: {
       txtClassesManagement: 'Quản lý lớp'

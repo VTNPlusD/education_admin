@@ -7,7 +7,7 @@ import {
   DashboardIcon,
   UsersManagementIcon
 } from './IconRoutes'
-import Dashboard from './pages/Dashboard'
+import Dashboard from '../pages/Dashboard'
 
 export const ADMIN_ROUTE = '/admin'
 export const routesName = {
@@ -15,7 +15,9 @@ export const routesName = {
   USERS_MANAGEMENT: '/users-management',
   CLASSES_MANAGEMENT: '/classes-management',
   SUBJECTS_MANAGEMENT: '/subjects-management',
-  USER_DETAIL: '/users-management'
+  USER_DETAIL: '/users-management',
+
+  LOGIN: '/login'
 }
 const routes = [
   {

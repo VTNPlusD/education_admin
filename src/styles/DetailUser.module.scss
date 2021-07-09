@@ -13,9 +13,11 @@
   padding: 16px;
 }
 .infoRight {
+  display: flex;
+  flex-direction: column;
   width: 50%;
-  background-color: lightgrey;
   height: 100%;
+  padding: 16px;
 }
 .avatarContainer {
   position: relative;
@@ -40,4 +42,8 @@
   align-items: center;
   border-radius: 10px;
   background-color: #fff;
+}
+.btnInfoRight {
+  display: flex;
+  justify-content: center;
 }

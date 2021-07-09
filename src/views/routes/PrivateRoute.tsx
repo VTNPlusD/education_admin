@@ -6,6 +6,7 @@ import {
   RouteProps,
   withRouter
 } from 'react-router-dom'
+import { routesName } from 'views/routes/routes'
 
 type Props = RouteComponentProps & {
   authed: boolean
@@ -27,7 +28,7 @@ const PrivateRoute = ({
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
+            to={{ pathname: routesName.LOGIN, state: { from: props.location } }}
           />
         )
       }

@@ -6,6 +6,7 @@ import {
   RouteProps,
   withRouter
 } from 'react-router-dom'
+import { ADMIN_ROUTE, routesName } from 'views/routes/routes'
 
 type Props = RouteComponentProps & {
   authed: boolean
@@ -28,7 +29,7 @@ const PublicRoute = ({
         ) : (
           <Redirect
             to={{
-              pathname: '/admin/dashboard',
+              pathname: ADMIN_ROUTE.concat(routesName.DASHBOARD),
               state: { from: props.location }
             }}
           />

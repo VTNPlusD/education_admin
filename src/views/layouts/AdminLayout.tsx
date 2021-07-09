@@ -1,15 +1,15 @@
 import { NotificationOutlined } from '@ant-design/icons'
-import Notification from 'components/notification/Notification'
 import { Layout, Menu } from 'antd'
+import Notification from 'components/notification/Notification'
+import VHeaderContainer from 'containers/VHeaderContainer'
+import { INotification } from 'interfaces/INotification'
 import { useEffect, useState } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import classes from 'styles/AdminLayout.module.scss'
-import { ADMIN_ROUTE, childrenRoutes, routes } from 'views/routes'
-import { INotification } from 'interfaces/INotification'
-import { colors } from 'utils/colors'
+import { ADMIN_ROUTE, childrenRoutes, routes, routesName } from 'views/routes/routes'
 
 const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
+const { Content, Sider } = Layout
 
 const getContentRoute = (
   <Switch>
@@ -49,7 +49,7 @@ const AdminLayout = ({ notification }: Props) => {
   }, [location.pathname])
 
   const handleClickLogo = () => {
-    window.location.replace('/admin')
+    window.location.replace(ADMIN_ROUTE.concat(routesName.DASHBOARD))
   }
 
   const handleSwitchRoute = (path: string) => {
@@ -125,7 +125,7 @@ const AdminLayout = ({ notification }: Props) => {
         </Sider>
         <div className={classes.contentContainer}>
           <Layout>
-            <Header style={{ backgroundImage: colors.PRIMARY_LINEAR_MAIN }} />
+            <VHeaderContainer />
             <Layout style={styles.contentLayout}>
               <Content
                 className='site-layout-background'

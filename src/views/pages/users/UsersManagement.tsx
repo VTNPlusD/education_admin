@@ -1,28 +1,34 @@
+import { UserOutlined } from '@ant-design/icons'
+import { Pagination } from 'antd'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import { EUserStatus } from 'interfaces/EUserStatus'
-import { IUser } from 'interfaces/IUser'
-import { useEffect } from 'react'
+import { IUserList } from 'interfaces/IUserList'
+import { CSSProperties, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
+import { IUserListRequest } from 'services/requests/IUserListRequest'
 import classes from 'styles/UsersManagement.module.scss'
 import { colors } from 'utils/colors'
 import { convertStatusToColor } from 'utils/Functions'
-import { useTranslation } from 'react-i18next'
-import { UserOutlined } from '@ant-design/icons'
+import { ADMIN_ROUTE, routesName } from 'views/routes/routes'
 import TableItem from './TableItem'
-import { useHistory } from 'react-router'
-import { ADMIN_ROUTE, routesName } from 'views/routes'
 
 type Props = {
-  getUsersList: () => void
-  usersList: IUser[]
+  getUsersList: (request: IUserListRequest) => void
+  usersList: IUserList
 }
 
 const UsersManagement = ({ getUsersList, usersList }: Props) => {
   const { t } = useTranslation()
   const history = useHistory()
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState<number | undefined>(2)
 
   useEffect(() => {
-    getUsersList()
-  }, [getUsersList])
+    getUsersList({ page: page, limit: limit })
+  }, [getUsersList, limit, page])
+
+  useEffect(() => {}, [usersList.totalRecords])
 
   const handleSelectUser = (id: number) => {
     history.push(
@@ -30,6 +36,10 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
         routesName.USER_DETAIL.concat('/').concat(id.toString())
       )
     )
+  }
+  const handleChangePage = (page: number, pageSize?: number) => {
+    setPage(page)
+    setLimit(pageSize)
   }
 
   const _renderNote = () => {
@@ -71,7 +81,7 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
           </tr>
         </thead>
         <tbody className={classes.tableContainer}>
-          {usersList.map((user, index) => (
+          {usersList.content.map((user, index) => (
             <TableItem
               key={user.id}
               user={user}
@@ -82,6 +92,17 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
         </tbody>
       </table>
       {_renderNote()}
+      {usersList.totalRecords > 0 ? (
+        <Pagination
+          onChange={handleChangePage}
+          defaultCurrent={1}
+          pageSize={limit}
+          total={usersList.totalRecords}
+          style={styles.pagination}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
@@ -90,7 +111,8 @@ const styles = {
   iconHeader: {
     color: '#FFF',
     fontSize: 11
-  }
+  },
+  pagination: { textAlign: 'center', marginTop: 16 } as CSSProperties
 }
 
 const stylesWithParam = (val: string) => {

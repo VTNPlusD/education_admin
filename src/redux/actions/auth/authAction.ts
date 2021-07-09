@@ -1,13 +1,13 @@
-import { ILoginRequest } from 'services/requests/LoginRequest'
+import { ILoginRequest } from 'services/requests/ILoginRequest'
 import {
-  AuthTypes,
+  EAuthTypes,
   ILoginAction,
   ILogoutAction,
   IUpdateAuthAction
 } from './authTypes'
 
 export const LoginAction = (loginRequest: ILoginRequest): ILoginAction => ({
-  type: AuthTypes.LOGIN,
+  type: EAuthTypes.LOGIN,
   loginRequest
 })
 
@@ -16,12 +16,12 @@ export const UpdateAuthAction = (
   email: string,
   accessToken: string
 ): IUpdateAuthAction => ({
-  type: AuthTypes.UPDATE_AUTH,
+  type: EAuthTypes.UPDATE_AUTH,
   authed,
   email,
   accessToken
 })
 
 export const LogoutAction = (): ILogoutAction => ({
-  type: AuthTypes.LOGOUT
+  type: EAuthTypes.LOGOUT
 })

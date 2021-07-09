@@ -1,7 +1,7 @@
 import {
   IAuthState,
   AuthActionTypes,
-  AuthTypes
+  EAuthTypes
 } from 'redux/actions/auth/authTypes'
 
 const initialState: IAuthState = {
@@ -15,14 +15,14 @@ const authReducer = (
   action: AuthActionTypes
 ): IAuthState => {
   switch (action.type) {
-    case AuthTypes.UPDATE_AUTH:
+    case EAuthTypes.UPDATE_AUTH:
       return {
         ...state,
         authed: action.authed,
         email: action.email,
         accessToken: action.accessToken
       }
-    case AuthTypes.LOGOUT:
+    case EAuthTypes.LOGOUT:
       return { ...initialState }
     default:
       return state

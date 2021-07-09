@@ -11,7 +11,7 @@ import {
 import VButton from 'components/button/VButton'
 import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ILoginRequest } from 'services/requests/LoginRequest'
+import { ILoginRequest } from 'services/requests/ILoginRequest'
 import styles from 'styles/Login.module.scss'
 
 const { Option } = Select
@@ -23,7 +23,8 @@ type Props = {
 
 type LayoutType = Parameters<typeof Form>[0]['layout']
 
-const Login = ({ handleLogin, isLoading }: Props) => {
+const Login = ({ handleLogin, isLoading = false }: Props) => {
+  console.log(isLoading)
   const { t, i18n } = useTranslation()
   const [language, setLanguage] = useState(i18n.language)
   const [username, setUsername] = useState('')
@@ -142,7 +143,6 @@ const Login = ({ handleLogin, isLoading }: Props) => {
         <div className='text-align-center'>
           <VButton
             isLoading={isLoading}
-            type='primary'
             title={t('loginScreen.loginBtn')}
           />
         </div>
@@ -200,7 +200,6 @@ const Login = ({ handleLogin, isLoading }: Props) => {
         <div className='text-align-center'>
           <VButton
             isLoading={isLoading}
-            type='primary'
             title={t('loginScreen.register')}
           />
         </div>

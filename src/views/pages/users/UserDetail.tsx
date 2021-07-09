@@ -1,5 +1,6 @@
 import { EditOutlined, UserOutlined } from '@ant-design/icons'
 import { DatePicker } from 'antd'
+import VButton from 'components/button/VButton'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import InputLabel from 'components/inputLabel/InputLabel'
 import { IUser } from 'interfaces/IUser'
@@ -78,6 +79,63 @@ const UserDetail = ({
     )
   }
 
+  const _renderLeftInfo = () => {
+    return (
+      <div className={classes.infoLeft}>
+        {_renderAvatar()}
+        <InputLabel
+          value={fullname}
+          label={t('users.fullname')}
+          placeholder='Nguyen Van A'
+          onChange={handleChangeFullname}
+        />
+        <InputLabel
+          value={username}
+          label={t('users.username')}
+          placeholder='nguyenvan'
+          onChange={handleChangeUsername}
+        />
+        <InputLabel
+          value={email}
+          label={t('users.email')}
+          placeholder='nguyenvana@gmail.com'
+          onChange={handleChangeEmail}
+        />
+        <InputLabel
+          value={phone}
+          label={t('users.phone')}
+          placeholder='0346718110'
+          onChange={handleChangePhone}
+        />
+        <p style={styles.birthday}>{t('users.birthday')}</p>
+        <DatePicker
+          value={moment(birthday)}
+          format='YYYY-MM-DD HH:mm:ss'
+          style={styles.birthdayInput}
+          placeholder='1996-02-25'
+        />
+        <VButton title={t('sideBar.usersManagement.btnUpdate')} type="primary"/>
+      </div>
+    )
+  }
+
+  const _renderRightInfo = () => {
+    return (
+      <div className={classes.infoRight}>
+        <div className={classes.btnInfoRight}>
+          <VButton
+            title={t('sideBar.usersManagement.btnDelete')}
+            color={colors.PRIMARY_LINEAR_DANGER}
+            style={{marginRight: 16}}
+          />
+          <VButton
+            title={t('sideBar.usersManagement.btnBlock')}
+            color={colors.PRIMARY_LINEAR_DARK}
+          />
+        </div>
+      </div>
+    )
+  }
   return (
     <div>
       <HeaderRoute
@@ -85,41 +143,8 @@ const UserDetail = ({
         icon={<UserOutlined style={styles.iconHeader} />}
       />
       <div className={classes.infoContainer}>
-        <div className={classes.infoLeft}>
-          {_renderAvatar()}
-          <InputLabel
-            value={fullname}
-            label={t('users.fullname')}
-            placeholder='Nguyen Van A'
-            onChange={handleChangeFullname}
-          />
-          <InputLabel
-            value={username}
-            label={t('users.username')}
-            placeholder='nguyenvan'
-            onChange={handleChangeUsername}
-          />
-          <InputLabel
-            value={email}
-            label={t('users.email')}
-            placeholder='nguyenvana@gmail.com'
-            onChange={handleChangeEmail}
-          />
-          <InputLabel
-            value={phone}
-            label={t('users.phone')}
-            placeholder='0346718110'
-            onChange={handleChangePhone}
-          />
-          <p style={styles.birthday}>{t('users.birthday')}</p>
-          <DatePicker
-            value={moment(birthday)}
-            format='YYYY-MM-DD HH:mm:ss'
-            style={styles.birthdayInput}
-            placeholder='1996-02-25'
-          />
-        </div>
-        <div className={classes.infoRight} />
+        {_renderLeftInfo()}
+        {_renderRightInfo()}
       </div>
     </div>
   )
@@ -132,7 +157,8 @@ const styles = {
   },
   iconEdit: { width: 15, height: 15, color: colors.PRIMARY_MAIN },
   birthdayInput: {
-    marginTop: 8
+    marginTop: 8,
+    marginBottom: 16
   },
   birthday: { fontWeight: 500 }
 }

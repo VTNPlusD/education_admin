@@ -1,19 +1,22 @@
-import { Action } from 'redux'
 import { IUser } from 'interfaces/IUser'
+import { IUserList } from 'interfaces/IUserList'
+import { Action } from 'redux'
+import { IUserListRequest } from 'services/requests/IUserListRequest'
 import { EUserActions } from './EUserAction'
 
 export interface IUsersState {
-  usersList: IUser[]
+  usersList: IUserList
   userDetail: IUser
 }
 
 export interface IGetUsersAction extends Action {
   type: EUserActions.USERS_LIST
+  request: IUserListRequest
 }
 
 export interface IUpdateUsersAction extends Action {
   type: EUserActions.UPDATE_USERS_LIST
-  usersList: IUser[]
+  usersList: IUserList
 }
 
 export interface IGetUserByIdAction extends Action {
