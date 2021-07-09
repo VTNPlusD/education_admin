@@ -44,7 +44,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "tslint --config ./tslint.json --project ./tsconfig.json",
-    "lint:tslint:fix": "tslint --config ./tslint.json --project ./tsconfig.json --fix"
+    "lint:fix": "tslint --config ./tslint.json --project ./tsconfig.json --fix"
   },
   "lint-staged": {
     "*.{js,jsx}": [

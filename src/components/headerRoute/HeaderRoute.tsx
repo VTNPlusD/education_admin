@@ -1,9 +1,10 @@
+import { HomeFilled } from '@ant-design/icons'
 import classes from 'styles/HeaderRoute.module.scss'
 import { colors } from 'utils/colors'
 
 type Props = {
   title: string
-  icon: any
+  icon: ReturnType<typeof HomeFilled>
 }
 
 const HeaderRoute = ({ title, icon }: Props) => {
