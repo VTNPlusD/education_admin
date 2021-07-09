@@ -84,10 +84,16 @@ const AdminLayout = ({ notification }: Props) => {
   }
 
   return (
-    <>
+    <div style={{ height: '100%' }}>
       <Notification notifications={notification} />
       <Layout style={styles.container}>
-        <Sider width={260}>
+        <Sider
+          width={260}
+          style={{
+            height: '100%',
+            overflowX: 'auto',
+            backgroundColor: '#fff'
+          }}>
           <Menu
             mode='inline'
             selectedKeys={[defaultSelectedRoute.toString()]}
@@ -117,17 +123,20 @@ const AdminLayout = ({ notification }: Props) => {
             {_renderItemRoute()}
           </Menu>
         </Sider>
-
-        <Layout>
-          <Header style={{ backgroundImage: colors.PRIMARY_LINEAR_MAIN }} />
-          <Layout style={styles.contentLayout}>
-            <Content className='site-layout-background' style={styles.content}>
-              {getContentRoute}
-            </Content>
+        <div className={classes.contentContainer}>
+          <Layout>
+            <Header style={{ backgroundImage: colors.PRIMARY_LINEAR_MAIN }} />
+            <Layout style={styles.contentLayout}>
+              <Content
+                className='site-layout-background'
+                style={styles.content}>
+                {getContentRoute}
+              </Content>
+            </Layout>
           </Layout>
-        </Layout>
+        </div>
       </Layout>
-    </>
+    </div>
   )
 }
 
@@ -140,8 +149,7 @@ const styles = {
   contentLayout: { padding: '0 16px 16px' },
   content: {
     margin: 0,
-    marginTop: 16,
-    minHeight: 280
+    marginTop: 16
   }
 }
 

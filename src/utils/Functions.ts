@@ -1,3 +1,4 @@
+import { DEFAULT_AVATAR_URL, MEDIA_URL } from 'constants/general'
 import { EUserStatus } from 'interfaces/EUserStatus'
 
 const ConvertTime = (time: Date) => {
@@ -24,4 +25,11 @@ const convertStatusToColor = (status: string) => {
   }
 }
 
-export { ConvertTime, checkError, convertStatusToColor }
+const getImgUrl = (imgName: string) => {
+  if (imgName) {
+    return MEDIA_URL.concat('/').concat(imgName)
+  }
+  return DEFAULT_AVATAR_URL
+}
+
+export { ConvertTime, checkError, convertStatusToColor, getImgUrl }

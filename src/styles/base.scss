@@ -1,9 +1,10 @@
-$PRIMARY_MAIN: #b66dff;
+$PRIMARY_MAIN: #9a55ff;
 $primary-color: aliceblue;
 
 html,
 body {
-  font-family: 'ubuntu-medium', sans-serif;
+  font-family: 'tahoma', sans-serif;
+  letter-spacing: 0.4px;
   height: 100%;
   width: 100%;
   background-color: $primary-color;
@@ -26,4 +27,7 @@ p {
 }
 .c {
   color: $PRIMARY_MAIN !important;
+}
+.pointer {
+  cursor: pointer;
 }

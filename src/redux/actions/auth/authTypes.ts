@@ -1,7 +1,7 @@
 import { Action } from 'redux'
-import { LoginRequest } from 'services/requests/LoginRequest'
+import { ILoginRequest } from 'services/requests/LoginRequest'
 
-export interface AuthState {
+export interface IAuthState {
   authed: boolean
   email: string
   accessToken: string
@@ -13,20 +13,20 @@ export enum AuthTypes {
   UPDATE_AUTH = 'UPDATE_AUTH'
 }
 
-export interface LoginAction extends Action {
+export interface ILoginAction extends Action {
   type: AuthTypes.LOGIN
-  loginRequest: LoginRequest
+  loginRequest: ILoginRequest
 }
 
-export interface UpdateAuthAction extends Action {
+export interface IUpdateAuthAction extends Action {
   type: AuthTypes.UPDATE_AUTH
   authed: boolean
   email: string
   accessToken: string
 }
 
-export interface LogoutAction extends Action {
+export interface ILogoutAction extends Action {
   type: AuthTypes.LOGOUT
 }
 
-export type AuthActionTypes = LoginAction | UpdateAuthAction | LogoutAction
+export type AuthActionTypes = ILoginAction | IUpdateAuthAction | ILogoutAction

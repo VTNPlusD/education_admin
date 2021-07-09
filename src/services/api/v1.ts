@@ -3,7 +3,7 @@ import i18n from 'configs/i18n'
 import { API_URL } from 'constants/general'
 import { ERROR_TYPE } from 'interfaces/ErrorTypes'
 import { mapKeys, snakeCase } from 'lodash'
-import { logoutAction } from 'redux/actions/auth/authAction'
+import { ILogoutAction } from 'redux/actions/auth/authAction'
 import { store } from 'redux/store'
 import { checkError } from 'utils/Functions'
 
@@ -53,7 +53,7 @@ instance.interceptors.response.use(
 
 const logout = () => {
   // handle logout
-  store.dispatch(logoutAction())
+  store.dispatch(ILogoutAction())
   localStorage.removeItem('persist:root')
   window.location.replace('/')
 }

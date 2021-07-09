@@ -1,10 +1,10 @@
 import {
   CommonActionTypes,
-  CommonState,
+  ICommonState,
   CommonTypes
 } from 'redux/actions/common/commonTypes'
 
-const initialState: CommonState = {
+const initialState: ICommonState = {
   isLoading: false,
   notification: null
 }
@@ -12,7 +12,7 @@ const initialState: CommonState = {
 const commonReducer = (
   state = initialState,
   action: CommonActionTypes
-): CommonState => {
+): ICommonState => {
   switch (action.type) {
     case CommonTypes.SET_LOADING:
       return {

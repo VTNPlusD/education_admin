@@ -12,6 +12,7 @@ type Props = {
 const TableItem = ({ user, index, handleSelectUser }: Props) => {
   return (
     <tr
+      className='pointer'
       style={stylesWithParam(index).itemContainer}
       onClick={() => handleSelectUser(user.id)}>
       <td className={classes.pdL8}>
@@ -28,7 +29,8 @@ const TableItem = ({ user, index, handleSelectUser }: Props) => {
       <td>
         <div
           style={stylesWithParam(user.status).userStatus}
-          className={classes.userStatus}></div>
+          className={classes.userStatus}
+        />
       </td>
     </tr>
   )

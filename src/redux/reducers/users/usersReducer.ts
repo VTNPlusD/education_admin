@@ -1,8 +1,8 @@
 import { EUserStatus } from 'interfaces/EUserStatus'
 import { EUserActions } from 'redux/actions/users/EUserAction'
-import { UsersActionTypes, UsersState } from 'redux/actions/users/usersTypes'
+import { UsersActionTypes, IUsersState } from 'redux/actions/users/usersTypes'
 
-const initialState: UsersState = {
+const initialState: IUsersState = {
   usersList: [],
   userDetail: {
     id: 0,
@@ -11,15 +11,16 @@ const initialState: UsersState = {
     email: '',
     birthday: new Date(),
     phone: '',
+    imageName: '',
     isSuperUser: false,
     status: EUserStatus.ACTIVE
   }
 }
 
 const usersReducer = (
-  state: UsersState = initialState,
+  state: IUsersState = initialState,
   action: UsersActionTypes
-): UsersState => {
+): IUsersState => {
   switch (action.type) {
     case EUserActions.UPDATE_USERS_LIST:
       return {

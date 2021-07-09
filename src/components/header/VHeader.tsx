@@ -11,7 +11,6 @@ const VHeader = () => {
 
   const handleSearch = () => {
     setSearchLoading(true)
-    console.log(searchValue)
   }
 
   return (
