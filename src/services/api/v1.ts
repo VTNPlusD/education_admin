@@ -4,7 +4,7 @@ import { API_URL } from 'constants/general'
 import { ERROR_TYPE } from 'interfaces/ErrorTypes'
 import { mapKeys, snakeCase } from 'lodash'
 import { LogoutAction } from 'redux/actions/auth/authAction'
-import { store } from 'redux/store'
+import { PERSIST_ROOT, store } from 'redux/store'
 import { checkError } from 'utils/Functions'
 
 const DEFAULT_API_CONFIG: AxiosRequestConfig = {
@@ -54,7 +54,7 @@ instance.interceptors.response.use(
 const logout = () => {
   // handle logout
   store.dispatch(LogoutAction())
-  localStorage.removeItem('persist:root')
+  localStorage.removeItem(PERSIST_ROOT)
   window.location.replace('/')
 }
 

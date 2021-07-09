@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import { TransformConfig } from 'redux-persist/es/createTransform'
 
+export const PERSIST_ROOT = 'persist:root'
 export const PERSIST_KEY = 'root'
 const persistConfig = {
   key: PERSIST_KEY,

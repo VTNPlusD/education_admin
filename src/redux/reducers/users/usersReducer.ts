@@ -3,7 +3,15 @@ import { EUserActions } from 'redux/actions/users/EUserAction'
 import { UsersActionTypes, IUsersState } from 'redux/actions/users/usersTypes'
 
 const initialState: IUsersState = {
-  usersList: [],
+  usersList: {
+    content: [],
+    currentPage: 1,
+    totalPages: 1,
+    payloadSize: 20,
+    hasNext: false,
+    skippedRecords: 0,
+    totalRecords: 0
+  },
   userDetail: {
     id: 0,
     username: '',

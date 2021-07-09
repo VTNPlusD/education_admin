@@ -7,7 +7,7 @@ import { INotification } from 'interfaces/INotification'
 import { IPayload } from 'interfaces/IPayload'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { UpdateAuthAction } from 'redux/actions/auth/authAction'
-import { AuthTypes, ILoginAction } from 'redux/actions/auth/authTypes'
+import { EAuthTypes, ILoginAction } from 'redux/actions/auth/authTypes'
 import {
   SetLoadingAction,
   SetNotificationAction
@@ -63,5 +63,5 @@ function* _authSaga(action: ILoginAction) {
 }
 
 export default function* authSaga() {
-  yield all([takeLatest(AuthTypes.LOGIN, _authSaga)])
+  yield all([takeLatest(EAuthTypes.LOGIN, _authSaga)])
 }

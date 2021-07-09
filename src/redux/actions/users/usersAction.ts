@@ -1,14 +1,17 @@
 import { IUser } from 'interfaces/IUser'
+import { IUserList } from 'interfaces/IUserList'
+import { IUserListRequest } from 'services/requests/IUserListRequest'
 import { EUserActions } from './EUserAction'
 import {
-  IGetUsersAction,
-  IUpdateUsersAction,
   IGetUserByIdAction,
-  IUpdateUserDetailAction
+  IGetUsersAction,
+  IUpdateUserDetailAction,
+  IUpdateUsersAction
 } from './usersTypes'
 
-export const getUsersListAction = (): IGetUsersAction => ({
-  type: EUserActions.USERS_LIST
+export const getUsersListAction = (request: IUserListRequest): IGetUsersAction => ({
+  type: EUserActions.USERS_LIST,
+  request
 })
 
 export const GetUserByIdAction = (id: number): IGetUserByIdAction => ({
@@ -24,7 +27,7 @@ export const UpdateUserDetailAction = (
 })
 
 export const updateUsersListAction = (
-  usersList: IUser[]
+  usersList: IUserList
 ): IUpdateUsersAction => ({
   type: EUserActions.UPDATE_USERS_LIST,
   usersList

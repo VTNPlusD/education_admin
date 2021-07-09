@@ -5,24 +5,25 @@
   width: 100%;
   height: 70px;
   padding: 16px;
-  background-color: #fff;
 }
 
 .searchContainer {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 .search {
   border: none;
 }
 .iconSearch {
   font-size: large;
-  opacity: 60%;
 }
 
 .iconContainer {
   display: flex;
   justify-content: center;
+  margin-right: 16px;
+  margin-left: 16px;
 }
 
 .avatarContainer {
@@ -36,4 +37,7 @@
   height: 100%;
   border-radius: 20px;
   object-fit: 'contain';
+}
+.inputSearch {
+  width: 100%;
 }
