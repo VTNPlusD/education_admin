@@ -8,10 +8,10 @@ import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { IUserListRequest } from 'services/requests/IUserListRequest'
 import classes from 'styles/UsersManagement.module.scss'
-import { colors } from 'utils/colors'
+import { lightColors } from 'utils/colors'
 import { convertStatusToColor } from 'utils/Functions'
 import { ADMIN_ROUTE, routesName } from 'views/routes/routes'
-import TableItem from './TableItem'
+import TableItem from './components/TableItem'
 
 type Props = {
   getUsersList: (request: IUserListRequest) => void
@@ -22,7 +22,7 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
   const { t } = useTranslation()
   const history = useHistory()
   const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState<number | undefined>(2)
+  const [limit, setLimit] = useState<number | undefined>(10)
 
   useEffect(() => {
     getUsersList({ page: page, limit: limit })
@@ -67,7 +67,7 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
     <div className={classes.container}>
       <HeaderRoute
         title={t('sideBar.usersManagement.txtUsersManagement')}
-        icon={<UserOutlined style={styles.iconHeader} />}
+        Icon={UserOutlined}
       />
       <table className={classes.tableContainer}>
         <thead>
@@ -118,11 +118,11 @@ const styles = {
 const stylesWithParam = (val: string) => {
   const obj = { userStatus: {}, itemContainer: {} }
   obj.userStatus = {
-    backgroundColor: convertStatusToColor(val),
+    background: convertStatusToColor(val),
     marginLeft: 8
   }
   obj.itemContainer = {
-    backgroundColor: Number(val) % 2 === 0 ? colors.PRIMARY_GRAY : '#FFF',
+    backgroundColor: Number(val) % 2 === 0 ? lightColors.PRIMARY_GRAY : '#FFF',
     height: 45
   }
   return obj

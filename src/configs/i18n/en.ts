@@ -37,9 +37,16 @@ const en = {
     },
     usersManagement: {
       txtUsersManagement: 'Users management',
-      btnDelete: "Delete",
-      btnUpdate: "Update",
-      btnBlock: "Block"
+      btnDelete: 'Delete',
+      btnUpdate: 'Update',
+      btnBlock: 'Block',
+      deleteUser: 'Delete User',
+      deleteConfirm: 'Are you sure to delete this user?',
+      blockUser: 'Block user',
+      blockConfirm: 'Are you sure to block this user?',
+      status: 'Status',
+      changeStatus: 'Update status',
+      confirmChangeStatus: 'Are you sure to update status?'
     },
     classesManagement: {
       txtClassesManagement: 'Classes management'
@@ -65,6 +72,13 @@ const en = {
 
   header: {
     searchTxt: 'Search something'
+  },
+
+  modal: {
+    message: {
+      success: 'Success',
+      updateUserSuccess: 'Update user successfully!'
+    }
   }
 }
 

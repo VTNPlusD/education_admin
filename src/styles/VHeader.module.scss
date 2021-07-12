@@ -36,8 +36,26 @@
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  object-fit: 'contain';
+  object-fit: "contain";
 }
 .inputSearch {
   width: 100%;
+}
+.inputSearch::placeholder {
+  color: var(--text) !important;
+  opacity: 0.5;
+}
+.menuLogout {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+}
+.iconNoti {
+  font-size: 1.25rem;
+  margin-right: 16px;
+  margin-left: 16px;
+  cursor: pointer;
 }

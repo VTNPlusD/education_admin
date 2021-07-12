@@ -8,7 +8,7 @@ import {
   RadioChangeEvent,
   Select
 } from 'antd'
-import VButton from 'components/button/VButton'
+import VButtonContainer from 'containers/VButtonContainer'
 import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ILoginRequest } from 'services/requests/ILoginRequest'
@@ -141,8 +141,8 @@ const Login = ({ handleLogin, isLoading = false }: Props) => {
           </span>
         </div>
         <div className='text-align-center'>
-          <VButton
-            isLoading={isLoading}
+          <VButtonContainer
+            loading={isLoading}
             title={t('loginScreen.loginBtn')}
           />
         </div>
@@ -198,8 +198,8 @@ const Login = ({ handleLogin, isLoading = false }: Props) => {
           </span>
         </div>
         <div className='text-align-center'>
-          <VButton
-            isLoading={isLoading}
+          <VButtonContainer
+            loading={isLoading}
             title={t('loginScreen.register')}
           />
         </div>

@@ -1,12 +1,14 @@
 import {
   CommonActionTypes,
-  ICommonState,
-  ECommonTypes
+  ICommonState
 } from 'redux/actions/common/commonTypes'
+import { ECommonActions } from 'redux/actions/common/ECommonAction'
+import { purpleColors } from 'utils/colors'
 
 const initialState: ICommonState = {
   isLoading: false,
-  notification: null
+  notification: null,
+  theme: purpleColors
 }
 
 const commonReducer = (
@@ -14,12 +16,17 @@ const commonReducer = (
   action: CommonActionTypes
 ): ICommonState => {
   switch (action.type) {
-    case ECommonTypes.SET_LOADING:
+    case ECommonActions.SET_THEME:
+      return {
+        ...state,
+        theme: action.theme
+      }
+    case ECommonActions.SET_LOADING:
       return {
         ...state,
         isLoading: action.isLoading
       }
-    case ECommonTypes.SET_NOTIFICATION:
+    case ECommonActions.SET_NOTIFICATION:
       return {
         ...state,
         notification: action.notification

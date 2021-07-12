@@ -1,16 +1,29 @@
 import { EditOutlined, UserOutlined } from '@ant-design/icons'
-import { DatePicker } from 'antd'
-import VButton from 'components/button/VButton'
+import { DatePicker, Upload } from 'antd'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
+import Image from 'components/image/Image'
 import InputLabel from 'components/inputLabel/InputLabel'
+import VModal from 'components/modal/VModal'
+import VButtonContainer from 'containers/VButtonContainer'
+import { EUserStatus } from 'interfaces/EUserStatus'
 import { IUser } from 'interfaces/IUser'
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router'
+import { IUpdateUserById } from 'services/requests/IUpdateUserById'
 import classes from 'styles/DetailUser.module.scss'
-import { colors } from 'utils/colors'
+import { colors, IColors } from 'utils/colors'
 import { getImgUrl } from 'utils/Functions'
+import ModalBlock from './components/ModalBlock'
+import ModalDelete from './components/ModelDelete'
+import SelectStatus from './components/SelectStatus'
+
+function getBase64(img: any, callback: any) {
+  const reader = new FileReader()
+  reader.addEventListener('load', () => callback(reader.result))
+  reader.readAsDataURL(img)
+}
 
 type IdType = {
   id: number
@@ -24,28 +37,37 @@ type Props = {
   userDetail: IUser
   match: MatchType
   getUserById: (id: number) => void
+  updateUserById: (user: IUpdateUserById) => void
+  upload: (file: any) => void
+  theme: IColors
 }
 
 const UserDetail = ({
   match,
   userDetail,
-  getUserById
+  getUserById,
+  updateUserById,
+  upload,
+  theme
 }: RouteComponentProps & Props) => {
   const id = match.params.id
   const { t } = useTranslation()
+
   const [fullname, setFullname] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [birthday, setBirthday] = useState<Date>()
+  const [birthday, setBirthday] = useState<Moment>()
   const [avatar, setAvatar] = useState('')
+  const [isShowModalDelete, setIsShowModalDelete] = useState(false)
+  const [isShowModalBlock, setIsShowModalBlock] = useState(false)
 
   useEffect(() => {
     setFullname(userDetail.fullname)
     setUsername(userDetail.username)
     setEmail(userDetail.email)
     setPhone(userDetail.phone)
-    setBirthday(userDetail.birthday)
+    setBirthday(moment(userDetail.birthday))
     setAvatar(userDetail.imageName)
   }, [userDetail])
 
@@ -56,26 +78,82 @@ const UserDetail = ({
   }, [id, getUserById])
 
   const handleChangeFullname = (value: string) => {
-    // console.log(value)
+    setFullname(value)
   }
   const handleChangeUsername = (value: string) => {
-    // console.log(value)
+    setUsername(value)
   }
   const handleChangeEmail = (value: string) => {
-    // console.log(value)
+    setEmail(value)
   }
   const handleChangePhone = (value: string) => {
-    // console.log(value)
+    setPhone(value)
+  }
+  const handleChangeBirthday = (value: Moment | null) => {
+    if (value) setBirthday(value)
+  }
+  const handleUpdate = () => {
+    const date = moment(birthday).toDate()
+    const user: IUpdateUserById = { id, fullname, email, phone, birthday: date }
+    updateUserById(user)
+  }
+
+  const handleDeleteBtn = () => {
+    setIsShowModalDelete(true)
+  }
+
+  const handleOkDelete = () => {
+    setIsShowModalDelete(false)
+  }
+
+  const handleCancelDelete = () => {
+    setIsShowModalDelete(false)
+  }
+
+  const handleBlockBtn = () => {
+    setIsShowModalBlock(true)
+  }
+
+  const handleOkBlock = () => {
+    setIsShowModalBlock(false)
+  }
+
+  const handleCancelBlock = () => {
+    setIsShowModalBlock(false)
+  }
+
+  const handleUpdateStatus = (status: string) => {
+    const user: IUpdateUserById = { id, status }
+    updateUserById(user)
+  }
+
+  const handleChangeUpload = (info: any) => {
+    if (info.file.status === 'uploading') {
+      return
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (imageUrl: string) =>
+        console.log(imageUrl)
+      )
+    }
   }
 
   const _renderAvatar = () => {
     return (
-      <div className={classes.avatarContainer}>
-        <img src={getImgUrl(avatar)} className={classes.imgAvatar} alt='' />
-        <div className={classes.editAvatarContainer}>
-          <EditOutlined style={styles.iconEdit} />
+      <Upload
+        className={classes.uploadContainer}
+        onChange={handleChangeUpload}
+        customRequest={(e) => upload(e.file)}>
+        <div className={classes.avatarContainer}>
+          <Image src={getImgUrl(avatar)} className={classes.imgAvatar} />
+          <div className={classes.editAvatarContainer}>
+            <EditOutlined
+              style={{ ...styles.iconEdit, ...{ color: theme.PRIMARY_MAIN } }}
+            />
+          </div>
         </div>
-      </div>
+      </Upload>
     )
   }
 
@@ -90,6 +168,7 @@ const UserDetail = ({
           onChange={handleChangeFullname}
         />
         <InputLabel
+          disabled
           value={username}
           label={t('users.username')}
           placeholder='nguyenvan'
@@ -109,12 +188,18 @@ const UserDetail = ({
         />
         <p style={styles.birthday}>{t('users.birthday')}</p>
         <DatePicker
-          value={moment(birthday)}
-          format='YYYY-MM-DD HH:mm:ss'
+          value={birthday}
+          format='DD-MM-YYYY'
           style={styles.birthdayInput}
           placeholder='1996-02-25'
+          allowClear={false}
+          onChange={handleChangeBirthday}
         />
-        <VButton title={t('sideBar.usersManagement.btnUpdate')} type="primary"/>
+        <VButtonContainer
+          onClick={handleUpdate}
+          title={t('sideBar.usersManagement.btnUpdate')}
+          type='primary'
+        />
       </div>
     )
   }
@@ -123,25 +208,43 @@ const UserDetail = ({
     return (
       <div className={classes.infoRight}>
         <div className={classes.btnInfoRight}>
-          <VButton
+          <VButtonContainer
+            onClick={() => handleDeleteBtn()}
             title={t('sideBar.usersManagement.btnDelete')}
             color={colors.PRIMARY_LINEAR_DANGER}
-            style={{marginRight: 16}}
+            style={{ marginRight: 16 }}
           />
-          <VButton
+          <VButtonContainer
+            onClick={() => handleBlockBtn()}
             title={t('sideBar.usersManagement.btnBlock')}
             color={colors.PRIMARY_LINEAR_DARK}
           />
         </div>
+        <SelectStatus
+          status={userDetail.status || EUserStatus.ACTIVE}
+          handleUpdateStatus={handleUpdateStatus}
+        />
       </div>
     )
   }
+
   return (
     <div>
-      <HeaderRoute
-        title={userDetail.fullname}
-        icon={<UserOutlined style={styles.iconHeader} />}
+      <VModal
+        title={t('sideBar.usersManagement.deleteUser')}
+        isModalVisible={isShowModalDelete}
+        Content={ModalDelete}
+        handleOk={handleOkDelete}
+        handleCancel={handleCancelDelete}
       />
+      <VModal
+        title={t('sideBar.usersManagement.blockUser')}
+        isModalVisible={isShowModalBlock}
+        Content={ModalBlock}
+        handleOk={handleOkBlock}
+        handleCancel={handleCancelBlock}
+      />
+      <HeaderRoute title={userDetail.fullname} Icon={UserOutlined} />
       <div className={classes.infoContainer}>
         {_renderLeftInfo()}
         {_renderRightInfo()}
@@ -155,7 +258,7 @@ const styles = {
     color: '#FFF',
     fontSize: 11
   },
-  iconEdit: { width: 15, height: 15, color: colors.PRIMARY_MAIN },
+  iconEdit: { width: 15, height: 15 },
   birthdayInput: {
     marginTop: 8,
     marginBottom: 16
