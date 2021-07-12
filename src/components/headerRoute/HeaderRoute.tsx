@@ -1,17 +1,24 @@
-import { HomeFilled } from '@ant-design/icons'
+import { useSelector } from 'react-redux'
+import { AppState } from 'redux/reducers'
 import classes from 'styles/HeaderRoute.module.scss'
-import { colors } from 'utils/colors'
 
 type Props = {
   title: string
-  icon: ReturnType<typeof HomeFilled>
+  Icon: any
 }
 
-const HeaderRoute = ({ title, icon }: Props) => {
+const HeaderRoute = ({ title, Icon }: Props) => {
+  const theme = useSelector((state: AppState) => state.common.theme)
   return (
     <div className={classes.header}>
       <div className={classes.headerLeft}>
-        <div style={styles.iconHomeContainer}>{icon}</div>
+        <div
+          style={{
+            ...styles.iconHomeContainer,
+            ...{ background: theme.PRIMARY_LINEAR_MAIN }
+          }}>
+          <Icon style={{ color: theme.ICON }} />
+        </div>
         <p>{title}</p>
       </div>
     </div>
@@ -27,7 +34,6 @@ const styles = {
     height: 36,
     borderRadius: 4,
     marginRight: 12,
-    background: colors.PRIMARY_LINEAR_MAIN,
     boxShadow: '0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35)'
   }
 }

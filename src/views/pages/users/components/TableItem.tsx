@@ -1,6 +1,7 @@
+import Image from 'components/image/Image'
 import { IUser } from 'interfaces/IUser'
 import classes from 'styles/UsersManagement.module.scss'
-import { colors } from 'utils/colors'
+import { lightColors } from 'utils/colors'
 import { convertStatusToColor, getImgUrl } from 'utils/Functions'
 
 type Props = {
@@ -16,10 +17,9 @@ const TableItem = ({ user, index, handleSelectUser }: Props) => {
       style={stylesWithParam(index.toString()).itemContainer}
       onClick={() => handleSelectUser(user.id)}>
       <td className={classes.pdL8}>
-        <img
-          className={classes.imgUserAvatar}
+        <Image
           src={getImgUrl(user.imageName)}
-          alt=''
+          className={classes.imgUserAvatar}
         />
       </td>
       <td>{user.fullname} </td>
@@ -42,11 +42,12 @@ const stylesWithParam = (val: string) => {
     itemContainer: {}
   }
   obj.userStatus = {
-    backgroundColor: convertStatusToColor(val),
+    background: convertStatusToColor(val),
     marginLeft: 8
   }
   obj.itemContainer = {
-    backgroundColor: Number(val) % 2 === 0 ? colors.PRIMARY_BACKGROUND : '#FFF',
+    backgroundColor:
+      Number(val) % 2 === 0 ? lightColors.PRIMARY_BACKGROUND : '#FFF',
     height: 45
   }
   return obj

@@ -1,18 +1,31 @@
 import { INotification } from 'interfaces/INotification'
+import { IColors } from 'utils/colors'
 import {
-  ECommonTypes,
   ISetLoadingAction,
-  ISetNotificationAction
+  ISetNotificationAction,
+  ISetThemeAction,
+  IUploadAction
 } from './commonTypes'
+import { ECommonActions } from './ECommonAction'
 
 export const SetLoadingAction = (isLoading: boolean): ISetLoadingAction => ({
-  type: ECommonTypes.SET_LOADING,
+  type: ECommonActions.SET_LOADING,
   isLoading
 })
 
 export const SetNotificationAction = (
   notification: INotification | null
 ): ISetNotificationAction => ({
-  type: ECommonTypes.SET_NOTIFICATION,
+  type: ECommonActions.SET_NOTIFICATION,
   notification
+})
+
+export const UploadAction = (file: any): IUploadAction => ({
+  type: ECommonActions.UPLOAD,
+  file
+})
+
+export const SetThemeAction = (theme: IColors): ISetThemeAction => ({
+  type: ECommonActions.SET_THEME,
+  theme
 })

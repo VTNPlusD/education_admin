@@ -1,21 +1,36 @@
 import {
-  SearchOutlined,
   BellOutlined,
   MailOutlined,
-  PoweroffOutlined
+  PoweroffOutlined,
+  SearchOutlined,
+  SwitcherOutlined
 } from '@ant-design/icons'
-import { Input, Menu, Dropdown } from 'antd'
-import { CSSProperties } from 'react'
+import { Dropdown, Input, Menu } from 'antd'
+import VButtonContainer from 'containers/VButtonContainer'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import classes from 'styles/VHeader.module.scss'
-import { colors } from 'utils/colors'
+import {
+  colors,
+  dangerColors,
+  IColors,
+  lightColors,
+  purpleColors
+} from 'utils/colors'
+import { changeCSS } from 'utils/Functions'
 
 type Props = {
   handleLogout: () => void
+  theme: IColors
+  handleChangeTheme: (theme: IColors) => void
 }
 
-const VHeader = ({ handleLogout }: Props) => {
+const VHeader = ({ handleLogout, theme, handleChangeTheme }: Props) => {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    changeCSS(theme)
+  }, [theme])
 
   let delayTimer: any
   const onSearch = (val: string) => {
@@ -27,34 +42,71 @@ const VHeader = ({ handleLogout }: Props) => {
     handleLogout()
   }
 
+  const onChangeTheme = (e: any) => {
+    switch (e.key) {
+      case '0':
+        handleChangeTheme(lightColors)
+        break
+      case '1':
+        handleChangeTheme(purpleColors)
+        break
+      case '2':
+        handleChangeTheme(dangerColors)
+        break
+      default:
+        break
+    }
+  }
+
   const menu = (
-    <Menu style={styles.menuLogout}>
-      <Menu.Item key='0' style={styles.item}>
+    <Menu className={classes.menuLogout}>
+      <Menu.Item key='0'>
         <p>English</p>
       </Menu.Item>
       <Menu.Item key='1'>
         <p>VietNam</p>
       </Menu.Item>
-      <Menu.Divider />
       <Menu.Item key='3' onClick={onLogout}>
         Logout
       </Menu.Item>
     </Menu>
   )
 
+  const menuTheme = (
+    <Menu className={classes.menuLogout}>
+      <Menu.Item key='1' onClick={onChangeTheme}>
+        <VButtonContainer
+          title='Purple'
+          color={colors.PRIMARY_LINEAR_PURPLE}
+          textColor={'#FFF'}
+          style={styles.widthIcon}
+        />
+      </Menu.Item>
+      <Menu.Item key='2' onClick={onChangeTheme}>
+        <VButtonContainer
+          title='Danger'
+          color={colors.PRIMARY_LINEAR_DANGER}
+          textColor={'#FFF'}
+          style={styles.widthIcon}
+        />
+      </Menu.Item>
+      <Menu.Divider />
+    </Menu>
+  )
   return (
-    <div className={classes.container} style={styles.bgHeader}>
+    <div
+      className={classes.container}
+      style={{ background: theme.PRIMARY_LINEAR_MAIN }}>
       <div className={classes.searchContainer}>
         <SearchOutlined
           className={classes.iconSearch}
-          style={{ color: '#fff' }}
+          style={{ color: theme.ICON }}
         />
         <Input
           className={classes.inputSearch}
           onChange={(e) => onSearch(e.target.value)}
           placeholder={t('header.searchTxt')}
           bordered={false}
-          style={{ color: '#FFF' }}
         />
       </div>
       <div className={classes.iconContainer}>
@@ -67,38 +119,38 @@ const VHeader = ({ handleLogout }: Props) => {
         </div>
       </div>
       <div>
-        <MailOutlined style={styles.iconNoti} />
+        <MailOutlined
+          className={classes.iconNoti}
+          style={{ color: theme.ICON }}
+        />
       </div>
       <div>
-        <BellOutlined style={styles.iconNoti} />
+        <BellOutlined
+          className={classes.iconNoti}
+          style={{ color: theme.ICON }}
+        />
       </div>
-      <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-          <PoweroffOutlined style={styles.iconNoti} />
+      <Dropdown
+        overlay={menuTheme}
+        trigger={['click']}
+        placement='bottomCenter'>
+        <SwitcherOutlined
+          className={classes.iconNoti}
+          style={{ color: theme.ICON }}
+        />
+      </Dropdown>
+      <Dropdown overlay={menu} trigger={['click']} placement='bottomCenter'>
+        <PoweroffOutlined
+          className={classes.iconNoti}
+          style={{ color: theme.ICON }}
+        />
       </Dropdown>
     </div>
   )
 }
 
 const styles = {
-  iconNoti: {
-    fontSize: '1.25rem',
-    color: colors.ICON_GRAY,
-    marginRight: 16,
-    marginLeft: 16,
-    cursor: 'pointer'
-  },
-  bgHeader: {
-    background: colors.PRIMARY_LINEAR_MAIN
-  },
-  menuLogout: {
-    paddingLeft: 16,
-    paddingRight: 16
-  },
-  item: {
-    '&:hover': {
-      backgroundColor: 'red'
-    }
-  } as CSSProperties
+  widthIcon: { minWidth: 75 }
 }
 
 export default VHeader

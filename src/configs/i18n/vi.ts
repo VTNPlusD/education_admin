@@ -37,9 +37,16 @@ const vi = {
     },
     usersManagement: {
       txtUsersManagement: 'Quản lý người dùng',
-      btnDelete: "Xoá",
-      btnUpdate: "Cập nhật",
-      btnBlock: "Khoá"
+      btnDelete: 'Xoá',
+      btnUpdate: 'Cập nhật',
+      btnBlock: 'Khoá',
+      deleteUser: 'Xóa người dùng',
+      deleteConfirm: 'Bạn có chắc chắn muốn xóa người dùng này không?',
+      blockUser: 'Khóa người dùng',
+      blockConfirm: 'Bạn có chắc chắn muốn khóa người dùng này không?',
+      status: 'Trạng thái',
+      changeStatus: 'Thay đổi trạng thái',
+      confirmChangeStatus: 'Bạn có chắc chắn muốn cập nhật trạng thái này?'
     },
     classesManagement: {
       txtClassesManagement: 'Quản lý lớp'
@@ -65,6 +72,13 @@ const vi = {
 
   header: {
     searchTxt: 'Nhập để tìm kiếm'
+  },
+
+  modal: {
+    message: {
+      success: 'Thành công',
+      updateUserSuccess: 'Cập nhật người dùng thành công!'
+    }
   }
 }
 

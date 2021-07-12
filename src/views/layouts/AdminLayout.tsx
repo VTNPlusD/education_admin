@@ -6,7 +6,12 @@ import { INotification } from 'interfaces/INotification'
 import { useEffect, useState } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import classes from 'styles/AdminLayout.module.scss'
-import { ADMIN_ROUTE, childrenRoutes, routes, routesName } from 'views/routes/routes'
+import {
+  ADMIN_ROUTE,
+  childrenRoutes,
+  routes,
+  routesName
+} from 'views/routes/routes'
 
 const { SubMenu } = Menu
 const { Content, Sider } = Layout

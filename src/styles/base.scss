@@ -1,14 +1,50 @@
-$PRIMARY_MAIN: #9a55ff;
-$primary-color: #f2edf3;
-
 html,
 body {
-  font-family: 'tahoma', sans-serif;
+  font-family: "tahoma", sans-serif;
   letter-spacing: 0.4px;
   height: 100%;
   width: 100%;
-  background-color: $primary-color;
+  background-color: var(--primary-background);
 }
+:root {
+  --primary-main: #9a55ff;
+  --primary-main-light: #da8cff;
+  --primary-background: #5d3266;
+  --primary-background-white: #fff;
+  --primary-gray: #c3bdbd;
+  --text: black;
+  --menu-text-active: #9a55ff;
+  // --linear-main: linear-gradient(to right, #da8cff, #9a55ff)
+  // --linear-danger: linear-gradient(to right, #ffbf96, #fe7096)
+  // --box-shadow: rgb(163 93 255 / 35%) 0px 3px 8.3px 0.7px
+}
+
+.ant-menu-item-selected {
+  color: var(--menu-text-active);
+}
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after,
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 3px solid var(--menu-text-active);
+}
+
+.ant-menu-item-active {
+  color: var(--menu-text-active) !important;
+}
+.ant-menu-submenu-active {
+  color: var(--menu-text-active) !important;
+}
+.ant-menu-submenu-title:hover {
+  color: var(--menu-text-active) !important;
+}
+.ant-pagination-item-active {
+  border-color: var(--menu-text-active) !important;
+  a {
+    color: var(--menu-text-active) !important;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -26,7 +62,7 @@ p {
   padding: 16px;
 }
 .c {
-  color: $PRIMARY_MAIN !important;
+  color: var(--primary-purple) !important;
 }
 .pointer {
   cursor: pointer;

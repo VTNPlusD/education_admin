@@ -25,6 +25,12 @@ const Notification = ({ notifications }: Props) => {
       case ERROR_TYPE.USER_NOT_FOUND:
       case ERROR_TYPE.INVALID_CREDENTIALS:
       case ERROR_TYPE.ERR_INTERNET_DISCONNECTED:
+      case ERROR_TYPE.BAD_REQUEST:
+      case ERROR_TYPE.ACCESS_TOKEN_EXPIRED:
+      case ERROR_TYPE.PHONE_EXISTS:
+      case ERROR_TYPE.EMAIL_EXISTS:
+      case ERROR_TYPE.UNAUTHENTICATED:
+      case ERROR_TYPE.UNAUTHORIZED:
         return <CloseCircleOutlined style={{ color: 'red' }} />
       default:
         return <CheckCircleOutlined style={{ color: 'green' }} />

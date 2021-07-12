@@ -1,5 +1,6 @@
+import { IUpdateUserById } from 'services/requests/IUpdateUserById'
 import { IUserListRequest } from 'services/requests/IUserListRequest'
-import { USERS_LIST, GET_USER_BY_ID } from '..'
+import { USERS_LIST, GET_USER_BY_ID, UPDATE_USER_BY_ID } from '..'
 import instance from '../v1'
 
 class UsersApis {
@@ -9,6 +10,8 @@ class UsersApis {
     })
   getUserById = (id: number) =>
     instance.get(GET_USER_BY_ID.concat('/').concat(id.toString()))
+  updateUserById = (user: IUpdateUserById) =>
+    instance.put(UPDATE_USER_BY_ID.concat('/').concat(user.id.toString()), user)
 }
 
 export const UsersApi = new UsersApis()
