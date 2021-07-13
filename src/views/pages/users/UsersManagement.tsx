@@ -112,7 +112,7 @@ const styles = {
     color: '#FFF',
     fontSize: 11
   },
-  pagination: { textAlign: 'center', marginTop: 16 } as CSSProperties
+  pagination: { textAlign: 'center' as const, marginTop: 16 }
 }
 
 const stylesWithParam = (val: string) => {

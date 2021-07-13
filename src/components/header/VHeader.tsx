@@ -35,7 +35,7 @@ const VHeader = ({ handleLogout, theme, handleChangeTheme }: Props) => {
   let delayTimer: any
   const onSearch = (val: string) => {
     clearTimeout(delayTimer)
-    delayTimer = setTimeout(function () {}, 1000)
+    delayTimer = setTimeout( () => {}, 1000)
   }
 
   const onLogout = () => {
