@@ -1,4 +1,4 @@
-import { EUserStatus } from 'interfaces/EUserStatus'
+import { EUserStatus } from 'interfaces/enums/EUserStatus'
 import { EUserActions } from 'redux/actions/users/EUserAction'
 import { UsersActionTypes, IUsersState } from 'redux/actions/users/usersTypes'
 

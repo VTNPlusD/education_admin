@@ -1,4 +1,4 @@
-import { INotification } from 'interfaces/INotification'
+import { INotification } from 'interfaces/interfaces/INotification'
 import { Action } from 'redux'
 import { IColors } from 'utils/colors'
 import { ECommonActions } from './ECommonAction'
@@ -27,6 +27,7 @@ export interface ISetThemeAction extends Action {
 export interface IUploadAction extends Action {
   type: ECommonActions.UPLOAD
   file: any
+  callback: any
 }
 
 export type CommonActionTypes =

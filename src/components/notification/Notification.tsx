@@ -1,8 +1,8 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons'
 import { notification } from 'antd'
 import { NotificationPlacement } from 'antd/lib/notification'
-import { ERROR_TYPE } from 'interfaces/ErrorTypes'
-import { INotification } from 'interfaces/INotification'
+import { ERROR_TYPE } from 'interfaces/enums/ErrorTypes'
+import { INotification } from 'interfaces/interfaces/INotification'
 import React, { useEffect } from 'react'
 
 const Context = React.createContext({ name: 'Default' })

@@ -1,5 +1,5 @@
 import { DEFAULT_AVATAR_URL, MEDIA_URL } from 'constants/general'
-import { EUserStatus } from 'interfaces/EUserStatus'
+import { EUserStatus } from 'interfaces/enums/EUserStatus'
 import { colors, IColors } from './colors'
 
 const changeCSS = (theme: IColors) => {

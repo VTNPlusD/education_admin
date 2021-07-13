@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import i18n from 'configs/i18n'
 import { API_URL } from 'constants/general'
-import { ERROR_TYPE } from 'interfaces/ErrorTypes'
+import { ERROR_TYPE } from 'interfaces/enums/ErrorTypes'
 import { mapKeys, snakeCase } from 'lodash'
 import { LogoutAction } from 'redux/actions/auth/authAction'
 import { PERSIST_ROOT, store } from 'redux/store'

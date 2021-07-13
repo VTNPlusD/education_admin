@@ -1,7 +1,7 @@
 import { IRoles } from './IRoles'
 import { IUser } from './IUser'
 
-export interface ILogin {
+export interface ILoginResponse {
   access: IAccess
   token: IToken
   user: IUser
