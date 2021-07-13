@@ -21,6 +21,7 @@ const initialState: IUsersState = {
     phone: '',
     imageName: '',
     isSuperUser: false,
+    roles: [],
     status: EUserStatus.ACTIVE
   }
 }

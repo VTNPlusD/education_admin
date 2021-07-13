@@ -19,11 +19,9 @@ function* uploadSaga(action: IUploadAction) {
       CommonApi.upload,
       action.file
     )
-    // console.log('aa', response)
     const data = checkStatus(response)
     if (data) {
       action.callback(data)
-      return data
     }
   } catch (error) {
     const noti: INotification = {

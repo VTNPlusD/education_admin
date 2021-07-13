@@ -26,6 +26,7 @@
   width: 80px;
   height: 80px;
   border-radius: 40px;
+  cursor: pointer;
 }
 .imgAvatar {
   width: 80px;
@@ -47,13 +48,11 @@
   border: 1px solid var(--primary-main);
   background-color: var(--primary-background-white);
 }
-.btnInfoRight {
-  display: flex;
-  justify-content: center;
-  height: 80px;
-}
 .uploadContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.mt16 {
+  margin-top: 16px;
 }

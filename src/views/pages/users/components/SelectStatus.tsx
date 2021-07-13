@@ -53,7 +53,6 @@ const SelectStatus = ({ status, handleUpdateStatus }: Props) => {
 
   const handleOk = () => {
     handleUpdateStatus(currentId)
-    setActive(currentId)
     setIsShowModal(false)
   }
 
@@ -77,7 +76,7 @@ const SelectStatus = ({ status, handleUpdateStatus }: Props) => {
                 background: status.color,
                 opacity: active === status.id ? '1' : '0.3',
                 boxShadow: colors.BOX_SHADOW_MAIN
-              }}></div>
+              }}/>
             <p
               className={classes.title}
               style={{

@@ -1,3 +1,5 @@
+import { IRoleDetail } from "./IRoleDetail";
+
 export interface IUser {
   id: number
   username: string
@@ -8,4 +10,5 @@ export interface IUser {
   imageName: string
   isSuperUser: boolean
   status: string
+  roles: IRoleDetail[]
 }

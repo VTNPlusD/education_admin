@@ -6,6 +6,7 @@ import { INotification } from 'interfaces/interfaces/INotification'
 import { useEffect, useState } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import classes from 'styles/AdminLayout.module.scss'
+import { getPathnameWithoutParams } from 'utils/Functions'
 import {
   ADMIN_ROUTE,
   childrenRoutes,
@@ -38,16 +39,20 @@ const getContentRoute = (
 
 type Props = {
   notification: INotification
+  match: any
 }
 
-const AdminLayout = ({ notification }: Props) => {
+const AdminLayout = ({ notification, match }: Props) => {
   const history = useHistory()
   const location = useLocation()
   const [defaultSelectedRoute, setDefaultSelectedRoute] = useState(1)
 
   useEffect(() => {
     routes.forEach((route) => {
-      if (ADMIN_ROUTE.concat(route.path) === location.pathname) {
+      if (
+        ADMIN_ROUTE.concat(route.path) ===
+        getPathnameWithoutParams(location.pathname)
+      ) {
         setDefaultSelectedRoute(route.id)
       }
     })
