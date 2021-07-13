@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import i18n from 'configs/i18n'
-import { ERoles } from 'interfaces/ERoles'
-import { ERROR_TYPE } from 'interfaces/ErrorTypes'
-import { ILogin } from 'interfaces/ILogin'
-import { INotification } from 'interfaces/INotification'
-import { IPayload } from 'interfaces/IPayload'
+import { ERoles } from 'interfaces/enums/ERoles'
+import { ERROR_TYPE } from 'interfaces/enums/ErrorTypes'
+import { ILoginResponse } from 'interfaces/interfaces/ILoginResponse'
+import { INotification } from 'interfaces/interfaces/INotification'
+import { IPayload } from 'interfaces/interfaces/IPayload'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { UpdateAuthAction } from 'redux/actions/auth/authAction'
 import { EAuthTypes, ILoginAction } from 'redux/actions/auth/authTypes'
@@ -19,12 +19,12 @@ import { checkStatus } from 'utils/services'
 function* _authSaga(action: ILoginAction) {
   try {
     yield put(SetLoadingAction(true))
-    const response: AxiosResponse<IPayload<ILogin>> = yield call(
+    const response: AxiosResponse<IPayload<ILoginResponse>> = yield call(
       AuthApi.login,
       action.loginRequest
     )
 
-    const data = checkStatus<ILogin>(response)
+    const data = checkStatus<ILoginResponse>(response)
     if (data) {
       const roles = data.access.roles
       let checkRole = false

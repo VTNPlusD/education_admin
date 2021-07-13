@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import i18n from 'configs/i18n'
-import { INotification } from 'interfaces/INotification'
-import { IPayload } from 'interfaces/IPayload'
+import { INotification } from 'interfaces/interfaces/INotification'
+import { IPayload } from 'interfaces/interfaces/IPayload'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
   SetLoadingAction,
@@ -22,6 +22,7 @@ function* uploadSaga(action: IUploadAction) {
     // console.log('aa', response)
     const data = checkStatus(response)
     if (data) {
+      action.callback(data)
       return data
     }
   } catch (error) {

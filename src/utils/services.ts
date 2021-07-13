@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { IPayload } from 'interfaces/IPayload'
+import { IPayload } from 'interfaces/interfaces/IPayload'
 import { checkError } from './Functions'
 
 function checkStatus<T>(response: AxiosResponse<IPayload<T>>) {

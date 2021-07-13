@@ -1,5 +1,5 @@
 import Image from 'components/image/Image'
-import { IUser } from 'interfaces/IUser'
+import { IUser } from 'interfaces/interfaces/IUser'
 import classes from 'styles/UsersManagement.module.scss'
 import { lightColors } from 'utils/colors'
 import { convertStatusToColor, getImgUrl } from 'utils/Functions'

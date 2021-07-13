@@ -1,6 +1,6 @@
 import Notification from 'components/notification/Notification'
 import LoginContainer from 'containers/LoginContainer'
-import { INotification } from 'interfaces/INotification'
+import { INotification } from 'interfaces/interfaces/INotification'
 
 type Props = {
   notification?: INotification

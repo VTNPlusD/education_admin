@@ -1,4 +1,4 @@
-import { INotification } from 'interfaces/INotification'
+import { INotification } from 'interfaces/interfaces/INotification'
 import { IColors } from 'utils/colors'
 import {
   ISetLoadingAction,
@@ -20,9 +20,10 @@ export const SetNotificationAction = (
   notification
 })
 
-export const UploadAction = (file: any): IUploadAction => ({
+export const UploadAction = (file: any, callback: any): IUploadAction => ({
   type: ECommonActions.UPLOAD,
-  file
+  file,
+  callback
 })
 
 export const SetThemeAction = (theme: IColors): ISetThemeAction => ({

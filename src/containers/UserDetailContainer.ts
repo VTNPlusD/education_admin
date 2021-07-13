@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getUserById: (id: number) => dispatch(GetUserByIdAction(id)),
   updateUserById: (user: IUpdateUserById) =>
     dispatch(UpdateUserByIdAction(user)),
-  upload: (file: any) => dispatch(UploadAction(file))
+  upload: (file: any, callback: any) => dispatch(UploadAction(file, callback))
 })
 
 export default connect(userSelector, mapDispatchToProps)(UserDetail)

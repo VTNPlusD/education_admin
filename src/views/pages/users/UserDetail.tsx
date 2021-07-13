@@ -5,8 +5,8 @@ import Image from 'components/image/Image'
 import InputLabel from 'components/inputLabel/InputLabel'
 import VModal from 'components/modal/VModal'
 import VButtonContainer from 'containers/VButtonContainer'
-import { EUserStatus } from 'interfaces/EUserStatus'
-import { IUser } from 'interfaces/IUser'
+import { EUserStatus } from 'interfaces/enums/EUserStatus'
+import { IUser } from 'interfaces/interfaces/IUser'
 import moment, { Moment } from 'moment'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +38,7 @@ type Props = {
   match: MatchType
   getUserById: (id: number) => void
   updateUserById: (user: IUpdateUserById) => void
-  upload: (file: any) => void
+  upload: (file: any, callback: any) => void
   theme: IColors
 }
 
@@ -68,7 +68,7 @@ const UserDetail = ({
     setEmail(userDetail.email)
     setPhone(userDetail.phone)
     setBirthday(moment(userDetail.birthday))
-    setAvatar(userDetail.imageName)
+    setAvatar(getImgUrl(userDetail.imageName))
   }, [userDetail])
 
   useEffect(() => {
@@ -128,15 +128,14 @@ const UserDetail = ({
   }
 
   const handleChangeUpload = (info: any) => {
-    if (info.file.status === 'uploading') {
-      return
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl: string) =>
-        console.log(imageUrl)
-      )
-    }
+    // Get this url from response in real world.
+    const file = info.file.originFileObj
+
+    upload(file, (result: any) => {
+      console.log('call back', result)
+    })
+
+    getBase64(file, (imageUrl: string) => setAvatar(imageUrl))
   }
 
   const _renderAvatar = () => {
@@ -144,9 +143,12 @@ const UserDetail = ({
       <Upload
         className={classes.uploadContainer}
         onChange={handleChangeUpload}
-        customRequest={(e) => upload(e.file)}>
+        customRequest={() => null}
+        multiple={false}
+        maxCount={1}
+        itemRender={() => <></>}>
         <div className={classes.avatarContainer}>
-          <Image src={getImgUrl(avatar)} className={classes.imgAvatar} />
+          <Image src={avatar} className={classes.imgAvatar} />
           <div className={classes.editAvatarContainer}>
             <EditOutlined
               style={{ ...styles.iconEdit, ...{ color: theme.PRIMARY_MAIN } }}

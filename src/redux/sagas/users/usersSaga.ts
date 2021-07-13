@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import i18n from 'configs/i18n'
-import { ESuccessType } from 'interfaces/ESuccessType'
-import { INotification } from 'interfaces/INotification'
-import { IPayload } from 'interfaces/IPayload'
-import { IUser } from 'interfaces/IUser'
-import { IUserList } from 'interfaces/IUserList'
+import { ESuccessType } from 'interfaces/enums/ESuccessType'
+import { INotification } from 'interfaces/interfaces/INotification'
+import { IPayload } from 'interfaces/interfaces/IPayload'
+import { IUser } from 'interfaces/interfaces/IUser'
+import { IUserList } from 'interfaces/interfaces/IUserList'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
   SetLoadingAction,

@@ -1,9 +1,9 @@
 import VModal from 'components/modal/VModal'
-import { EUserStatus } from 'interfaces/EUserStatus'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { colors } from 'utils/colors'
 import classes from 'styles/SelectStatus.module.scss'
+import { EUserStatus } from 'interfaces/enums/EUserStatus'
 
 const ModalConfirm = () => {
   const { t } = useTranslation()

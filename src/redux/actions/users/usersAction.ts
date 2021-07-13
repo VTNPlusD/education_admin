@@ -1,5 +1,5 @@
-import { IUser } from 'interfaces/IUser'
-import { IUserList } from 'interfaces/IUserList'
+import { IUser } from 'interfaces/interfaces/IUser'
+import { IUserList } from 'interfaces/interfaces/IUserList'
 import { IUpdateUserById } from 'services/requests/IUpdateUserById'
 import { IUserListRequest } from 'services/requests/IUserListRequest'
 import { EUserActions } from './EUserAction'
