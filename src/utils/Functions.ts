@@ -1,4 +1,5 @@
 import { DEFAULT_AVATAR_URL, MEDIA_URL } from 'constants/general'
+import { ERoles } from 'interfaces/enums/ERoles'
 import { EUserStatus } from 'interfaces/enums/EUserStatus'
 import { colors, IColors } from './colors'
 
@@ -56,11 +57,42 @@ const getToken = () => {
   }
 }
 
+const convertRoleToColor = (role: string) => {
+  switch (role) {
+    case ERoles.DEVELOPER:
+      return colors.DEVELOP_COLOR
+    case ERoles.ADMIN:
+      return colors.ADMIN_COLOR
+    case ERoles.USER:
+      return colors.USER_COLOR
+    case ERoles.TECHER:
+      return colors.TECHER_COLOR
+    default:
+      return colors.DEVELOP_COLOR
+  }
+}
+
+const getPathnameWithoutParams = (pathName: string) => {
+  const indices = []
+  const element = '/'
+  var idx = pathName.indexOf(element)
+  while (idx !== -1) {
+    indices.push(idx)
+    idx = pathName.indexOf(element, idx + 1)
+  }
+  if (indices.length > 2) {
+    return pathName.slice(0, indices[2])
+  }
+  return pathName
+}
+
 export {
   ConvertTime,
   checkError,
   convertStatusToColor,
   getImgUrl,
   changeCSS,
-  getToken
+  getToken,
+  convertRoleToColor,
+  getPathnameWithoutParams
 }

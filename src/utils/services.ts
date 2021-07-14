@@ -8,7 +8,7 @@ function checkStatus<T>(response: AxiosResponse<IPayload<T>>) {
   }
 
   if (response.status >= 400 && response.status < 500) {
-    throw {...response.data, ...response.statusText}
+    throw Object.assign(response.data, response.statusText)
   }
 
   throw Object.assign(checkError(response.status, response.statusText))

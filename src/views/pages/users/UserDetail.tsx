@@ -1,11 +1,14 @@
 import { EditOutlined, UserOutlined } from '@ant-design/icons'
-import { DatePicker, Upload } from 'antd'
+import { DatePicker, Select, Tag, Upload } from 'antd'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import Image from 'components/image/Image'
 import InputLabel from 'components/inputLabel/InputLabel'
 import VModal from 'components/modal/VModal'
+import { RoleList } from 'constants/general'
 import VButtonContainer from 'containers/VButtonContainer'
 import { EUserStatus } from 'interfaces/enums/EUserStatus'
+import { IRoleDetail } from 'interfaces/interfaces/IRoleDetail'
+import { IUploadResponse } from 'interfaces/interfaces/IUploadResponse'
 import { IUser } from 'interfaces/interfaces/IUser'
 import moment, { Moment } from 'moment'
 import { useEffect, useState } from 'react'
@@ -13,8 +16,8 @@ import { useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router'
 import { IUpdateUserById } from 'services/requests/IUpdateUserById'
 import classes from 'styles/DetailUser.module.scss'
-import { colors, IColors } from 'utils/colors'
-import { getImgUrl } from 'utils/Functions'
+import { IColors } from 'utils/colors'
+import { convertRoleToColor, getImgUrl } from 'utils/Functions'
 import ModalBlock from './components/ModalBlock'
 import ModalDelete from './components/ModelDelete'
 import SelectStatus from './components/SelectStatus'
@@ -59,8 +62,14 @@ const UserDetail = ({
   const [phone, setPhone] = useState('')
   const [birthday, setBirthday] = useState<Moment>()
   const [avatar, setAvatar] = useState('')
+  const [avatarFile, setAvatarFile] = useState<File>()
+  const [roles, setRoles] = useState<string[]>([])
   const [isShowModalDelete, setIsShowModalDelete] = useState(false)
   const [isShowModalBlock, setIsShowModalBlock] = useState(false)
+
+  const convertRolesToValue = (roles: IRoleDetail[]) => {
+    return roles.map((role) => role.name)
+  }
 
   useEffect(() => {
     setFullname(userDetail.fullname)
@@ -69,8 +78,9 @@ const UserDetail = ({
     setPhone(userDetail.phone)
     setBirthday(moment(userDetail.birthday))
     setAvatar(getImgUrl(userDetail.imageName))
+    setRoles(convertRolesToValue(userDetail.roles))
   }, [userDetail])
-
+  
   useEffect(() => {
     if (id) {
       getUserById(id)
@@ -93,13 +103,19 @@ const UserDetail = ({
     if (value) setBirthday(value)
   }
   const handleUpdate = () => {
-    const date = moment(birthday).toDate()
-    const user: IUpdateUserById = { id, fullname, email, phone, birthday: date }
-    updateUserById(user)
-  }
-
-  const handleDeleteBtn = () => {
-    setIsShowModalDelete(true)
+    upload(avatarFile, (result: IUploadResponse) => {
+      const date = moment(birthday).toDate()
+      const imageName = result.fileName
+      const user: IUpdateUserById = {
+        id,
+        fullname,
+        email,
+        phone,
+        birthday: date,
+        imageName
+      }
+      updateUserById(user)
+    })
   }
 
   const handleOkDelete = () => {
@@ -108,10 +124,6 @@ const UserDetail = ({
 
   const handleCancelDelete = () => {
     setIsShowModalDelete(false)
-  }
-
-  const handleBlockBtn = () => {
-    setIsShowModalBlock(true)
   }
 
   const handleOkBlock = () => {
@@ -123,18 +135,13 @@ const UserDetail = ({
   }
 
   const handleUpdateStatus = (status: string) => {
-    const user: IUpdateUserById = { id, status }
+    const user = { id, status }
     updateUserById(user)
   }
 
   const handleChangeUpload = (info: any) => {
-    // Get this url from response in real world.
     const file = info.file.originFileObj
-
-    upload(file, (result: any) => {
-      console.log('call back', result)
-    })
-
+    setAvatarFile(file)
     getBase64(file, (imageUrl: string) => setAvatar(imageUrl))
   }
 
@@ -206,21 +213,39 @@ const UserDetail = ({
     )
   }
 
+  function tagRender(props: any) {
+    const { label, closable, onClose } = props
+
+    const onPreventMouseDown = (event: any) => {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    return (
+      <Tag
+        color={convertRoleToColor(label)}
+        onMouseDown={onPreventMouseDown}
+        closable={closable}
+        onClose={onClose}
+        style={{ marginRight: 3 }}>
+        {label}
+      </Tag>
+    )
+  }
+
   const _renderRightInfo = () => {
     return (
       <div className={classes.infoRight}>
-        <div className={classes.btnInfoRight}>
-          <VButtonContainer
-            onClick={() => handleDeleteBtn()}
-            title={t('sideBar.usersManagement.btnDelete')}
-            color={colors.PRIMARY_LINEAR_DANGER}
-            style={{ marginRight: 16 }}
-          />
-          <VButtonContainer
-            onClick={() => handleBlockBtn()}
-            title={t('sideBar.usersManagement.btnBlock')}
-            color={colors.PRIMARY_LINEAR_DARK}
-          />
+        <div>
+          <p>{t('users.roles')}</p>
+            <Select
+              onChange={(e) => setRoles(e)}
+              value={roles}
+              mode='multiple'
+              showArrow
+              tagRender={tagRender}
+              style={{ width: '100%', marginTop: 8, marginBottom: 8 }}
+              options={RoleList}
+            />
         </div>
         <SelectStatus
           status={userDetail.status || EUserStatus.ACTIVE}

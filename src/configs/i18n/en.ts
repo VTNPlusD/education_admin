@@ -60,7 +60,8 @@ const en = {
     email: 'Email',
     phone: 'Phone',
     birthday: 'Birthday',
-    status: 'Status'
+    status: 'Status',
+    roles: 'Roles'
   },
 
   errors: {

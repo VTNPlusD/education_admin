@@ -53,7 +53,6 @@ const SelectStatus = ({ status, handleUpdateStatus }: Props) => {
 
   const handleOk = () => {
     handleUpdateStatus(currentId)
-    setActive(currentId)
     setIsShowModal(false)
   }
 

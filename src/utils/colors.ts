@@ -8,7 +8,11 @@ const colors = {
   BOX_SHADOW_MAIN: 'rgb(163 93 255 / 35%) 0px 3px 8.3px 0.7px',
   STATUS_ACTIVE: 'linear-gradient(to right, #abfcb0, #00ff26)',
   STATUS_BLOCK: 'linear-gradient(to right, #f5a2a2, #ff1f1f)',
-  STATUS_INACTIVE: 'linear-gradient(to right, #fce3ab, #ffb20a)'
+  STATUS_INACTIVE: 'linear-gradient(to right, #fce3ab, #ffb20a)',
+  DEVELOP_COLOR: 'red',
+  ADMIN_COLOR: 'blue',
+  USER_COLOR: 'green',
+  TECHER_COLOR: 'violet'
 }
 
 export interface IColors {
