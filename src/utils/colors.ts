@@ -12,7 +12,8 @@ const colors = {
   DEVELOP_COLOR: 'red',
   ADMIN_COLOR: 'blue',
   USER_COLOR: 'green',
-  TECHER_COLOR: 'violet'
+  TECHER_COLOR: 'violet',
+  PRIMARY_GRAY: '#f2edf3'
 }
 
 export interface IColors {

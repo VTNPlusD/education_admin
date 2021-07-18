@@ -6,7 +6,7 @@ import { lightColors } from 'utils/colors'
 
 type Props = {
   loading?: boolean
-  title: string
+  title: string | any
   type?:
     | 'link'
     | 'text'

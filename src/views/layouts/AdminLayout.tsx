@@ -1,8 +1,6 @@
-import { NotificationOutlined } from '@ant-design/icons'
 import { Layout, Menu } from 'antd'
-import Notification from 'components/notification/Notification'
+import NotificationContainer from 'containers/NotificationContainer'
 import VHeaderContainer from 'containers/VHeaderContainer'
-import { INotification } from 'interfaces/interfaces/INotification'
 import { useEffect, useState } from 'react'
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import classes from 'styles/AdminLayout.module.scss'
@@ -19,14 +17,27 @@ const { Content, Sider } = Layout
 
 const getContentRoute = (
   <Switch>
-    {routes.map((route) => (
-      <Route
-        exact
-        path={ADMIN_ROUTE.concat(route.path)}
-        component={route.component}
-        key={route.id}
-      />
-    ))}
+    {routes.map((route) => {
+      if (route.subRoutes && route.subRoutes.length > 0) {
+        return route.subRoutes.map((subRoute) => (
+          <Route
+            exact
+            path={ADMIN_ROUTE.concat(subRoute.path)}
+            component={subRoute.component}
+            key={subRoute.id}
+          />
+        ))
+      }
+      return (
+        <Route
+          exact
+          path={ADMIN_ROUTE.concat(route.path)}
+          component={route.component}
+          key={route.id}
+        />
+      )
+    })}
+
     {childrenRoutes.map((route) => (
       <Route
         path={ADMIN_ROUTE.concat(route.path)}
@@ -37,24 +48,24 @@ const getContentRoute = (
   </Switch>
 )
 
-type Props = {
-  notification: INotification
-  match: any
-}
-
-const AdminLayout = ({ notification, match }: Props) => {
+const AdminLayout = () => {
   const history = useHistory()
   const location = useLocation()
   const [defaultSelectedRoute, setDefaultSelectedRoute] = useState(1)
 
   useEffect(() => {
-    routes.forEach((route) => {
+    const checkRoute = (route: any) => {
       if (
         ADMIN_ROUTE.concat(route.path) ===
         getPathnameWithoutParams(location.pathname)
       ) {
         setDefaultSelectedRoute(route.id)
       }
+    }
+    routes.forEach((route) => {
+      if (route.subRoutes && route.subRoutes.length > 0) {
+        route.subRoutes.forEach((subRoute) => checkRoute(subRoute))
+      } else checkRoute(route)
     })
   }, [location.pathname])
 
@@ -69,13 +80,11 @@ const AdminLayout = ({ notification, match }: Props) => {
   const _renderItemRoute = () => {
     return routes.map((route) => {
       return route.subRoutes && route.subRoutes.length > 0 ? (
-        <SubMenu
-          key={route.id}
-          icon={<NotificationOutlined />}
-          title={route.title}>
+        <SubMenu key={route.id} icon={route.icon} title={route.title}>
           {route.subRoutes.map((subRoute) => (
             <Menu.Item
               key={subRoute.id}
+              icon={subRoute.icon}
               onClick={() => handleSwitchRoute(subRoute.path)}>
               {subRoute.title}
             </Menu.Item>
@@ -94,16 +103,10 @@ const AdminLayout = ({ notification, match }: Props) => {
   }
 
   return (
-    <div style={{ height: '100%' }}>
-      <Notification notifications={notification} />
+    <div className={classes.container}>
+      <NotificationContainer />
       <Layout style={styles.container}>
-        <Sider
-          width={260}
-          style={{
-            height: '100%',
-            overflowX: 'auto',
-            backgroundColor: '#fff'
-          }}>
+        <Sider width={260} className={classes.sider}>
           <Menu
             mode='inline'
             selectedKeys={[defaultSelectedRoute.toString()]}

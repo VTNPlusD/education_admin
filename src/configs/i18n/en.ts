@@ -27,7 +27,9 @@ const en = {
     error: 'Error',
     success: 'Success',
     messages: {
-      invalidRole: 'You do not have access to the system'
+      invalidRole: 'You do not have access to the system',
+      deleteImageSuccess: 'Delete image successfully!',
+      deleteClassSuccess: 'Delete class successfully!'
     }
   },
 
@@ -49,7 +51,9 @@ const en = {
       confirmChangeStatus: 'Are you sure to update status?'
     },
     classesManagement: {
-      txtClassesManagement: 'Classes management'
+      txtClassesManagement: 'Classes management',
+      add: 'Add new class',
+      update: 'Update class'
     }
   },
 
@@ -62,6 +66,19 @@ const en = {
     birthday: 'Birthday',
     status: 'Status',
     roles: 'Roles'
+  },
+
+  classes: {
+    id: 'ID',
+    name: 'Name',
+    order: 'Order',
+    type: 'Type',
+    iconName: 'Icon',
+    active: 'Active',
+    action: 'Action',
+    form: {
+      name: 'Class name'
+    }
   },
 
   errors: {

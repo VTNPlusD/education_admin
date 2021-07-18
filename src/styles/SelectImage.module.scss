@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.imgContainer {
+    width: 20%;
+    height: "auto";
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+.imgContainer:hover {
+    border: 3px solid lightpink;
+}
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.iconDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    padding: 12px;
+    border-radius: 4px;
+}

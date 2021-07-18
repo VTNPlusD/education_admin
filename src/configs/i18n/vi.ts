@@ -27,7 +27,9 @@ const vi = {
     error: 'Lỗi',
     success: 'Thành công',
     messages: {
-      invalidRole: 'Bạn không có quyền truy cập vào hệ thống'
+      invalidRole: 'You do not have access to the system',
+      deleteImageSuccess: 'Delete image successfully!',
+      deleteClassSuccess: 'Delete class successfully!'
     }
   },
 
@@ -49,7 +51,9 @@ const vi = {
       confirmChangeStatus: 'Bạn có chắc chắn muốn cập nhật trạng thái này?'
     },
     classesManagement: {
-      txtClassesManagement: 'Quản lý lớp'
+      txtClassesManagement: 'Quản lý lớp',
+      add: 'Add new class',
+      update: 'Update class'
     }
   },
 
@@ -61,6 +65,19 @@ const vi = {
     phone: 'Số điện thoại',
     birthday: 'Ngày sinh',
     status: 'Trạng thái'
+  },
+
+  classes: {
+    id: 'ID',
+    name: 'Name',
+    order: 'Order',
+    type: 'Type',
+    iconName: 'Icon',
+    active: 'Active',
+    action: 'Action',
+    form: {
+      name: 'Class name'
+    }
   },
 
   errors: {

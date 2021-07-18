@@ -1,0 +1,56 @@
+.container {
+  padding: 16px;
+  background-color: var(--primary-background-white);
+  border-radius: 4px;
+}
+.tableContainer {
+  width: 100%;
+}
+.userStatus {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+.userStatusNote {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-right: 32px;
+  justify-content: center;
+}
+.imgUserAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.pdL8 {
+  padding-left: 8px;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.active {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+}
+.img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+.iconUpload {
+  border: 1px dashed gray;
+  width: 100px;
+  height: 100px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
