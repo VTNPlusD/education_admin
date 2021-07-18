@@ -1,6 +1,10 @@
 import { INotification } from 'interfaces/interfaces/INotification'
+import { IUpload } from 'interfaces/interfaces/IUpload'
 import { IColors } from 'utils/colors'
 import {
+  IDeleteImageAction,
+  ISetItemUploadAction,
+  ISetListUploadAction,
   ISetLoadingAction,
   ISetNotificationAction,
   ISetThemeAction,
@@ -20,10 +24,36 @@ export const SetNotificationAction = (
   notification
 })
 
-export const UploadAction = (file: any, callback: any): IUploadAction => ({
+export const UploadAction = (
+  file: File,
+  callback: (val: IUpload) => void
+): IUploadAction => ({
   type: ECommonActions.UPLOAD,
   file,
   callback
+})
+
+export const GetListUploadAction = () => ({
+  type: ECommonActions.GET_LIST_UPLOAD
+})
+
+export const SetListUploadAction = (
+  listUpload: IUpload[]
+): ISetListUploadAction => ({
+  type: ECommonActions.SET_LIST_UPLOAD,
+  listUpload
+})
+
+export const SetItemUploadAction = (
+  itemUpload: IUpload
+): ISetItemUploadAction => ({
+  type: ECommonActions.SET_ITEM_UPLOAD,
+  itemUpload
+})
+
+export const DeleteImageAction = (name: string): IDeleteImageAction => ({
+  type: ECommonActions.DELETE_IMAGE,
+  name
 })
 
 export const SetThemeAction = (theme: IColors): ISetThemeAction => ({

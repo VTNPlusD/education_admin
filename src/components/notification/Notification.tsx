@@ -1,55 +1,48 @@
-import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons'
-import { notification } from 'antd'
-import { NotificationPlacement } from 'antd/lib/notification'
-import { ERROR_TYPE } from 'interfaces/enums/ErrorTypes'
+import { CheckCircleOutlined } from '@ant-design/icons'
+import * as antdNotification from 'antd'
+import { ESuccessType } from 'interfaces/enums/ESuccessType'
 import { INotification } from 'interfaces/interfaces/INotification'
 import React, { useEffect } from 'react'
 
 const Context = React.createContext({ name: 'Default' })
 
 type Props = {
-  notifications?: INotification
+  notification?: INotification
 }
 
-const Notification = ({ notifications }: Props) => {
-  const [api, contextHolder] = notification.useNotification()
+const Notification = ({ notification }: Props) => {
+  const [api, contextHolder] = antdNotification.notification.useNotification()
 
   useEffect(() => {
-    if (notifications) {
-      openNotification('topRight')
-    }
-  }, [notifications])
+    if (notification) {
+      const _renderType = () => {
+        switch (notification?.notiType) {
+          case ESuccessType.SUCCESS:
+            return <CheckCircleOutlined style={styles.success} />
+          default:
+            return <CheckCircleOutlined style={styles.error} />
+        }
+      }
 
-  const _renderType = () => {
-    switch (notifications?.notiType) {
-      case ERROR_TYPE.USER_NOT_FOUND:
-      case ERROR_TYPE.INVALID_CREDENTIALS:
-      case ERROR_TYPE.ERR_INTERNET_DISCONNECTED:
-      case ERROR_TYPE.BAD_REQUEST:
-      case ERROR_TYPE.ACCESS_TOKEN_EXPIRED:
-      case ERROR_TYPE.PHONE_EXISTS:
-      case ERROR_TYPE.EMAIL_EXISTS:
-      case ERROR_TYPE.UNAUTHENTICATED:
-      case ERROR_TYPE.UNAUTHORIZED:
-        return <CloseCircleOutlined style={{ color: 'red' }} />
-      default:
-        return <CheckCircleOutlined style={{ color: 'green' }} />
+      api.info({
+        message: notification?.title || '',
+        description: <Context.Consumer>{({ name }) => name}</Context.Consumer>,
+        placement: 'topRight',
+        icon: _renderType()
+      })
     }
-  }
+  }, [notification, api])
 
-  const openNotification = (placement: NotificationPlacement) => {
-    api.info({
-      message: notifications?.title || '',
-      description: <Context.Consumer>{({ name }) => name}</Context.Consumer>,
-      placement,
-      icon: _renderType()
-    })
-  }
   return (
-    <Context.Provider value={{ name: notifications?.message || '' }}>
+    <Context.Provider value={{ name: notification?.message || '' }}>
       {contextHolder}
     </Context.Provider>
   )
+}
+
+const styles = {
+  error: { color: 'red' },
+  success: { color: 'green' }
 }
 
 export default Notification

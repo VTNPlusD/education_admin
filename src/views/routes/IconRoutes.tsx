@@ -1,4 +1,10 @@
-import { HomeOutlined, UserOutlined, ScheduleOutlined } from '@ant-design/icons'
+import {
+  HomeOutlined,
+  UserOutlined,
+  ScheduleOutlined,
+  AppstoreOutlined,
+  WindowsOutlined
+} from '@ant-design/icons'
 const DashboardIcon = () => {
   return <HomeOutlined />
 }
@@ -8,5 +14,16 @@ const UsersManagementIcon = () => {
 const ClassesManagementIcon = () => {
   return <ScheduleOutlined />
 }
-
-export { DashboardIcon, UsersManagementIcon, ClassesManagementIcon }
+const ManageIcon = () => {
+  return <AppstoreOutlined />
+}
+const SubjectIcon = () => {
+  return <WindowsOutlined />
+}
+export {
+  DashboardIcon,
+  UsersManagementIcon,
+  ClassesManagementIcon,
+  ManageIcon,
+  SubjectIcon
+}

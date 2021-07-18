@@ -1,13 +1,22 @@
+import VButton from 'components/button/VButton'
 import { useSelector } from 'react-redux'
 import { AppState } from 'redux/reducers'
+import { PlusOutlined } from '@ant-design/icons'
 import classes from 'styles/HeaderRoute.module.scss'
 
 type Props = {
   title: string
   Icon: any
+  iconRight?: boolean
+  handleClickIconRight?: () => void
 }
 
-const HeaderRoute = ({ title, Icon }: Props) => {
+const HeaderRoute = ({
+  title,
+  Icon,
+  iconRight = false,
+  handleClickIconRight
+}: Props) => {
   const theme = useSelector((state: AppState) => state.common.theme)
   return (
     <div className={classes.header}>
@@ -21,6 +30,13 @@ const HeaderRoute = ({ title, Icon }: Props) => {
         </div>
         <p>{title}</p>
       </div>
+      {iconRight ? (
+        <div>
+          <VButton onClick={handleClickIconRight} title={<PlusOutlined />} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }

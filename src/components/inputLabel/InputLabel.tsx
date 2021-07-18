@@ -6,6 +6,7 @@ type Props = {
   placeholder?: string
   disabled?: boolean
   onChange: (val: string) => void
+  onClick?: () => void
 }
 
 const InputLabel = ({
@@ -13,7 +14,8 @@ const InputLabel = ({
   label,
   placeholder,
   disabled = false,
-  onChange
+  onChange,
+  onClick
 }: Props) => {
   return (
     <>
@@ -24,6 +26,7 @@ const InputLabel = ({
         style={styles.input}
         placeholder={placeholder}
         onChange={(val) => onChange(val.target.value)}
+        onClick={onClick}
       />
     </>
   )

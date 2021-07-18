@@ -3,7 +3,7 @@ import { Modal } from 'antd'
 type Props = {
   isModalVisible: boolean
   title: string
-  Content: React.ComponentType
+  content: any
   handleOk?: () => void
   handleCancel?: () => void
 }
@@ -13,7 +13,7 @@ const VModal = ({
   title,
   handleOk,
   handleCancel,
-  Content
+  content
 }: Props) => {
   return (
     <Modal
@@ -21,7 +21,7 @@ const VModal = ({
       visible={isModalVisible}
       onOk={handleOk}
       onCancel={handleCancel}>
-      <Content />
+      {content}
     </Modal>
   )
 }

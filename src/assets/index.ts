@@ -1,2 +1,2 @@
-import EditIcon from './ic_edit.png'
-export { EditIcon }
+import IconPlus from './ic_lous.png'
+export { IconPlus }

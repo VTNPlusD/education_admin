@@ -5,18 +5,21 @@ import UsersManagementContainer from 'containers/UsersManagementContainer'
 import {
   ClassesManagementIcon,
   DashboardIcon,
+  ManageIcon,
+  SubjectIcon,
   UsersManagementIcon
 } from './IconRoutes'
 import Dashboard from '../pages/Dashboard'
+import SubjectsManagement from 'views/pages/subjects/SubjectsManagement'
 
 export const ADMIN_ROUTE = '/admin'
 export const routesName = {
   DASHBOARD: '/dashboard',
   USERS_MANAGEMENT: '/users-management',
+  MANAGEMENT: '/management',
   CLASSES_MANAGEMENT: '/classes-management',
   SUBJECTS_MANAGEMENT: '/subjects-management',
   USER_DETAIL: '/users-management',
-
   LOGIN: '/login'
 }
 const routes = [
@@ -36,28 +39,23 @@ const routes = [
   },
   {
     id: 3,
-    title: i18n.t('sideBar.classesManagement.txtClassesManagement'),
-    icon: ClassesManagementIcon(),
-    path: routesName.CLASSES_MANAGEMENT,
-    component: ClassesManagementContainer
-  },
-  {
-    id: 4,
-    title: 'Subroute',
-    // icon: <UserOutlined />,
-    path: routesName.SUBJECTS_MANAGEMENT,
+    title: 'Management',
+    icon: ManageIcon(),
+    path: routesName.MANAGEMENT,
     subRoutes: [
       {
-        id: 41,
-        title: 'Subroute 1',
-        // icon: <UserOutlined />,
-        path: '/classes1-management'
+        id: 31,
+        title: 'Classes Management',
+        icon: ClassesManagementIcon(),
+        path: routesName.CLASSES_MANAGEMENT,
+        component: ClassesManagementContainer
       },
       {
-        id: 42,
-        title: 'Subroute 2',
-        // icon: <UserOutlined />,
-        path: '/classes2-management'
+        id: 32,
+        title: 'Subjects Management',
+        icon: SubjectIcon(),
+        path: routesName.SUBJECTS_MANAGEMENT,
+        component: SubjectsManagement
       }
     ]
   }
@@ -65,7 +63,7 @@ const routes = [
 
 const childrenRoutes = [
   {
-    id: 1,
+    id: 11,
     title: 'Users',
     path: routesName.USER_DETAIL.concat('/:id'),
     component: UserDetailContainer

@@ -35,7 +35,7 @@ const VHeader = ({ handleLogout, theme, handleChangeTheme }: Props) => {
   let delayTimer: any
   const onSearch = (val: string) => {
     clearTimeout(delayTimer)
-    delayTimer = setTimeout( () => {}, 1000)
+    delayTimer = setTimeout(() => {}, 1000)
   }
 
   const onLogout = () => {
@@ -103,6 +103,7 @@ const VHeader = ({ handleLogout, theme, handleChangeTheme }: Props) => {
           style={{ color: theme.ICON }}
         />
         <Input
+          style={{ color: theme.TEXT }}
           className={classes.inputSearch}
           onChange={(e) => onSearch(e.target.value)}
           placeholder={t('header.searchTxt')}

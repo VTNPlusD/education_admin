@@ -80,7 +80,7 @@ const UserDetail = ({
     setAvatar(getImgUrl(userDetail.imageName))
     setRoles(convertRolesToValue(userDetail.roles))
   }, [userDetail])
-  
+
   useEffect(() => {
     if (id) {
       getUserById(id)
@@ -237,15 +237,15 @@ const UserDetail = ({
       <div className={classes.infoRight}>
         <div>
           <p>{t('users.roles')}</p>
-            <Select
-              onChange={(e) => setRoles(e)}
-              value={roles}
-              mode='multiple'
-              showArrow
-              tagRender={tagRender}
-              style={{ width: '100%', marginTop: 8, marginBottom: 8 }}
-              options={RoleList}
-            />
+          <Select
+            onChange={(e) => setRoles(e)}
+            value={roles}
+            mode='multiple'
+            showArrow
+            tagRender={tagRender}
+            style={{ width: '100%', marginTop: 8, marginBottom: 8 }}
+            options={RoleList}
+          />
         </div>
         <SelectStatus
           status={userDetail.status || EUserStatus.ACTIVE}
@@ -260,14 +260,14 @@ const UserDetail = ({
       <VModal
         title={t('sideBar.usersManagement.deleteUser')}
         isModalVisible={isShowModalDelete}
-        Content={ModalDelete}
+        content={<ModalDelete />}
         handleOk={handleOkDelete}
         handleCancel={handleCancelDelete}
       />
       <VModal
         title={t('sideBar.usersManagement.blockUser')}
         isModalVisible={isShowModalBlock}
-        Content={ModalBlock}
+        content={<ModalBlock />}
         handleOk={handleOkBlock}
         handleCancel={handleCancelBlock}
       />

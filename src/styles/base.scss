@@ -32,6 +32,9 @@ body {
 .ant-menu-item-active {
   color: var(--menu-text-active) !important;
 }
+.ant-menu-submenu-selected {
+  color: var(--menu-text-active) !important;
+}
 .ant-menu-submenu-active {
   color: var(--menu-text-active) !important;
 }

@@ -16,7 +16,7 @@ import { AuthApi } from 'services/api/auth/authApi'
 import instance from 'services/api/v1'
 import { checkStatus } from 'utils/services'
 
-function* _authSaga(action: ILoginAction) {
+function* loginSaga(action: ILoginAction) {
   try {
     yield put(SetLoadingAction(true))
     const response: AxiosResponse<IPayload<ILoginResponse>> = yield call(
@@ -34,6 +34,7 @@ function* _authSaga(action: ILoginAction) {
         }
       })
       if (checkRole) {
+        yield put(SetNotificationAction(null))
         const accessToken = data.token.accessToken
         instance.defaults.headers.common[
           'Authorization'
@@ -63,5 +64,5 @@ function* _authSaga(action: ILoginAction) {
 }
 
 export default function* authSaga() {
-  yield all([takeLatest(EAuthTypes.LOGIN, _authSaga)])
+  yield all([takeLatest(EAuthTypes.LOGIN, loginSaga)])
 }
