@@ -29,7 +29,11 @@ const en = {
     messages: {
       invalidRole: 'You do not have access to the system',
       deleteImageSuccess: 'Delete image successfully!',
-      deleteClassSuccess: 'Delete class successfully!'
+      deleteClassSuccess: 'Delete class successfully!',
+      updateClassSuccess: 'Update class successfully!',
+      deleteSubjectSuccess: 'Delete subject successfully!',
+      addSubjectSuccess: 'Add subject successfully!',
+      updateSubjectSuccess: 'Update subject successfully!'
     }
   },
 
@@ -53,7 +57,9 @@ const en = {
     classesManagement: {
       txtClassesManagement: 'Classes management',
       add: 'Add new class',
-      update: 'Update class'
+      update: 'Update class',
+      delete: 'Delete class',
+      deleteConfirm: 'Are you sure to delete this class?'
     }
   },
 
@@ -76,9 +82,40 @@ const en = {
     iconName: 'Icon',
     active: 'Active',
     action: 'Action',
+    view: 'View',
     form: {
       name: 'Class name'
     }
+  },
+
+  subject: {
+    list: 'List subjects',
+    id: 'ID',
+    name: 'Name',
+    order: 'Order',
+    active: 'Active',
+    action: 'Action',
+    view: 'View',
+    add: 'Add new subject',
+    edit: 'Edit subject',
+    delete: 'Delete subject',
+    deleteConfirm: 'Are you sure to delete this subject?',
+    form: {
+      name: 'Subject name'
+    }
+  },
+
+  chapter: {
+    list: 'List chapter',
+    id: 'ID',
+    name: 'Name',
+    order: 'Order',
+    active: 'Active',
+    action: 'Action',
+    view: 'View',
+    add: 'Add new chapter',
+    edit: 'Edit chapter',
+    delete: 'Delete chapter'
   },
 
   errors: {

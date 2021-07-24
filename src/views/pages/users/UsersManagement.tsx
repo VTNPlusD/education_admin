@@ -2,7 +2,8 @@ import { UserOutlined } from '@ant-design/icons'
 import { Pagination } from 'antd'
 import HeaderRoute from 'components/headerRoute/HeaderRoute'
 import { EUserStatus } from 'interfaces/enums/EUserStatus'
-import { IUserList } from 'interfaces/interfaces/IUserList'
+import { IPagination } from 'interfaces/interfaces/IPayload'
+import { IUser } from 'interfaces/interfaces/IUser'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
@@ -15,7 +16,7 @@ import TableItem from './components/TableItem'
 
 type Props = {
   getUsersList: (request: IUserListRequest) => void
-  usersList: IUserList
+  usersList: IPagination<IUser[]>
 }
 
 const UsersManagement = ({ getUsersList, usersList }: Props) => {

@@ -1,11 +1,20 @@
 import {
   ClassesActionTypes,
   IClassesState
-} from 'redux/actions/classes/classesTypes'
-import { EClassesAction } from 'redux/actions/classes/EClassesAction'
+} from 'redux/actions/classes/classTypes'
+import { EClassesAction } from 'redux/actions/classes/EClassActions'
 
 const initialState: IClassesState = {
-  classesList: []
+  classesList: [],
+  classDetail: {
+    id: 0,
+    name: '',
+    type: '',
+    iconName: '',
+    order: 0,
+    active: true,
+    __subjects__: []
+  }
 }
 
 const classesReducer = (
@@ -32,6 +41,51 @@ const classesReducer = (
       return {
         ...state,
         classesList: newClassDelete
+      }
+    case EClassesAction.SET_UPDATE_CLASS:
+      const newClassUpdate = [...state.classesList]
+      const classIndex = newClassUpdate.findIndex(
+        (item) => item.id === action.request.id
+      )
+      newClassUpdate[classIndex] = action.request
+      return {
+        ...state,
+        classesList: newClassUpdate
+      }
+    case EClassesAction.SET_CLASS_DETAIL:
+      return {
+        ...state,
+        classDetail: action.classDetail
+      }
+    case EClassesAction.SET_SUBJECT_CLASS_DETAIL:
+      const newClassDetail = { ...state.classDetail }
+      newClassDetail.__subjects__?.push(action.subject)
+      return {
+        ...state,
+        classDetail: newClassDetail
+      }
+    case EClassesAction.REMOVE_SUBJECT_CLASS_DETAIL:
+      const newClassDetail1 = { ...state.classDetail }
+      const arrSubject = newClassDetail1.__subjects__?.filter(
+        (subject) => subject.id !== action.id
+      )
+      newClassDetail1.__subjects__ = arrSubject
+      return {
+        ...state,
+        classDetail: newClassDetail1
+      }
+    case EClassesAction.SET_UPDATE_SUBJECT:
+      const newClassDetail2 = { ...state.classDetail }
+      const classIndex1 =
+        newClassDetail2.__subjects__?.findIndex(
+          (item) => item.id === action.subject.id
+        ) || 0
+      if (newClassDetail2.__subjects__) {
+        newClassDetail2.__subjects__[classIndex1] = action.subject
+      }
+      return {
+        ...state,
+        classDetail: newClassDetail2
       }
     default:
       return state

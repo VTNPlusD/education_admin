@@ -1,5 +1,5 @@
+import { IPagination } from 'interfaces/interfaces/IPayload'
 import { IUser } from 'interfaces/interfaces/IUser'
-import { IUserList } from 'interfaces/interfaces/IUserList'
 import { IUpdateUserById } from 'services/requests/IUpdateUserById'
 import { IUserListRequest } from 'services/requests/IUserListRequest'
 import { EUserActions } from './EUserAction'
@@ -38,7 +38,7 @@ export const UpdateUserDetailAction = (
 })
 
 export const updateUsersListAction = (
-  usersList: IUserList
+  usersList: IPagination<IUser[]>
 ): IUpdateUsersAction => ({
   type: EUserActions.UPDATE_USERS_LIST,
   usersList

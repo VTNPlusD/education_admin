@@ -5,11 +5,13 @@ import usersReducer from './users/usersReducer'
 import { EAuthTypes } from 'redux/actions/auth/authTypes'
 import { PERSIST_ROOT } from 'redux/store'
 import classesReducer from './classes/classesReducer'
+import subjectReducer from './subjects/subjectReducer'
 const allReducers = combineReducers({
   common: commonReducer,
   auth: authReducer,
   users: usersReducer,
-  classes: classesReducer
+  classes: classesReducer,
+  subjects: subjectReducer
 })
 
 const rootReducer = (state: any, action: any) => {

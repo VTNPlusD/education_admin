@@ -60,7 +60,7 @@ const SelectStatus = ({ status, handleUpdateStatus }: Props) => {
     <>
       <VModal
         title={t('sideBar.usersManagement.changeStatus')}
-        isModalVisible={isShowModal}
+        visible={isShowModal}
         content={<ModalConfirm />}
         handleOk={handleOk}
         handleCancel={() => setIsShowModal(false)}

@@ -1,7 +1,11 @@
 import i18n from 'configs/i18n'
+import classDetailContainer from 'containers/ClassesDetailContainer'
 import ClassesManagementContainer from 'containers/ClassesManagementContainer'
+import SubjectDetailContainer from 'containers/SubjectDetailContainer'
 import UserDetailContainer from 'containers/UserDetailContainer'
 import UsersManagementContainer from 'containers/UsersManagementContainer'
+import SubjectsManagement from 'views/pages/subjects/SubjectsManagement'
+import Dashboard from '../pages/Dashboard'
 import {
   ClassesManagementIcon,
   DashboardIcon,
@@ -9,8 +13,6 @@ import {
   SubjectIcon,
   UsersManagementIcon
 } from './IconRoutes'
-import Dashboard from '../pages/Dashboard'
-import SubjectsManagement from 'views/pages/subjects/SubjectsManagement'
 
 export const ADMIN_ROUTE = '/admin'
 export const routesName = {
@@ -67,6 +69,20 @@ const childrenRoutes = [
     title: 'Users',
     path: routesName.USER_DETAIL.concat('/:id'),
     component: UserDetailContainer
+  },
+  {
+    id: 12,
+    title: 'Class Detail',
+    path: routesName.CLASSES_MANAGEMENT.concat('/:id'),
+    component: classDetailContainer
+  },
+  {
+    id: 13,
+    title: 'Subject Detail',
+    path: routesName.CLASSES_MANAGEMENT.concat('/:classId').concat(
+      '/:subjectId'
+    ),
+    component: SubjectDetailContainer
   }
 ]
 

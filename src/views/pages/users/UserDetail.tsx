@@ -78,7 +78,7 @@ const UserDetail = ({
     setPhone(userDetail.phone)
     setBirthday(moment(userDetail.birthday))
     setAvatar(getImgUrl(userDetail.imageName))
-    setRoles(convertRolesToValue(userDetail.roles))
+    setRoles(convertRolesToValue(userDetail.__roles__))
   }, [userDetail])
 
   useEffect(() => {
@@ -259,14 +259,14 @@ const UserDetail = ({
     <div>
       <VModal
         title={t('sideBar.usersManagement.deleteUser')}
-        isModalVisible={isShowModalDelete}
+        visible={isShowModalDelete}
         content={<ModalDelete />}
         handleOk={handleOkDelete}
         handleCancel={handleCancelDelete}
       />
       <VModal
         title={t('sideBar.usersManagement.blockUser')}
-        isModalVisible={isShowModalBlock}
+        visible={isShowModalBlock}
         content={<ModalBlock />}
         handleOk={handleOkBlock}
         handleCancel={handleCancelBlock}

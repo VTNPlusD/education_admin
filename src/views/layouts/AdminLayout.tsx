@@ -43,6 +43,7 @@ const getContentRoute = (
         path={ADMIN_ROUTE.concat(route.path)}
         component={route.component}
         key={route.id}
+        exact
       />
     ))}
   </Switch>

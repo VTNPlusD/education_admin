@@ -1,10 +1,12 @@
+import { IClass } from 'interfaces/interfaces/IClass'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import {
   addClassAction,
   deleteClassAction,
-  getClassesListAction
-} from 'redux/actions/classes/classesAction'
+  getClassesListAction,
+  updateClassAction
+} from 'redux/actions/classes/classActions'
 import { classSelectors } from 'selectors/classSelectors/classSelectors'
 import { IAddClassRequest } from 'services/requests/IAddClassRequest'
 import { IClassListRequest } from 'services/requests/IClassesListRequest'
@@ -14,6 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getClassesListAction: (request?: IClassListRequest) =>
     dispatch(getClassesListAction(request)),
   addClass: (request: IAddClassRequest) => dispatch(addClassAction(request)),
+  updateClass: (request: IClass) => dispatch(updateClassAction(request)),
   deleteClass: (id: number) => dispatch(deleteClassAction(id))
 })
 

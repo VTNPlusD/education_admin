@@ -1,8 +1,6 @@
 import { AxiosResponse } from 'axios'
 import i18n from 'configs/i18n'
-import { ESuccessType } from 'interfaces/enums/ESuccessType'
-import { INotification } from 'interfaces/interfaces/INotification'
-import { IPayload } from 'interfaces/interfaces/IPayload'
+import { IPagination, IPayload } from 'interfaces/interfaces/IPayload'
 import { IUpload } from 'interfaces/interfaces/IUpload'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import {
@@ -17,7 +15,7 @@ import {
 } from 'redux/actions/common/commonTypes'
 import { ECommonActions } from 'redux/actions/common/ECommonAction'
 import { CommonApi } from 'services/api/common/commonApi'
-import { checkStatus } from 'utils/services'
+import { checkStatus, errorNoti, successNoti } from 'utils/services'
 
 function* uploadSaga(action: IUploadAction) {
   try {
@@ -30,14 +28,9 @@ function* uploadSaga(action: IUploadAction) {
     if (data) {
       yield put(SetItemUploadAction(data))
       action.callback(data)
+    } else {
+      yield put(SetNotificationAction(errorNoti(response)))
     }
-  } catch (error) {
-    const noti: INotification = {
-      notiType: error?.errorType,
-      title: i18n.t('notification.error'),
-      message: error?.message[0]
-    }
-    yield put(SetNotificationAction(noti))
   } finally {
     yield put(SetLoadingAction(false))
   }
@@ -46,20 +39,14 @@ function* uploadSaga(action: IUploadAction) {
 function* getListUploadSaga() {
   try {
     yield put(SetLoadingAction(true))
-    const response: AxiosResponse<IPayload<IUpload[]>> = yield call(
-      CommonApi.getListUpload
-    )
+    const response: AxiosResponse<IPayload<IPagination<IUpload[]>>> =
+      yield call(CommonApi.getListUpload)
     const data = checkStatus(response)
     if (data) {
-      yield put(SetListUploadAction(data))
+      yield put(SetListUploadAction(data.content))
+    } else {
+      yield put(SetNotificationAction(errorNoti(response)))
     }
-  } catch (error) {
-    const noti: INotification = {
-      notiType: error?.errorType,
-      title: i18n.t('notification.error'),
-      message: error?.message[0]
-    }
-    yield put(SetNotificationAction(noti))
   } finally {
     yield put(SetLoadingAction(false))
   }
@@ -73,20 +60,11 @@ function* deleteImageSaga(action: IDeleteImageAction) {
     )
     const data = checkStatus(response)
     if (data) {
-      const noti: INotification = {
-        notiType: ESuccessType.SUCCESS,
-        title: i18n.t('notification.success'),
-        message: i18n.t('notification.messages.deleteImageSuccess')
-      }
-      yield put(SetNotificationAction(noti))
+      const message = i18n.t('notification.messages.deleteImageSuccess')
+      yield put(SetNotificationAction(successNoti(message)))
+    } else {
+      yield put(SetNotificationAction(errorNoti(response)))
     }
-  } catch (error) {
-    const noti: INotification = {
-      notiType: error?.errorType,
-      title: i18n.t('notification.error'),
-      message: error?.message[0]
-    }
-    yield put(SetNotificationAction(noti))
   } finally {
     yield put(SetLoadingAction(false))
   }

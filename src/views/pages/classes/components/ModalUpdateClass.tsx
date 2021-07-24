@@ -1,9 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Select, Tag } from 'antd'
+import ActiveSelect from 'components/activeSelect/ActiveSelect'
 import Image from 'components/image/Image'
 import InputLabel from 'components/inputLabel/InputLabel'
 import SelectImageContainer from 'containers/SelectImageContainer'
-import { EUserStatus } from 'interfaces/enums/EUserStatus'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import classes from 'styles/ClassesManagement.module.scss'
@@ -13,11 +12,13 @@ type Props = {
   name: string
   type: string
   image: string
-  order?: number
+  order: number
   active: boolean
   handleChangName: (val: string) => void
   handleChangType: (val: string) => void
-  handleChangeImage: (name: string) => void
+  handleChangeOrder: (val: number) => void
+  handleChangeImage: (val: string) => void
+  handleChangeActive: (val: boolean) => void
 }
 
 const ModalUpdateClass = ({
@@ -28,14 +29,13 @@ const ModalUpdateClass = ({
   active,
   handleChangName,
   handleChangeImage,
-  handleChangType
+  handleChangeOrder,
+  handleChangType,
+  handleChangeActive
 }: Props) => {
   const { t } = useTranslation()
   const [showSelecImage, setShowSelectImage] = useState(false)
   const [selectedImage, setSelectedImage] = useState<string>('')
-  const [activeVal, setActiveVal] = useState<string[]>([
-    active ? EUserStatus.ACTIVE : EUserStatus.BLOCK
-  ])
 
   useEffect(() => {
     setSelectedImage(image)
@@ -54,23 +54,8 @@ const ModalUpdateClass = ({
     setShowSelectImage(false)
   }
 
-  const options = [{ value: EUserStatus.ACTIVE }, { value: EUserStatus.BLOCK }]
-
-  function tagRender(props: any) {
-    const { label, closable, onClose } = props
-    const onPreventMouseDown = (event: any) => {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-    return (
-      <Tag
-        onMouseDown={onPreventMouseDown}
-        closable={closable}
-        onClose={onClose}
-        style={{ marginRight: 3 }}>
-        {label}
-      </Tag>
-    )
+  const onChangeActive = (val: boolean) => {
+    handleChangeActive(val)
   }
 
   return (
@@ -93,17 +78,10 @@ const ModalUpdateClass = ({
       <InputLabel
         value={order?.toString()}
         label={t('classes.order')}
-        onChange={handleChangType}
+        type='number'
+        onChange={(val) => handleChangeOrder(parseInt(val))}
       />
-      <p>Active</p>
-      <Select
-        showArrow
-        tagRender={tagRender}
-        value={activeVal}
-        onChange={(val) => setActiveVal(val)}
-        style={{ ...styles.margin, ...{ width: '100%' } }}
-        options={options}
-      />{' '}
+      <ActiveSelect active={active} handleChangeActive={onChangeActive} />
       <p>Select Icon</p>
       <PlusOutlined
         onClick={handleChangIcon}
