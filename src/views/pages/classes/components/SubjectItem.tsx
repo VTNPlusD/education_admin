@@ -1,48 +1,44 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import VButton from 'components/button/VButton'
-import Image from 'components/image/Image'
-import { IClass } from 'interfaces/interfaces/IClass'
+import { ISubject } from 'interfaces/interfaces/ISubject'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { AppState } from 'redux/reducers'
 import classes from 'styles/ClassesManagement.module.scss'
 import { colors, IColors } from 'utils/colors'
-import { getImgUrl } from 'utils/Functions'
 type Props = {
-  classItem: IClass
+  subject: ISubject
   index: number
-  handleSelectItem: () => void
-  handleDeleteItem: () => void
-  handleView: () => void
+  handleDeleteSubject: () => void
+  handleEditSubject: () => void
+  handleViewSubject: () => void
 }
 
-const ClassItem = ({
-  classItem,
+const SubjectItem = ({
+  subject,
   index,
-  handleSelectItem,
-  handleDeleteItem,
-  handleView
+  handleDeleteSubject,
+  handleEditSubject,
+  handleViewSubject
 }: Props) => {
   const theme = useSelector((state: AppState) => state.common.theme)
   const { t } = useTranslation()
+
   return (
     <tr
       style={{
         backgroundColor: index % 2 ? colors.PRIMARY_GRAY : '#FFF',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        height: 40
       }}>
-      <td style={{ paddingLeft: 8 }}>{classItem.id} </td>
-      <td>{classItem.name} </td>
-      <td>{classItem.order}</td>
-      <td>{classItem.type}</td>
-      <td>
-        <Image src={getImgUrl(classItem.iconName)} className={classes.icon} />
-      </td>
+      <td style={{ paddingLeft: 8 }}>{subject.id} </td>
+      <td>{subject.name} </td>
+      <td>{subject.order}</td>
       <td>
         <div
           className={classes.active}
           style={{
-            background: classItem.active
+            background: subject.active
               ? colors.STATUS_ACTIVE
               : colors.STATUS_BLOCK
           }}></div>
@@ -50,14 +46,17 @@ const ClassItem = ({
       <td>
         <div style={{ display: 'flex' }}>
           <DeleteOutlined
-            onClick={handleDeleteItem}
+            onClick={handleDeleteSubject}
             style={{ ...styles(theme).icon, ...{ marginRight: 8 } }}
           />
-          <EditOutlined onClick={handleSelectItem} style={styles(theme).icon} />
+          <EditOutlined
+            onClick={handleEditSubject}
+            style={styles(theme).icon}
+          />
         </div>
       </td>
       <td>
-        <VButton onClick={handleView} title={t('classes.view')} />
+        <VButton onClick={handleViewSubject} title={t('classes.view')} />
       </td>
     </tr>
   )
@@ -74,4 +73,4 @@ const styles = (theme: IColors) => {
   return obj
 }
 
-export default ClassItem
+export default SubjectItem

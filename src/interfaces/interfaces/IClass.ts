@@ -1,10 +1,13 @@
+import { ISubject } from './ISubject'
+
 export interface IClass {
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  updatedAt?: Date
   id: number
-  type: string
   name: string
+  type: string
   iconName: string
   order: number
   active: boolean
+  __subjects__?: ISubject[]
 }

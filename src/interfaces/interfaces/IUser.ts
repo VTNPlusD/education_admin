@@ -1,4 +1,4 @@
-import { IRoleDetail } from "./IRoleDetail";
+import { IRoleDetail } from './IRoleDetail'
 
 export interface IUser {
   id: number
@@ -10,5 +10,5 @@ export interface IUser {
   imageName: string
   isSuperUser: boolean
   status: string
-  roles: IRoleDetail[]
+  __roles__: IRoleDetail[]
 }

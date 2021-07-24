@@ -21,6 +21,11 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 
 instance.interceptors.response.use(
   (response) => {
+    if (
+      response?.data?.errorType === ERROR_TYPE.ACCESS_TOKEN_EXPIRED ||
+      response?.data?.errorType === ERROR_TYPE.UNAUTHORIZED
+    )
+      logout()
     return response
   },
   (error: AxiosError) => {

@@ -8,6 +8,7 @@ type Props = {
   title: string
   Icon: any
   iconRight?: boolean
+  handleClickIconLeft?: () => void
   handleClickIconRight?: () => void
 }
 
@@ -15,6 +16,7 @@ const HeaderRoute = ({
   title,
   Icon,
   iconRight = false,
+  handleClickIconLeft,
   handleClickIconRight
 }: Props) => {
   const theme = useSelector((state: AppState) => state.common.theme)
@@ -22,6 +24,7 @@ const HeaderRoute = ({
     <div className={classes.header}>
       <div className={classes.headerLeft}>
         <div
+          onClick={handleClickIconLeft}
           style={{
             ...styles.iconHomeContainer,
             ...{ background: theme.PRIMARY_LINEAR_MAIN }
@@ -50,7 +53,8 @@ const styles = {
     height: 36,
     borderRadius: 4,
     marginRight: 12,
-    boxShadow: '0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35)'
+    boxShadow: '0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35)',
+    cursor: 'pointer'
   }
 }
 
