@@ -33,7 +33,8 @@ const en = {
       updateClassSuccess: 'Update class successfully!',
       deleteSubjectSuccess: 'Delete subject successfully!',
       addSubjectSuccess: 'Add subject successfully!',
-      updateSubjectSuccess: 'Update subject successfully!'
+      updateSubjectSuccess: 'Update subject successfully!',
+      addChapterSuccess: 'Add chapter successfully!'
     }
   },
 
@@ -107,6 +108,7 @@ const en = {
 
   chapter: {
     list: 'List chapter',
+    stt: '#',
     id: 'ID',
     name: 'Name',
     order: 'Order',

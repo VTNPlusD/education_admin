@@ -1,5 +1,5 @@
-import { IUpdateUserById } from 'services/requests/IUpdateUserById'
-import { IUserListRequest } from 'services/requests/IUserListRequest'
+import { IUpdateUserById } from 'interfaces/request/IUpdateUserById'
+import { IUserListRequest } from 'interfaces/request/IUserListRequest'
 import { USERS_LIST, GET_USER_BY_ID, UPDATE_USER_BY_ID } from '..'
 import instance from '../v1'
 

@@ -32,7 +32,7 @@ const errorNoti = <T>(
 
 const successNoti = (
   message: string,
-  title: string = i18n.t('notification.error')
+  title: string = i18n.t('notification.success')
 ) => {
   return {
     notiType: ESuccessType.SUCCESS,

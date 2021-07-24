@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { ILoginRequest } from 'services/requests/ILoginRequest'
+import { ILoginRequest } from 'interfaces/request/ILoginRequest'
 
 export interface IAuthState {
   authed: boolean

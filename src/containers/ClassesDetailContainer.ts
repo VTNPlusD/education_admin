@@ -8,7 +8,7 @@ import {
   updateSubjectAction
 } from 'redux/actions/subjects/subjectActions'
 import { classSelectors } from 'selectors/classSelectors/classSelectors'
-import { IAddSubjectRequest } from 'services/requests/IAddSubjectRequest'
+import { IAddSubjectRequest } from 'interfaces/request/IAddSubjectRequest'
 import ClassDetail from 'views/pages/classes/ClassDetail'
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

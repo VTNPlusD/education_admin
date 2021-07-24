@@ -1,8 +1,8 @@
 import { IClass } from 'interfaces/interfaces/IClass'
 import { ISubject } from 'interfaces/interfaces/ISubject'
 import { Action } from 'redux'
-import { IAddClassRequest } from 'services/requests/IAddClassRequest'
-import { IClassListRequest } from 'services/requests/IClassesListRequest'
+import { IAddClassRequest } from 'interfaces/request/IAddClassRequest'
+import { IClassListRequest } from 'interfaces/request/IClassesListRequest'
 import { EClassesAction } from './EClassActions'
 
 export interface IClassesState {

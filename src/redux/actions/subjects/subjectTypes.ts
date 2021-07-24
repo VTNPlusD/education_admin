@@ -1,6 +1,7 @@
+import { IChapter } from 'interfaces/interfaces/IChapter'
 import { ISubject } from 'interfaces/interfaces/ISubject'
 import { Action } from 'redux'
-import { IAddSubjectRequest } from 'services/requests/IAddSubjectRequest'
+import { IAddSubjectRequest } from 'interfaces/request/IAddSubjectRequest'
 import { ESubjectActions } from './ESubjectActions'
 
 export interface ISubjectState {
@@ -32,9 +33,15 @@ export interface ISetSubjectDetailAction extends Action {
   subject: ISubject
 }
 
+export interface ISetChapterSubjectDetailAction extends Action {
+  type: ESubjectActions.SET_CHAPTER_SUBJECT_DETAIL
+  chapter: IChapter
+}
+
 export type SubjectActionTypes =
   | IAddSubjectAction
   | IDeleteSubjectAction
   | IUpdateSubjectAction
   | IGetSubjectDetailAction
   | ISetSubjectDetailAction
+  | ISetChapterSubjectDetailAction
