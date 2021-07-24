@@ -1,8 +1,8 @@
 import { IPagination } from 'interfaces/interfaces/IPayload'
 import { IUser } from 'interfaces/interfaces/IUser'
 import { Action } from 'redux'
-import { IUpdateUserById } from 'services/requests/IUpdateUserById'
-import { IUserListRequest } from 'services/requests/IUserListRequest'
+import { IUpdateUserById } from 'interfaces/request/IUpdateUserById'
+import { IUserListRequest } from 'interfaces/request/IUserListRequest'
 import { EUserActions } from './EUserAction'
 
 export interface IUsersState {

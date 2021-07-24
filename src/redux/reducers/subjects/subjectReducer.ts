@@ -9,7 +9,8 @@ const initialState: ISubjectState = {
     id: 0,
     name: '',
     order: 0,
-    active: true
+    active: true,
+    __chapters__: []
   }
 }
 
@@ -23,6 +24,8 @@ const subjectReducer = (
         ...state,
         subjectDetail: action.subject
       }
+    // case ESubjectActions.SET_CHAPTER_SUBJECT_DETAIL:
+    //   const newSubject = {...state.subjectDetail}
     default:
       return state
   }

@@ -8,8 +8,8 @@ import {
   updateClassAction
 } from 'redux/actions/classes/classActions'
 import { classSelectors } from 'selectors/classSelectors/classSelectors'
-import { IAddClassRequest } from 'services/requests/IAddClassRequest'
-import { IClassListRequest } from 'services/requests/IClassesListRequest'
+import { IAddClassRequest } from 'interfaces/request/IAddClassRequest'
+import { IClassListRequest } from 'interfaces/request/IClassesListRequest'
 import ClassesManagement from 'views/pages/classes/ClassesManagement'
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

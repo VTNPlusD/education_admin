@@ -7,7 +7,7 @@ import { IUser } from 'interfaces/interfaces/IUser'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
-import { IUserListRequest } from 'services/requests/IUserListRequest'
+import { IUserListRequest } from 'interfaces/request/IUserListRequest'
 import classes from 'styles/UsersManagement.module.scss'
 import { lightColors } from 'utils/colors'
 import { convertStatusToColor } from 'utils/Functions'
@@ -28,8 +28,6 @@ const UsersManagement = ({ getUsersList, usersList }: Props) => {
   useEffect(() => {
     getUsersList({ page: page, limit: limit })
   }, [getUsersList, limit, page])
-
-  useEffect(() => {}, [usersList.totalRecords])
 
   const handleSelectUser = (id: number) => {
     history.push(

@@ -1,6 +1,6 @@
 import { IClass } from 'interfaces/interfaces/IClass'
-import { IAddClassRequest } from 'services/requests/IAddClassRequest'
-import { IClassListRequest } from 'services/requests/IClassesListRequest'
+import { IAddClassRequest } from 'interfaces/request/IAddClassRequest'
+import { IClassListRequest } from 'interfaces/request/IClassesListRequest'
 import { CLASSES } from '..'
 import instance from '../v1'
 

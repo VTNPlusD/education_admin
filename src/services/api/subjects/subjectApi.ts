@@ -1,5 +1,5 @@
 import { ISubject } from 'interfaces/interfaces/ISubject'
-import { IAddSubjectRequest } from 'services/requests/IAddSubjectRequest'
+import { IAddSubjectRequest } from 'interfaces/request/IAddSubjectRequest'
 import { SUBJECTS } from '..'
 import instance from '../v1'
 

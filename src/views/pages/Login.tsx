@@ -11,7 +11,7 @@ import {
 import VButtonContainer from 'containers/VButtonContainer'
 import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ILoginRequest } from 'services/requests/ILoginRequest'
+import { ILoginRequest } from 'interfaces/request/ILoginRequest'
 import styles from 'styles/Login.module.scss'
 
 const { Option } = Select

@@ -6,7 +6,7 @@ import {
   UpdateUserByIdAction
 } from 'redux/actions/users/usersAction'
 import { userSelector } from 'selectors/userSelectors/userSelectors'
-import { IUpdateUserById } from 'services/requests/IUpdateUserById'
+import { IUpdateUserById } from 'interfaces/request/IUpdateUserById'
 import UserDetail from 'views/pages/users/UserDetail'
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

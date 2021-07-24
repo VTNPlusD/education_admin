@@ -1,4 +1,4 @@
-import { ILoginRequest } from 'services/requests/ILoginRequest'
+import { ILoginRequest } from 'interfaces/request/ILoginRequest'
 import { LOGIN } from '..'
 import instance from '../v1'
 

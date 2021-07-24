@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { LoginAction } from 'redux/actions/auth/authAction'
 import { commonSelector } from 'selectors/commonSelectors/commonSelector'
-import { ILoginRequest } from 'services/requests/ILoginRequest'
+import { ILoginRequest } from 'interfaces/request/ILoginRequest'
 import Login from 'views/pages/Login'
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

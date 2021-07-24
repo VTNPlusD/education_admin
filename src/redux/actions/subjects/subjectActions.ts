@@ -1,10 +1,12 @@
+import { IChapter } from 'interfaces/interfaces/IChapter'
 import { ISubject } from 'interfaces/interfaces/ISubject'
-import { IAddSubjectRequest } from 'services/requests/IAddSubjectRequest'
+import { IAddSubjectRequest } from 'interfaces/request/IAddSubjectRequest'
 import { ESubjectActions } from './ESubjectActions'
 import {
   IAddSubjectAction,
   IDeleteSubjectAction,
   IGetSubjectDetailAction,
+  ISetChapterSubjectDetailAction,
   ISetSubjectDetailAction,
   IUpdateSubjectAction
 } from './subjectTypes'
@@ -40,4 +42,11 @@ export const setSubjectDetailAction = (
 ): ISetSubjectDetailAction => ({
   type: ESubjectActions.SET_SUBJECT_DETAIL,
   subject
+})
+
+export const setChapterSubjectDetailAction = (
+  chapter: IChapter
+): ISetChapterSubjectDetailAction => ({
+  type: ESubjectActions.SET_CHAPTER_SUBJECT_DETAIL,
+  chapter
 })

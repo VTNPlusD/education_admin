@@ -22,8 +22,9 @@ const ChapterItem = ({ chapter, index }: Props) => {
         cursor: 'pointer',
         height: 40
       }}>
-      <td style={{ paddingLeft: 8 }}>{chapter.id} </td>
+      <td style={{ paddingLeft: 8 }}>{index + 1} </td>
       <td>{chapter.name} </td>
+      <td>{chapter.id} </td>
       <td>{chapter.order}</td>
       <td>
         <div

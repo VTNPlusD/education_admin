@@ -1,5 +1,6 @@
 import { all, fork } from 'redux-saga/effects'
 import authSaga from './auth/authSaga'
+import chapterSaga from './chapters/chapterSaga'
 import classesSaga from './classes/classesSaga'
 import commonSaga from './common/commonSaga'
 import subjectSagas from './subjects/subjectSagas'
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     fork(authSaga),
     fork(usersSaga),
     fork(classesSaga),
-    fork(subjectSagas)
+    fork(subjectSagas),
+    fork(chapterSaga)
   ])
 }
