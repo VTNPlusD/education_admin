@@ -166,14 +166,14 @@ const ClassesManagement = ({
       <table className={classes.tableContainer}>
         <thead>
           <tr style={{ textAlign: 'left' }}>
-            <th> {t('classes.id')} </th>
-            <th> {t('classes.name')} </th>
-            <th> {t('classes.order')} </th>
-            <th> {t('classes.type')} </th>
-            <th> {t('classes.iconName')} </th>
-            <th> {t('classes.active')} </th>
-            <th> {t('classes.action')} </th>
-            <th> {t('classes.view')} </th>
+            <th> {t('management.id')} </th>
+            <th> {t('management.name')} </th>
+            <th> {t('management.order')} </th>
+            <th> {t('management.type')} </th>
+            <th> {t('management.iconName')} </th>
+            <th> {t('management.active')} </th>
+            <th> {t('management.action')} </th>
+            <th> {t('management.view')} </th>
           </tr>
         </thead>
         <tbody className={classes.tableContainer}>

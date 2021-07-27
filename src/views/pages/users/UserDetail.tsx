@@ -78,7 +78,7 @@ const UserDetail = ({
     setPhone(userDetail.phone)
     setBirthday(moment(userDetail.birthday))
     setAvatar(getImgUrl(userDetail.imageName))
-    setRoles(convertRolesToValue(userDetail.__roles__))
+    setRoles(convertRolesToValue(userDetail.roles))
   }, [userDetail])
 
   useEffect(() => {

@@ -9,9 +9,18 @@ import { colors, IColors } from 'utils/colors'
 type Props = {
   chapter: IChapter
   index: number
+  handleDelete: () => void
+  handleEdit: () => void
+  handleView: () => void
 }
 
-const ChapterItem = ({ chapter, index }: Props) => {
+const ChapterItem = ({
+  chapter,
+  index,
+  handleDelete,
+  handleEdit,
+  handleView
+}: Props) => {
   const theme = useSelector((state: AppState) => state.common.theme)
   const { t } = useTranslation()
 
@@ -22,9 +31,8 @@ const ChapterItem = ({ chapter, index }: Props) => {
         cursor: 'pointer',
         height: 40
       }}>
-      <td style={{ paddingLeft: 8 }}>{index + 1} </td>
+      <td style={{ paddingLeft: 8 }}>{chapter.id} </td>
       <td>{chapter.name} </td>
-      <td>{chapter.id} </td>
       <td>{chapter.order}</td>
       <td>
         <div
@@ -38,13 +46,14 @@ const ChapterItem = ({ chapter, index }: Props) => {
       <td>
         <div style={{ display: 'flex' }}>
           <DeleteOutlined
+            onClick={handleDelete}
             style={{ ...styles(theme).icon, ...{ marginRight: 8 } }}
           />
-          <EditOutlined style={styles(theme).icon} />
+          <EditOutlined onClick={handleEdit} style={styles(theme).icon} />
         </div>
       </td>
       <td>
-        <VButton title={t('classes.view')} />
+        <VButton onClick={handleView} title={t('management.view')} />
       </td>
     </tr>
   )

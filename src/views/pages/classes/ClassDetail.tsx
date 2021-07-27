@@ -157,12 +157,12 @@ const ClassDetail = ({
         <table className={classes.tableContainer}>
           <thead>
             <tr style={{ textAlign: 'left' }}>
-              <th> {t('subject.id')} </th>
-              <th> {t('subject.name')} </th>
-              <th> {t('subject.order')} </th>
-              <th> {t('subject.active')} </th>
-              <th> {t('subject.action')} </th>
-              <th> {t('subject.view')} </th>
+              <th> {t('management.id')} </th>
+              <th> {t('management.name')} </th>
+              <th> {t('management.order')} </th>
+              <th> {t('management.active')} </th>
+              <th> {t('management.action')} </th>
+              <th> {t('management.view')} </th>
             </tr>
           </thead>
           <tbody className={classes.tableContainer}>

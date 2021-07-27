@@ -13,6 +13,12 @@ const initialState: IChapterState = {
     payloadSize: 0,
     skippedRecords: 0,
     hasNext: false
+  },
+  chapterDetail: {
+    id: 0,
+    name: '',
+    order: 0,
+    active: true
   }
 }
 
@@ -25,6 +31,21 @@ const chapterReducer = (
       return {
         ...state,
         listChapter: action.listChapter
+      }
+    case EChapterActions.SET_UPDATE_CHAPTER:
+      const newList = { ...state.listChapter }
+      let indexChapter = newList.content.findIndex(
+        (chapter) => chapter.id === action.chapter.id
+      )
+      newList.content[indexChapter] = action.chapter
+      return {
+        ...state,
+        listChapter: newList
+      }
+    case EChapterActions.SET_CHAPTER:
+      return {
+        ...state,
+        chapterDetail: action.chapter
       }
     default:
       return state
