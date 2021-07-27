@@ -1,6 +1,7 @@
 import i18n from 'configs/i18n'
 import classDetailContainer from 'containers/ClassesDetailContainer'
 import ClassesManagementContainer from 'containers/ClassesManagementContainer'
+import LessonContainer from 'containers/LessonContainer'
 import SubjectDetailContainer from 'containers/SubjectDetailContainer'
 import UserDetailContainer from 'containers/UserDetailContainer'
 import UsersManagementContainer from 'containers/UsersManagementContainer'
@@ -83,6 +84,14 @@ const childrenRoutes = [
       '/:subjectId'
     ),
     component: SubjectDetailContainer
+  },
+  {
+    id: 13,
+    title: 'List lessons',
+    path: routesName.CLASSES_MANAGEMENT.concat('/:classId')
+      .concat('/:subjectId')
+      .concat('/:chapterId'),
+    component: LessonContainer
   }
 ]
 

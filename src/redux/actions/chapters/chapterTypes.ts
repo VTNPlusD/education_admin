@@ -7,6 +7,7 @@ import { EChapterActions } from './EChapterActions'
 
 export interface IChapterState {
   listChapter: IPagination<IChapter[]>
+  chapterDetail: IChapter
 }
 
 export interface IListChapterAction extends Action {
@@ -25,8 +26,29 @@ export interface IAddChapterAction extends Action {
   callback: () => void
 }
 
+export interface IGetChapterAction extends Action {
+  type: EChapterActions.GET_CHAPTER
+  id: number
+}
+
 export interface ISetChapterAction extends Action {
   type: EChapterActions.SET_CHAPTER
+  chapter: IChapter
+}
+
+export interface IDeleteChapterAction extends Action {
+  type: EChapterActions.DELETE_CHAPTER
+  id: number
+  callback: () => void
+}
+
+export interface IUpdateChapterAction extends Action {
+  type: EChapterActions.UPDATE_CHAPTER
+  chapter: IChapter
+}
+
+export interface ISetUpdateChapterAction extends Action {
+  type: EChapterActions.SET_UPDATE_CHAPTER
   chapter: IChapter
 }
 
@@ -35,3 +57,7 @@ export type ChapterActionTypes =
   | ISeTListChapterAction
   | IAddChapterAction
   | ISetChapterAction
+  | IDeleteChapterAction
+  | IUpdateChapterAction
+  | ISetUpdateChapterAction
+  | IGetChapterAction

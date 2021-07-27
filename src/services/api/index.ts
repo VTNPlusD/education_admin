@@ -9,6 +9,8 @@ const GET_LIST_UPLOAD = '/upload/files'
 const DELETE_IMAGE = '/upload/files'
 const SUBJECTS = '/subjects'
 const CHAPTERS = '/chapters'
+const LESSONS = '/lessons'
+
 export {
   LOGIN,
   USERS,
@@ -20,5 +22,6 @@ export {
   GET_LIST_UPLOAD,
   DELETE_IMAGE,
   SUBJECTS,
-  CHAPTERS
+  CHAPTERS,
+  LESSONS
 }

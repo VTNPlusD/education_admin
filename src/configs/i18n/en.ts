@@ -34,7 +34,8 @@ const en = {
       deleteSubjectSuccess: 'Delete subject successfully!',
       addSubjectSuccess: 'Add subject successfully!',
       updateSubjectSuccess: 'Update subject successfully!',
-      addChapterSuccess: 'Add chapter successfully!'
+      addChapterSuccess: 'Add chapter successfully!',
+      updateChapterSuccess: 'Update chapter successfully!'
     }
   },
 
@@ -75,7 +76,7 @@ const en = {
     roles: 'Roles'
   },
 
-  classes: {
+  management: {
     id: 'ID',
     name: 'Name',
     order: 'Order',
@@ -83,7 +84,10 @@ const en = {
     iconName: 'Icon',
     active: 'Active',
     action: 'Action',
-    view: 'View',
+    view: 'View'
+  },
+
+  classes: {
     form: {
       name: 'Class name'
     }
@@ -91,12 +95,6 @@ const en = {
 
   subject: {
     list: 'List subjects',
-    id: 'ID',
-    name: 'Name',
-    order: 'Order',
-    active: 'Active',
-    action: 'Action',
-    view: 'View',
     add: 'Add new subject',
     edit: 'Edit subject',
     delete: 'Delete subject',
@@ -108,18 +106,19 @@ const en = {
 
   chapter: {
     list: 'List chapter',
-    stt: '#',
-    id: 'ID',
-    name: 'Name',
-    order: 'Order',
-    active: 'Active',
-    action: 'Action',
-    view: 'View',
     add: 'Add new chapter',
     edit: 'Edit chapter',
-    delete: 'Delete chapter'
+    delete: 'Delete chapter',
+    deleteConfirm: 'Are you sure to delete this chapter?'
   },
 
+  lesson: {
+    list: 'List lesson',
+    create: 'Create lesson',
+    form: {
+      name: 'Lesson name'
+    }
+  },
   errors: {
     internet: 'Please check your internet connection and try again!',
     unauthenticated: 'Unauthenticated',

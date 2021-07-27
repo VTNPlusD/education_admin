@@ -10,5 +10,5 @@ export interface IUser {
   imageName: string
   isSuperUser: boolean
   status: string
-  __roles__: IRoleDetail[]
+  roles: IRoleDetail[]
 }

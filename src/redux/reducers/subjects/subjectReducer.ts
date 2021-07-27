@@ -24,8 +24,6 @@ const subjectReducer = (
         ...state,
         subjectDetail: action.subject
       }
-    // case ESubjectActions.SET_CHAPTER_SUBJECT_DETAIL:
-    //   const newSubject = {...state.subjectDetail}
     default:
       return state
   }

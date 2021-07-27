@@ -3,6 +3,7 @@ import authSaga from './auth/authSaga'
 import chapterSaga from './chapters/chapterSaga'
 import classesSaga from './classes/classesSaga'
 import commonSaga from './common/commonSaga'
+import lessonSaga from './lessons/lessonSaga'
 import subjectSagas from './subjects/subjectSagas'
 import usersSaga from './users/usersSaga'
 
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     fork(usersSaga),
     fork(classesSaga),
     fork(subjectSagas),
-    fork(chapterSaga)
+    fork(chapterSaga),
+    fork(lessonSaga)
   ])
 }

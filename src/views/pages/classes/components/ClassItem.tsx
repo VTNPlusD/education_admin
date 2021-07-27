@@ -57,7 +57,7 @@ const ClassItem = ({
         </div>
       </td>
       <td>
-        <VButton onClick={handleView} title={t('classes.view')} />
+        <VButton onClick={handleView} title={t('management.view')} />
       </td>
     </tr>
   )

@@ -7,13 +7,15 @@ import { PERSIST_ROOT } from 'redux/store'
 import classesReducer from './classes/classesReducer'
 import subjectReducer from './subjects/subjectReducer'
 import chapterReducer from './chapters/chapterReducer'
+import lessonReducer from './lessons/lessonReducer'
 const allReducers = combineReducers({
   common: commonReducer,
   auth: authReducer,
   users: usersReducer,
   classes: classesReducer,
   subjects: subjectReducer,
-  chapterReducer: chapterReducer
+  chapterReducer: chapterReducer,
+  lessonReducer: lessonReducer
 })
 
 const rootReducer = (state: any, action: any) => {
